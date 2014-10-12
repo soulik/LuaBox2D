@@ -184,3 +184,5 @@ FakesAssemblies/
 
 #Subversion
 .svn
+test/*.exe
+test/*.dll
