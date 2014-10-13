@@ -89,10 +89,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\objects\Rot.cpp" />
+    <ClCompile Include="src\objects\Sweep.cpp" />
+    <ClCompile Include="src\objects\Transform.cpp" />
     <ClCompile Include="src\objects\Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\common.hpp" />
+    <ClInclude Include="src\objects\Rot.hpp" />
+    <ClInclude Include="src\objects\Sweep.hpp" />
+    <ClInclude Include="src\objects\Transform.hpp" />
     <ClInclude Include="src\objects\Vec2.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
