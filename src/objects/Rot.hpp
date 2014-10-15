@@ -16,7 +16,7 @@ namespace LuaBox2D {
 
 		b2Rot * constructor(State & state){
 			b2Rot * obj = nullptr;
-			Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["Vec2"]);
+			Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
 
 			Stack * stack = state.stack;
 			if (stack->is<LUA_TNUMBER>(1)){
@@ -34,13 +34,13 @@ namespace LuaBox2D {
 		}
 
 		int getXAxis(State & state, b2Rot * object){
-			Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["Vec2"]);
+			Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
 			interfaceVec2->push(new b2Vec2(object->GetXAxis()));
 			return 1;
 		}
 
 		int getYAxis(State & state, b2Rot * object){
-			Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["Vec2"]);
+			Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
 			interfaceVec2->push(new b2Vec2(object->GetYAxis()));
 			return 1;
 		}

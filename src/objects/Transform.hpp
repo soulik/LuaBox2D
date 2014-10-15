@@ -14,8 +14,8 @@ namespace LuaBox2D {
 
 		b2Transform * constructor(State & state){
 			b2Transform * obj = nullptr;
-			Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["Vec2"]);
-			Rot * interfaceRot = dynamic_cast<Rot*>(state.interfaces["Rot"]);
+			Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+			Rot * interfaceRot = dynamic_cast<Rot*>(state.interfaces["LuaBox2D_Rot"]);
 
 			Stack * stack = state.stack;
 			b2Vec2 * position = interfaceVec2->get(1);
@@ -39,7 +39,7 @@ namespace LuaBox2D {
 		}
 
 		int set(State & state, b2Transform * object){
-			Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["Vec2"]);
+			Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
 			b2Vec2 * position = interfaceVec2->get(1);
 			if (position != nullptr && state.stack->is<LUA_TNUMBER>(2)){
 				object->Set(*position, static_cast<float32>(state.stack->to<LUA_NUMBER>(2)));
