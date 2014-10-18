@@ -3,8 +3,6 @@
 
 namespace LuaBox2D {
 	void initShape(State * state){
-		Shape * interface = new Shape(state);
-		state->interfaces["LuaBox2D_Shape"] = interface;
-		interface->getConstructor();
+		state->registerInterface<Shape>("LuaBox2D_Shape");
 	}
 };

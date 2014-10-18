@@ -1,9 +1,6 @@
 #ifndef LUABOX2D_FIXTURE_H
 #define LUABOX2D_FIXTURE_H
 
-#include "objects/Vec2.hpp"
-#include "objects/Body.hpp"
-
 namespace LuaBox2D {
 	class Fixture : public Object<b2Fixture> {
 	public:

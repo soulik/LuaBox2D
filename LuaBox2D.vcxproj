@@ -91,6 +91,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\objects\Body.cpp" />
     <ClCompile Include="src\objects\BodyDef.cpp" />
+    <ClCompile Include="src\objects\Filter.cpp" />
     <ClCompile Include="src\objects\Fixture.cpp" />
     <ClCompile Include="src\objects\FixtureDef.cpp" />
     <ClCompile Include="src\objects\Rot.cpp" />
@@ -105,6 +106,7 @@
     <ClInclude Include="src\common.hpp" />
     <ClInclude Include="src\objects\Body.hpp" />
     <ClInclude Include="src\objects\BodyDef.hpp" />
+    <ClInclude Include="src\objects\Filter.hpp" />
     <ClInclude Include="src\objects\Fixture.hpp" />
     <ClInclude Include="src\objects\FixtureDef.hpp" />
     <ClInclude Include="src\objects\Rot.hpp" />

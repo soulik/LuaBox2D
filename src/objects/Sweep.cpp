@@ -3,9 +3,7 @@
 
 namespace LuaBox2D {
 	void initSweep(State * state){
-		Sweep * interface = new Sweep(state);
-		state->interfaces["LuaBox2D_Sweep"] = interface;
-		interface->getConstructor();
+		state->registerInterface<Sweep>("LuaBox2D_Sweep");
 	}
 };
 

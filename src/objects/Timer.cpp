@@ -3,8 +3,6 @@
 
 namespace LuaBox2D {
 	void initTimer(State * state){
-		Timer * interface = new Timer(state);
-		state->interfaces["LuaBox2D_Timer"] = interface;
-		interface->getConstructor();
+		state->registerInterface<Timer>("LuaBox2D_Timer");
 	}
 };

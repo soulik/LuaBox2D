@@ -1,7 +1,10 @@
 #ifndef LUABOX2D_BODY_H
 #define LUABOX2D_BODY_H
 
+#include "objects/Shape.hpp"
 #include "objects/BodyDef.hpp"
+#include "objects/Fixture.hpp"
+#include "objects/FixtureDef.hpp"
 #include "objects/World.hpp"
 #include "objects/Transform.hpp"
 #include "objects/Vec2.hpp"

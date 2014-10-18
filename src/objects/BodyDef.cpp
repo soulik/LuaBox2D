@@ -11,9 +11,7 @@ namespace LuaBox2D {
 		bodyTypes["kinematic"] = b2_kinematicBody;
 		bodyTypes["dynamic"] = b2_dynamicBody;
 
-		BodyDef * interface = new BodyDef(state);
-		state->interfaces["LuaBox2D_BodyDef"] = interface;
-		interface->getConstructor();
+		state->registerInterface<BodyDef>("LuaBox2D_BodyDef");
 	}
 
 	b2BodyType stringToBodyType(const std::string & name){

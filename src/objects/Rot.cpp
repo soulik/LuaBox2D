@@ -3,9 +3,7 @@
 
 namespace LuaBox2D {
 	void initRot(State * state){
-		Rot * interface = new Rot(state);
-		state->interfaces["LuaBox2D_Rot"] = interface;
-		interface->getConstructor();
+		state->registerInterface<Rot>("LuaBox2D_Rot");
 	}
 };
 

@@ -13,6 +13,7 @@
 #include "objects/Fixture.hpp"
 #include "objects/FixtureDef.hpp"
 #include "objects/Shape.hpp"
+#include "objects/Filter.hpp"
 
 namespace LuaBox2D {
 	int version(State & state){
@@ -44,7 +45,7 @@ extern "C" LUA_API int luaopen_LuaBox2D(lua_State * L){
 		initFixture(state); stack->setField("Fixture");
 		initFixtureDef(state); stack->setField("FixtureDef");
 		initShape(state); stack->setField("Shape");
-
+		initFilter(state); stack->setField("Filter");
 
 		stack->setField<Function>("version", version);
 	return 1;
