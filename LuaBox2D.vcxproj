@@ -94,6 +94,8 @@
     <ClCompile Include="src\objects\Filter.cpp" />
     <ClCompile Include="src\objects\Fixture.cpp" />
     <ClCompile Include="src\objects\FixtureDef.cpp" />
+    <ClCompile Include="src\objects\RayCastInput.cpp" />
+    <ClCompile Include="src\objects\RayCastOutput.cpp" />
     <ClCompile Include="src\objects\Rot.cpp" />
     <ClCompile Include="src\objects\Shape.cpp" />
     <ClCompile Include="src\objects\Sweep.cpp" />
@@ -109,6 +111,8 @@
     <ClInclude Include="src\objects\Filter.hpp" />
     <ClInclude Include="src\objects\Fixture.hpp" />
     <ClInclude Include="src\objects\FixtureDef.hpp" />
+    <ClInclude Include="src\objects\RayCastInput.hpp" />
+    <ClInclude Include="src\objects\RayCastOutput.hpp" />
     <ClInclude Include="src\objects\Rot.hpp" />
     <ClInclude Include="src\objects\Shape.hpp" />
     <ClInclude Include="src\objects\Sweep.hpp" />

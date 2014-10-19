@@ -14,6 +14,8 @@
 #include "objects/FixtureDef.hpp"
 #include "objects/Shape.hpp"
 #include "objects/Filter.hpp"
+#include "objects/RayCastInput.hpp"
+#include "objects/RayCastOutput.hpp"
 
 namespace LuaBox2D {
 	int version(State & state){
@@ -46,6 +48,8 @@ extern "C" LUA_API int luaopen_LuaBox2D(lua_State * L){
 		initFixtureDef(state); stack->setField("FixtureDef");
 		initShape(state); stack->setField("Shape");
 		initFilter(state); stack->setField("Filter");
+		initRayCastInput(state); stack->setField("RaycastInput");
+		initRayCastOutput(state); stack->setField("RaycastOutput");
 
 		stack->setField<Function>("version", version);
 	return 1;
