@@ -89,11 +89,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\objects\AABB.cpp" />
+    <ClCompile Include="src\objects\VertexArray.cpp" />
     <ClCompile Include="src\objects\Body.cpp" />
     <ClCompile Include="src\objects\BodyDef.cpp" />
+    <ClCompile Include="src\objects\ChainShape.cpp" />
+    <ClCompile Include="src\objects\CircleShape.cpp" />
+    <ClCompile Include="src\objects\EdgeShape.cpp" />
     <ClCompile Include="src\objects\Filter.cpp" />
     <ClCompile Include="src\objects\Fixture.cpp" />
     <ClCompile Include="src\objects\FixtureDef.cpp" />
+    <ClCompile Include="src\objects\MassData.cpp" />
+    <ClCompile Include="src\objects\PolygonShape.cpp" />
     <ClCompile Include="src\objects\RayCastInput.cpp" />
     <ClCompile Include="src\objects\RayCastOutput.cpp" />
     <ClCompile Include="src\objects\Rot.cpp" />
@@ -106,11 +113,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\common.hpp" />
+    <ClInclude Include="src\objects\AABB.hpp" />
+    <ClInclude Include="src\objects\VertexArray.hpp" />
     <ClInclude Include="src\objects\Body.hpp" />
     <ClInclude Include="src\objects\BodyDef.hpp" />
+    <ClInclude Include="src\objects\ChainShape.hpp" />
+    <ClInclude Include="src\objects\CircleShape.hpp" />
+    <ClInclude Include="src\objects\EdgeShape.hpp" />
     <ClInclude Include="src\objects\Filter.hpp" />
     <ClInclude Include="src\objects\Fixture.hpp" />
     <ClInclude Include="src\objects\FixtureDef.hpp" />
+    <ClInclude Include="src\objects\MassData.hpp" />
+    <ClInclude Include="src\objects\PolygonShape.hpp" />
     <ClInclude Include="src\objects\RayCastInput.hpp" />
     <ClInclude Include="src\objects\RayCastOutput.hpp" />
     <ClInclude Include="src\objects\Rot.hpp" />
