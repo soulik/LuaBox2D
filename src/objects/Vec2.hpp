@@ -29,6 +29,14 @@ namespace LuaBox2D {
 					static_cast<float32>(stack->to<LUA_NUMBER>(1)),
 					static_cast<float32>(stack->to<LUA_NUMBER>(2))
 				);
+			}else if (stack->is<LUA_TTABLE>(1)){
+				stack->getField(1, 1);
+				float32 x = static_cast<float32>(stack->to<LUA_NUMBER>());
+
+				stack->getField(2, 1);
+				float32 y = static_cast<float32>(stack->to<LUA_NUMBER>());
+				stack->pop(2);
+				obj = new b2Vec2(x, y);
 			}else{
 				obj = new b2Vec2();
 			}

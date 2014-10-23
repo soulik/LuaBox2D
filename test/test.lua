@@ -4,3 +4,4 @@
 end
 
 print(testFile('Vec2'))
+print(testFile('VertexArray'))

@@ -52,6 +52,11 @@ namespace LuaBox2D {
 
 			LUTOK_PROPERTY("world", &Body::getWorld, &Body::nullMethod);
 			LUTOK_METHOD("createFixture", &Body::createFixture);
+
+			LUTOK_PROPERTY("fixture", &Body::getFixture, &Body::nullMethod);
+			LUTOK_PROPERTY("joint", &Body::getJoint, &Body::nullMethod);
+			LUTOK_PROPERTY("contact", &Body::getContact, &Body::nullMethod);
+
 		}
 		b2Body * constructor(State & state){
 			b2Body * obj = nullptr;
@@ -189,41 +194,19 @@ namespace LuaBox2D {
 			return 1;
 		}
 
-		int createFixture(State & state, b2Body * object){
-			Fixture * interfaceFixture = dynamic_cast<Fixture*>(state.interfaces["LuaBox2D_Fixture"]);
-			FixtureDef * interfaceFixtureDef = dynamic_cast<FixtureDef*>(state.interfaces["LuaBox2D_FixtureDef"]);
-			Shape * interfaceShape = dynamic_cast<Shape*>(state.interfaces["LuaBox2D_Shape"]);
-			Stack * stack = state.stack;
+		int createFixture(State & state, b2Body * object);
 
-			if (stack->is<LUA_TUSERDATA>(1)){
-				b2FixtureDef * fixtureDef = interfaceFixtureDef->get(1);
-				if (fixtureDef != nullptr){
-					interfaceFixture->push(object->CreateFixture(fixtureDef));
-					return 1;
-				}else{
-					b2Shape * shape = interfaceShape->get(1);
-					if (shape != nullptr && stack->is<LUA_TNUMBER>(2)){
-						interfaceFixture->push(object->CreateFixture(shape, static_cast<float32>(stack->to<LUA_NUMBER>(1))));
-						return 1;
-					}
-				}
-			}
-			return 0;
-		}
-
-		//TODO
 		int getMassData(State & state, b2Body * object){
-			//Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
-			b2MassData massData;
-			object->GetMassData(&massData);
-			//interfaceVec2->push(new b2Vec2(), true);
+			MassData * interfaceMassData = state.getInterface<MassData>("LuaBox2D_MassData");
+			b2MassData * massData = new b2MassData();
+			object->GetMassData(massData);
+			interfaceMassData->push(massData, true);
 			return 1;
 		}
 
-		//TODO
 		int setMassData(State & state, b2Body * object){
-			//Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
-			b2MassData * massData = nullptr;//interfaceVec2->get(1);
+			MassData * interfaceMassData = state.getInterface<MassData>("LuaBox2D_MassData");
+			b2MassData * massData = interfaceMassData->get(1);
 			if (massData != nullptr){
 				object->SetMassData(massData);
 			}
@@ -391,6 +374,18 @@ namespace LuaBox2D {
 			World * interfaceWorld = dynamic_cast<World*>(state.interfaces["LuaBox2D_World"]);
 			interfaceWorld->push(object->GetWorld(), false);
 			return 1;
+		}
+
+		int getFixture(State & state, b2Body * object){
+			return 0;
+		}
+
+		int getJoint(State & state, b2Body * object){
+			return 0;
+		}
+
+		int getContact(State & state, b2Body * object){
+			return 0;
 		}
 	};
 

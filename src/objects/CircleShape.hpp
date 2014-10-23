@@ -26,7 +26,17 @@ namespace LuaBox2D {
 		}
 
 		b2CircleShape * constructor(State & state){
-			return new b2CircleShape();
+			Shape * interfaceShape = state.getInterface<Shape>("LuaBox2D_Shape");
+			b2Shape * shape = interfaceShape->get(1);
+			if (shape != nullptr){
+				if (shape->GetType() == b2Shape::e_circle){
+					return new b2CircleShape(*dynamic_cast<b2CircleShape*>(shape));
+				}else{
+					return new b2CircleShape();
+				}
+			}else{
+				return new b2CircleShape();
+			}
 		}
 
 		void destructor(State & state, b2CircleShape * object){
@@ -97,8 +107,7 @@ namespace LuaBox2D {
 			Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 			b2Vec2 * d = interfaceVec2->get(1);
 			if (d != nullptr){
-				const b2Vec2 & vertex = object->GetSupportVertex(*d);
-				interfaceVec2->push(const_cast<b2Vec2*>(&vertex), false);
+				interfaceVec2->push(new b2Vec2(object->GetSupportVertex(*d)), true);
 				return 1;
 			}else{
 				return 0;
@@ -108,8 +117,7 @@ namespace LuaBox2D {
 		int vertex(State & state, b2CircleShape * object){
 			Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 			if (state.stack->is<LUA_TNUMBER>(1)){
-				const b2Vec2 & vertex = object->GetVertex(static_cast<int32>(state.stack->to<LUA_NUMBER>(1)));
-				interfaceVec2->push(const_cast<b2Vec2*>(&vertex), false);
+				interfaceVec2->push(new b2Vec2(object->GetVertex(static_cast<int32>(state.stack->to<LUA_NUMBER>(1)))), true);
 				return 1;
 			}else{
 				return 0;

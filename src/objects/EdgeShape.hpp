@@ -29,7 +29,17 @@ namespace LuaBox2D {
 		}
 
 		b2EdgeShape * constructor(State & state){
-			return new b2EdgeShape();
+			Shape * interfaceShape = state.getInterface<Shape>("LuaBox2D_Shape");
+			b2Shape * shape = interfaceShape->get(1);
+			if (shape != nullptr){
+				if (shape->GetType() == b2Shape::e_edge){
+					return new b2EdgeShape(*dynamic_cast<b2EdgeShape*>(shape));
+				}else{
+					return new b2EdgeShape();
+				}
+			}else{
+				return new b2EdgeShape();
+			}
 		}
 
 		void destructor(State & state, b2EdgeShape * object){

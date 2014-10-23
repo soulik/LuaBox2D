@@ -19,6 +19,12 @@ namespace LuaBox2D {
 			return object;
 		}
 
+		b2VertexArray * constructor(State & state, const int index){
+			b2VertexArray * object = new b2VertexArray();
+			setVertices(state, object, index);
+			return object;
+		}
+
 		void destructor(State & state, b2VertexArray * object){
 			delete object;
 		}
@@ -58,36 +64,67 @@ namespace LuaBox2D {
 		}
 
 		void operator_setArray(State & state, b2VertexArray * object){
-			if (state.stack->is<LUA_TNUMBER>(1) && state.stack->is<LUA_TUSERDATA>(2)){
-				b2VertexArray::size_type index = static_cast<b2VertexArray::size_type>(state.stack->to<int>(1) - 1);
-				Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
-				b2Vec2 * vertex = interfaceVec2->get(2);
+			Stack * stack = state.stack;
+			if (stack->is<LUA_TNUMBER>(1)){
+				b2VertexArray::size_type index = static_cast<b2VertexArray::size_type>(stack->to<int>(1) - 1);
+				if (stack->is<LUA_TUSERDATA>(2)){
+					Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+					b2Vec2 * vertex = interfaceVec2->get(2);
 
-				if (vertex != nullptr){
+					if (vertex != nullptr){
+						if (index >= 0 && index < object->size()){
+							(*object)[index] = *vertex;
+						}else if (index > object->size()){
+							b2VertexArray::iterator iter = object->end();
+							object->insert(iter, *vertex);
+						}
+					}
+				}else if (stack->is<LUA_TTABLE>(2)){
+					stack->getField(1, 2);
+					float32 x = static_cast<float32>(stack->to<LUA_NUMBER>());
+
+					stack->getField(2, 2);
+					float32 y = static_cast<float32>(stack->to<LUA_NUMBER>());
+					stack->pop(2);
+
 					if (index >= 0 && index < object->size()){
-						(*object)[index] = *vertex;
+						(*object)[index] = b2Vec2(x, y);
 					}else if (index > object->size()){
 						b2VertexArray::iterator iter = object->end();
-						object->insert(iter, *vertex);
+						object->insert(iter, b2Vec2(x, y));
 					}
 				}
 			}
 		}
 
 		int setVertices(State & state, b2VertexArray * object){
+			return setVertices(state, object, 1);
+		}
+
+		int setVertices(State & state, b2VertexArray * object, const int index){
 			Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 			Stack * stack = state.stack;
-			if (stack->is<LUA_TTABLE>(1)){
-				int count = stack->objLen(1);
+			if (stack->is<LUA_TTABLE>(index)){
+				int count = stack->objLen(index);
 				object->clear();
 				object->reserve(count);
 
 				for (int index=0; index< count; index++){
-					stack->push<int>(index+1);
-					stack->getTable(1);
-					b2Vec2 * vertex = interfaceVec2->get(-1);
-					if (vertex != nullptr){
-						object->push_back(*vertex);
+					stack->getField(index+1, index);
+					if (stack->is<LUA_TUSERDATA>()){
+						b2Vec2 * vertex = interfaceVec2->get(-1);
+						if (vertex != nullptr){
+							object->push_back(*vertex);
+						}
+					}else if (stack->is<LUA_TTABLE>()){
+						stack->getField(1, -2);
+						float32 x = static_cast<float32>(stack->to<LUA_NUMBER>());
+
+						stack->getField(2, -3);
+						float32 y = static_cast<float32>(stack->to<LUA_NUMBER>());
+						stack->pop(2);
+
+						object->push_back(b2Vec2(x, y));
 					}
 					stack->pop(1);
 				}

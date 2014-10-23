@@ -2,6 +2,7 @@
 #define LUABOX2D_FIXTUREDEF_H
 
 #include "objects/Filter.hpp"
+#include "objects/Shape.hpp"
 
 namespace LuaBox2D {
 	class FixtureDef : public Object<b2FixtureDef> {
@@ -12,6 +13,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("density", &FixtureDef::getDensity, &FixtureDef::setDensity);
 			LUTOK_PROPERTY("sensor", &FixtureDef::getSensor, &FixtureDef::setSensor);
 			LUTOK_PROPERTY("filter", &FixtureDef::getFilter, &FixtureDef::setFilter);
+			LUTOK_PROPERTY("shape", &FixtureDef::getShape, &FixtureDef::setShape);
 		}
 
 		b2FixtureDef * constructor(State & state){
@@ -78,7 +80,23 @@ namespace LuaBox2D {
 			}
 			return 0;
 		}
-	};
+
+		int getShape(State & state, b2FixtureDef * object){
+			Shape * interfaceShape = state.getInterface<Shape>("LuaBox2D_Shape");
+			interfaceShape->push(const_cast<b2Shape *>(object->shape), false);
+			return 1;
+		}
+
+		int setShape(State & state, b2FixtureDef * object){
+			Shape * interfaceShape = state.getInterface<Shape>("LuaBox2D_Shape");
+			b2Shape * shape = interfaceShape->get(1);
+			if (shape != nullptr){
+				object->shape = shape;
+			}
+			return 0;
+		}
+
+};
 
 	void initFixtureDef(State * );
 
