@@ -87,6 +87,12 @@
     <ClCompile Include="src\objects\VertexArray.cpp">
       <Filter>Source Files\objects</Filter>
     </ClCompile>
+    <ClCompile Include="src\objects\Joint.cpp">
+      <Filter>Source Files\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\JointDef.cpp">
+      <Filter>Source Files\objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\common.hpp">
@@ -153,6 +159,12 @@
       <Filter>Header Files\objects</Filter>
     </ClInclude>
     <ClInclude Include="src\objects\VertexArray.hpp">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\Joint.hpp">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\JointDef.hpp">
       <Filter>Header Files\objects</Filter>
     </ClInclude>
   </ItemGroup>

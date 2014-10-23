@@ -2,6 +2,10 @@
 #define LUABOX2D_WORLD_H
 
 #include "objects/Vec2.hpp"
+#include "objects/BodyDef.hpp"
+#include "objects/JointDef.hpp"
+#include "objects/Body.hpp"
+#include "objects/Joint.hpp"
 
 namespace LuaBox2D {
 	class World : public Object<b2World> {
@@ -27,6 +31,13 @@ namespace LuaBox2D {
 			LUTOK_METHOD("step", &World::step);
 			LUTOK_METHOD("clearForces", &World::clearForces);
 			LUTOK_METHOD("shiftToOritin", &World::shiftToOritin);
+
+			LUTOK_METHOD("createBody", &World::createBody);
+			LUTOK_METHOD("createJoint", &World::createJoint);
+
+			LUTOK_PROPERTY("body", &World::getBody, &World::nullMethod);
+			LUTOK_PROPERTY("joint", &World::getJoint, &World::nullMethod);
+			LUTOK_PROPERTY("contact", &World::getContact, &World::nullMethod);
 		}
 
 		b2World * constructor(State & state){
@@ -45,6 +56,22 @@ namespace LuaBox2D {
 		}
 		void destructor(State & state, b2World * object){
 			delete object;
+		}
+
+		int createBody(State & state, b2World * object);
+
+		int createJoint(State & state, b2World * object);
+
+		int getBody(State & state, b2World * object){
+			return 0;
+		}
+
+		int getJoint(State & state, b2World * object){
+			return 0;
+		}
+
+		int getContact(State & state, b2World * object){
+			return 0;
 		}
 
 		int step(State & state, b2World * object){

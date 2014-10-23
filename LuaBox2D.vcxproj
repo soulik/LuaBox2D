@@ -90,6 +90,8 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\objects\AABB.cpp" />
+    <ClCompile Include="src\objects\Joint.cpp" />
+    <ClCompile Include="src\objects\JointDef.cpp" />
     <ClCompile Include="src\objects\VertexArray.cpp" />
     <ClCompile Include="src\objects\Body.cpp" />
     <ClCompile Include="src\objects\BodyDef.cpp" />
@@ -114,6 +116,8 @@
   <ItemGroup>
     <ClInclude Include="src\common.hpp" />
     <ClInclude Include="src\objects\AABB.hpp" />
+    <ClInclude Include="src\objects\Joint.hpp" />
+    <ClInclude Include="src\objects\JointDef.hpp" />
     <ClInclude Include="src\objects\VertexArray.hpp" />
     <ClInclude Include="src\objects\Body.hpp" />
     <ClInclude Include="src\objects\BodyDef.hpp" />

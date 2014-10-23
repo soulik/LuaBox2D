@@ -27,4 +27,27 @@ namespace LuaBox2D {
 		}
 		return 0;
 	}
+
+	b2Body * Body::constructor(State & state){
+		b2Body * obj = nullptr;
+		Stack * stack = state.stack;
+
+		BodyDef * interfaceBodyDef = dynamic_cast<BodyDef*>(state.interfaces["LuaBox2D_BodyDef"]);
+		World * interfaceWorld = dynamic_cast<World*>(state.interfaces["LuaBox2D_World"]);
+
+		b2BodyDef * bodyDef = interfaceBodyDef->get(1);
+		b2World * world = interfaceWorld->get(2);
+
+		if (bodyDef != nullptr && world != nullptr){
+			obj = world->CreateBody(bodyDef);
+		}
+
+		return obj;
+	}
+
+	int Body::getWorld(State & state, b2Body * object){
+		World * interfaceWorld = dynamic_cast<World*>(state.interfaces["LuaBox2D_World"]);
+		interfaceWorld->push(object->GetWorld(), false);
+		return 1;
+	}
 };

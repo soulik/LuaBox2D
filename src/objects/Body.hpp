@@ -58,22 +58,9 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("contact", &Body::getContact, &Body::nullMethod);
 
 		}
-		b2Body * constructor(State & state){
-			b2Body * obj = nullptr;
-			Stack * stack = state.stack;
-			
-			BodyDef * interfaceBodyDef = dynamic_cast<BodyDef*>(state.interfaces["LuaBox2D_BodyDef"]);
-			World * interfaceWorld = dynamic_cast<World*>(state.interfaces["LuaBox2D_World"]);
 
-			b2BodyDef * bodyDef = interfaceBodyDef->get(1);
-			b2World * world = interfaceWorld->get(2);
+		b2Body * constructor(State & state);
 
-			if (bodyDef != nullptr && world != nullptr){
-				obj = world->CreateBody(bodyDef);
-			}
-
-			return obj;
-		}
 		void destructor(State & state, b2Body * object){
 			b2World * world = object->GetWorld();
 			world->DestroyBody(object);
@@ -370,20 +357,18 @@ namespace LuaBox2D {
 			return 0;
 		}
 
-		int getWorld(State & state, b2Body * object){
-			World * interfaceWorld = dynamic_cast<World*>(state.interfaces["LuaBox2D_World"]);
-			interfaceWorld->push(object->GetWorld(), false);
-			return 1;
-		}
-
+		int getWorld(State & state, b2Body * object);
+		//TODO
 		int getFixture(State & state, b2Body * object){
 			return 0;
 		}
 
+		//TODO
 		int getJoint(State & state, b2Body * object){
 			return 0;
 		}
 
+		//TODO
 		int getContact(State & state, b2Body * object){
 			return 0;
 		}

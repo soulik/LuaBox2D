@@ -10,6 +10,8 @@
 #include "objects/World.hpp"
 #include "objects/Body.hpp"
 #include "objects/BodyDef.hpp"
+#include "objects/Joint.hpp"
+#include "objects/JointDef.hpp"
 #include "objects/Fixture.hpp"
 #include "objects/FixtureDef.hpp"
 #include "objects/Shape.hpp"
@@ -51,6 +53,8 @@ extern "C" LUA_API int luaopen_LuaBox2D(lua_State * L){
 		initWorld(state); stack->setField("World");
 		initBody(state); stack->setField("Body");
 		initBodyDef(state); stack->setField("BodyDef");
+		initJoint(state); stack->setField("Joint");
+		initJointDef(state); stack->setField("JointDef");
 		initFixture(state); stack->setField("Fixture");
 		initFixtureDef(state); stack->setField("FixtureDef");
 
