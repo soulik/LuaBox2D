@@ -18,32 +18,32 @@ namespace LuaBox2D {
 	}
 
 	int Joint::getBodyA(State & state, b2Joint * object){
-		Body * interfaceBody = dynamic_cast<Body*>(state.interfaces["LuaBox2D_Body"]);
+		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
 		interfaceBody->push(object->GetBodyA(), false);
 		return 1;
 	}
 
 	int Joint::getBodyB(State & state, b2Joint * object){
-		Body * interfaceBody = dynamic_cast<Body*>(state.interfaces["LuaBox2D_Body"]);
+		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
 		interfaceBody->push(object->GetBodyB(), false);
 		return 1;
 	}
 
 	int Joint::getAnchorA(State & state, b2Joint * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		interfaceVec2->push(new b2Vec2(object->GetAnchorA()), true);
 		return 1;
 	}
 
 	int Joint::getAnchorB(State & state, b2Joint * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		interfaceVec2->push(new b2Vec2(object->GetAnchorB()), true);
 		return 1;
 	}
 
 
 	int Joint::getReactionForce(State & state, b2Joint * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		if (state.stack->is<LUA_TNUMBER>(1)){
 			interfaceVec2->push(new b2Vec2(object->GetReactionForce(
 				static_cast<float32>(state.stack->to<LUA_NUMBER>(1))

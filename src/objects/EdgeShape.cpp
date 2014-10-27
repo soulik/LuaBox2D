@@ -18,7 +18,20 @@ namespace LuaBox2D {
 				return new b2EdgeShape();
 			}
 		}else{
-			return new b2EdgeShape();
+			if (state.stack->is<LUA_TUSERDATA>(1) && state.stack->is<LUA_TUSERDATA>(2)){
+				Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+				b2Vec2 * v1 = interfaceVec2->get(1);
+				b2Vec2 * v2 = interfaceVec2->get(2);
+				if (v1 != nullptr && v2 != nullptr){
+					b2EdgeShape * object = new b2EdgeShape();
+					object->Set(*v1, *v2);
+					return object;
+				}else{
+					return nullptr;
+				}
+			}else{
+				return new b2EdgeShape();
+			}
 		}
 	}
 

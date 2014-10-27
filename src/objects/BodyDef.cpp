@@ -35,7 +35,7 @@ namespace LuaBox2D {
 
 	b2BodyDef * BodyDef::constructor(State & state){
 		b2BodyDef * obj = nullptr;
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 
 		obj = new b2BodyDef();
 
@@ -59,13 +59,13 @@ namespace LuaBox2D {
 	}
 
 	int BodyDef::getPosition(State & state, b2BodyDef * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		interfaceVec2->push(&object->position, false);
 		return 1;
 	}
 
 	int BodyDef::setPosition(State & state, b2BodyDef * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * position = interfaceVec2->get(1);
 		if (position != nullptr){
 			object->position = (*position);
@@ -84,13 +84,13 @@ namespace LuaBox2D {
 	}
 
 	int BodyDef::getLinearVelocity(State & state, b2BodyDef * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		interfaceVec2->push(&object->linearVelocity, false);
 		return 1;
 	}
 
 	int BodyDef::setLinearVelocity(State & state, b2BodyDef * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * position = interfaceVec2->get(1);
 		if (position != nullptr){
 			object->linearVelocity = (*position);

@@ -20,9 +20,9 @@ namespace LuaBox2D {
 	}
 
 	int Body::createFixture(State & state, b2Body * object){
-		Fixture * interfaceFixture = dynamic_cast<Fixture*>(state.interfaces["LuaBox2D_Fixture"]);
-		FixtureDef * interfaceFixtureDef = dynamic_cast<FixtureDef*>(state.interfaces["LuaBox2D_FixtureDef"]);
-		Shape * interfaceShape = dynamic_cast<Shape*>(state.interfaces["LuaBox2D_Shape"]);
+		Fixture * interfaceFixture = state.getInterface<Fixture>("LuaBox2D_Fixture");
+		FixtureDef * interfaceFixtureDef = state.getInterface<FixtureDef>("LuaBox2D_FixtureDef");
+		Shape * interfaceShape = state.getInterface<Shape>("LuaBox2D_Shape");
 		Stack * stack = state.stack;
 
 		if (stack->is<LUA_TUSERDATA>(1)){
@@ -45,8 +45,8 @@ namespace LuaBox2D {
 		b2Body * obj = nullptr;
 		Stack * stack = state.stack;
 
-		BodyDef * interfaceBodyDef = dynamic_cast<BodyDef*>(state.interfaces["LuaBox2D_BodyDef"]);
-		World * interfaceWorld = dynamic_cast<World*>(state.interfaces["LuaBox2D_World"]);
+		BodyDef * interfaceBodyDef = state.getInterface<BodyDef>("LuaBox2D_BodyDef");
+		World * interfaceWorld = state.getInterface<World>("LuaBox2D_World");
 
 		b2BodyDef * bodyDef = interfaceBodyDef->get(1);
 		b2World * world = interfaceWorld->get(2);
@@ -59,20 +59,20 @@ namespace LuaBox2D {
 	}
 
 	int Body::getWorld(State & state, b2Body * object){
-		World * interfaceWorld = dynamic_cast<World*>(state.interfaces["LuaBox2D_World"]);
+		World * interfaceWorld = state.getInterface<World>("LuaBox2D_World");
 		interfaceWorld->push(object->GetWorld(), false);
 		return 1;
 	}
 
 	int Body::getTransform(State & state, b2Body * object){
-		Transform * interfaceTransform = dynamic_cast<Transform*>(state.interfaces["LuaBox2D_Transform"]);
+		Transform * interfaceTransform = state.getInterface<Transform>("LuaBox2D_Transform");
 		interfaceTransform->push(new b2Transform(object->GetTransform()), true);
 		return 1;
 	}
 
 	int Body::setTransform(State & state, b2Body * object){
 		Stack * stack = state.stack;
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		if (stack->is<LUA_TUSERDATA>(1) && stack->is<LUA_TNUMBER>(2)){
 			b2Vec2 * position = interfaceVec2->get(1);
 			if (position != nullptr){
@@ -83,7 +83,7 @@ namespace LuaBox2D {
 	}
 
 	int Body::getPosition(State & state, b2Body * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		interfaceVec2->push(new b2Vec2(object->GetPosition()), true);
 		return 1;
 	}
@@ -94,25 +94,25 @@ namespace LuaBox2D {
 	}
 
 	int Body::getWorldCenter(State & state, b2Body * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		interfaceVec2->push(new b2Vec2(object->GetWorldCenter()), true);
 		return 1;
 	}
 
 	int Body::getLocalCenter(State & state, b2Body * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		interfaceVec2->push(new b2Vec2(object->GetLocalCenter()), true);
 		return 1;
 	}
 
 	int Body::getLinearVelocity(State & state, b2Body * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		interfaceVec2->push(new b2Vec2(object->GetLinearVelocity()), true);
 		return 1;
 	}
 
 	int Body::setLinearVelocity(State & state, b2Body * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * linearVelocity = interfaceVec2->get(1);
 		if (linearVelocity != nullptr){
 			object->SetLinearVelocity(*linearVelocity);
@@ -131,7 +131,7 @@ namespace LuaBox2D {
 	}
 
 	int Body::applyForce(State & state, b2Body * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * force = interfaceVec2->get(1);
 		b2Vec2 * point = interfaceVec2->get(2);
 		if (force!=nullptr && point!=nullptr){
@@ -141,7 +141,7 @@ namespace LuaBox2D {
 	}
 
 	int Body::applyForceToCenter(State & state, b2Body * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * force = interfaceVec2->get(1);
 		if (force!=nullptr){
 			object->ApplyForceToCenter(*force, state.stack->to<bool>(2));
@@ -155,7 +155,7 @@ namespace LuaBox2D {
 	}
 
 	int Body::applyLinearImpulse(State & state, b2Body * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * force = interfaceVec2->get(1);
 		b2Vec2 * point = interfaceVec2->get(2);
 		if (force!=nullptr && point!=nullptr){
@@ -202,7 +202,7 @@ namespace LuaBox2D {
 	}
 
 	int Body::getWorldPoint(State & state, b2Body * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * localPoint = interfaceVec2->get(1);
 		if (localPoint != nullptr){
 			interfaceVec2->push(new b2Vec2(object->GetWorldPoint(*localPoint)));
@@ -212,7 +212,7 @@ namespace LuaBox2D {
 	}
 
 	int Body::getWorldVector(State & state, b2Body * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * localVector = interfaceVec2->get(1);
 		if (localVector != nullptr){
 			interfaceVec2->push(new b2Vec2(object->GetWorldVector(*localVector)));
@@ -222,7 +222,7 @@ namespace LuaBox2D {
 	}
 
 	int Body::getLocalPoint(State & state, b2Body * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * worldPoint = interfaceVec2->get(1);
 		if (worldPoint != nullptr){
 			interfaceVec2->push(new b2Vec2(object->GetLocalPoint(*worldPoint)));
@@ -232,7 +232,7 @@ namespace LuaBox2D {
 	}
 
 	int Body::getLocalVector(State & state, b2Body * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * worldVector = interfaceVec2->get(1);
 		if (worldVector != nullptr){
 			interfaceVec2->push(new b2Vec2(object->GetLocalVector(*worldVector)));
@@ -242,7 +242,7 @@ namespace LuaBox2D {
 	}
 
 	int Body::getLinearVelocityFromWorldPoint(State & state, b2Body * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * worldPoint = interfaceVec2->get(1);
 		if (worldPoint != nullptr){
 			interfaceVec2->push(new b2Vec2(object->GetLinearVelocityFromWorldPoint(*worldPoint)));
@@ -252,7 +252,7 @@ namespace LuaBox2D {
 	}
 
 	int Body::getLinearVelocityFromLocalPoint(State & state, b2Body * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * worldPoint = interfaceVec2->get(1);
 		if (worldPoint != nullptr){
 			interfaceVec2->push(new b2Vec2(object->GetLinearVelocityFromLocalPoint(*worldPoint)));

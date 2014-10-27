@@ -8,7 +8,7 @@ namespace LuaBox2D {
 	}
 
 	b2JointDef * JointDef::constructor(State & state){
-		Body * interfaceBody = dynamic_cast<Body*>(state.interfaces["LuaBox2D_Body"]);
+		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
 		b2JointDef * object = new b2JointDef();
 		object->bodyA = nullptr;
 		object->bodyB = nullptr;
@@ -25,7 +25,7 @@ namespace LuaBox2D {
 	}
 
 	int JointDef::getBodyA(State & state, b2JointDef * object){
-		Body * interfaceBody = dynamic_cast<Body*>(state.interfaces["LuaBox2D_Body"]);
+		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
 		if (object->bodyA != nullptr){
 			interfaceBody->push(object->bodyA, false);
 			return 1;
@@ -35,7 +35,7 @@ namespace LuaBox2D {
 	}
 
 	int JointDef::setBodyA(State & state, b2JointDef * object){
-		Body * interfaceBody = dynamic_cast<Body*>(state.interfaces["LuaBox2D_Body"]);
+		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
 		b2Body * body = interfaceBody->get(1);
 		if (body != nullptr){
 			object->bodyA = body;
@@ -44,7 +44,7 @@ namespace LuaBox2D {
 	}
 
 	int JointDef::getBodyB(State & state, b2JointDef * object){
-		Body * interfaceBody = dynamic_cast<Body*>(state.interfaces["LuaBox2D_Body"]);
+		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
 		if (object->bodyA != nullptr){
 			interfaceBody->push(object->bodyB, false);
 			return 1;
@@ -54,7 +54,7 @@ namespace LuaBox2D {
 	}
 
 	int JointDef::setBodyB(State & state, b2JointDef * object){
-		Body * interfaceBody = dynamic_cast<Body*>(state.interfaces["LuaBox2D_Body"]);
+		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
 		b2Body * body = interfaceBody->get(1);
 		if (body != nullptr){
 			object->bodyB = body;

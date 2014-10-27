@@ -19,7 +19,7 @@ namespace LuaBox2D {
 
 	int Sweep::getTransform(State & state, b2Sweep * object){
 		if (state.stack->is<LUA_TNUMBER>(1)){
-			Transform * interfaceTransform = dynamic_cast<Transform*>(state.interfaces["LuaBox2D_Transform"]);
+			Transform * interfaceTransform = state.getInterface<Transform>("LuaBox2D_Transform");
 			b2Transform * transform = new b2Transform();
 			object->GetTransform(transform, static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
 			interfaceTransform->push(transform, true);

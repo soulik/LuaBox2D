@@ -15,7 +15,7 @@ namespace LuaBox2D {
 	}
 
 	int Fixture::getBody(State & state, b2Fixture * object){
-		Body * interfaceBody = dynamic_cast<Body*>(state.interfaces["LuaBox2D_Body"]);
+		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
 		interfaceBody->push(object->GetBody(), false);
 		return 1;
 	}
@@ -50,13 +50,13 @@ namespace LuaBox2D {
 	}
 
 	int Fixture::getFilter(State & state, b2Fixture * object){
-		Filter * interfaceFilter = dynamic_cast<Filter*>(state.interfaces["LuaBox2D_Filter"]);
+		Filter * interfaceFilter = state.getInterface<Filter>("LuaBox2D_Filter");
 		interfaceFilter->push(new b2Filter(object->GetFilterData()), true);
 		return 1;
 	}
 
 	int Fixture::setFilter(State & state, b2Fixture * object){
-		Filter * interfaceFilter = dynamic_cast<Filter*>(state.interfaces["LuaBox2D_Filter"]);
+		Filter * interfaceFilter = state.getInterface<Filter>("LuaBox2D_Filter");
 		b2Filter * filter = interfaceFilter->get(1);
 		if (filter != nullptr){
 			object->SetFilterData(*filter);
@@ -101,7 +101,7 @@ namespace LuaBox2D {
 
 	int Fixture::getAABB(State & state, b2Fixture * object){
 		if (state.stack->is<LUA_TNUMBER>(1)){
-			AABB * interfaceAABB = dynamic_cast<AABB*>(state.interfaces["LuaBox2D_AABB"]);
+			AABB * interfaceAABB = state.getInterface<AABB>("LuaBox2D_AABB");
 			interfaceAABB->push(new b2AABB(object->GetAABB(
 				static_cast<int32>(state.stack->to<int>(1))
 				)), true);

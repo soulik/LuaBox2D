@@ -42,7 +42,7 @@ namespace LuaBox2D {
 	b2World * World::constructor(State & state){
 		b2World * obj = nullptr;
 		Stack * stack = state.stack;
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * gravity = interfaceVec2->get(1);
 
 		if (gravity != nullptr){
@@ -127,13 +127,13 @@ namespace LuaBox2D {
 	}
 
 	int World::getGravity(State & state, b2World * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		interfaceVec2->push(&object->GetGravity(), false);
 		return 1;
 	}
 
 	int World::setGravity(State & state, b2World * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * gravity = interfaceVec2->get(1);
 		if (gravity != nullptr){
 			object->SetGravity(*gravity);
@@ -157,7 +157,7 @@ namespace LuaBox2D {
 	}
 
 	int World::shiftToOritin(State & state, b2World * object){
-		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * gravity = interfaceVec2->get(1);
 		if (gravity != nullptr){
 			object->ShiftOrigin(*gravity);

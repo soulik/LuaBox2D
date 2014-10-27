@@ -7,6 +7,8 @@ namespace LuaBox2D {
 		explicit Transform(State * state) : Object<b2Transform>(state){
 			LUTOK_METHOD("identity", &Transform::identity);
 			LUTOK_METHOD("set", &Transform::set);
+			LUTOK_PROPERTY("p", &Transform::getP, &Transform::setP);
+			LUTOK_PROPERTY("q", &Transform::getQ, &Transform::setQ);
 		}
 
 		b2Transform * constructor(State & state);
@@ -16,6 +18,15 @@ namespace LuaBox2D {
 		int identity(State & state, b2Transform * object);
 
 		int set(State & state, b2Transform * object);
+
+		int getP(State & state, b2Transform * object);
+
+		int setP(State & state, b2Transform * object);
+
+		int getQ(State & state, b2Transform * object);
+
+		int setQ(State & state, b2Transform * object);
+
 	};
 
 	void initTransform(State *);

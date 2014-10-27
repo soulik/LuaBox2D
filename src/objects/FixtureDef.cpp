@@ -60,13 +60,13 @@ namespace LuaBox2D {
 	}
 
 	int FixtureDef::getFilter(State & state, b2FixtureDef * object){
-		Filter * interfaceFilter = dynamic_cast<Filter*>(state.interfaces["LuaBox2D_Filter"]);
+		Filter * interfaceFilter = state.getInterface<Filter>("LuaBox2D_Filter");
 		interfaceFilter->push(&object->filter, false);
 		return 1;
 	}
 
 	int FixtureDef::setFilter(State & state, b2FixtureDef * object){
-		Filter * interfaceFilter = dynamic_cast<Filter*>(state.interfaces["LuaBox2D_Filter"]);
+		Filter * interfaceFilter = state.getInterface<Filter>("LuaBox2D_Filter");
 		b2Filter * filter = interfaceFilter->get(1);
 		if (filter != nullptr){
 			object->filter = *filter;

@@ -19,7 +19,33 @@ namespace LuaBox2D {
 				return new b2PolygonShape();
 			}
 		}else{
-			return new b2PolygonShape();
+			if (state.stack->is<LUA_TNUMBER>(1) && state.stack->is<LUA_TNUMBER>(2)){
+				if (state.stack->is<LUA_TUSERDATA>(3) && state.stack->is<LUA_TNUMBER>(4)){
+					Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+					b2Vec2 * center = interfaceVec2->get(3);
+					if (center != nullptr){
+						b2PolygonShape * object = new b2PolygonShape();
+						object->SetAsBox(
+							static_cast<float32>(state.stack->to<LUA_NUMBER>(1)),
+							static_cast<float32>(state.stack->to<LUA_NUMBER>(2)),
+							*center,
+							static_cast<float32>(state.stack->to<LUA_NUMBER>(4))
+							);
+						return object;
+					}else{
+						return nullptr;
+					}
+				}else{
+					b2PolygonShape * object = new b2PolygonShape();
+					object->SetAsBox(
+						static_cast<float32>(state.stack->to<LUA_NUMBER>(1)),
+						static_cast<float32>(state.stack->to<LUA_NUMBER>(2))
+						);
+					return object;
+				}
+			}else{
+				return new b2PolygonShape();
+			}
 		}
 	}
 

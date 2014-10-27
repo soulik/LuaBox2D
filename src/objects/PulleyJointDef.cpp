@@ -11,7 +11,7 @@ namespace LuaBox2D {
 		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
 		b2JointDef * jointDef = interfaceJointDef->get(1);
 		if (jointDef != nullptr){
-			if (jointDef->type == b2JointType::e_revoluteJoint){
+			if (jointDef->type == b2JointType::e_pulleyJoint){
 				return new b2PulleyJointDef(*(b2PulleyJointDef*)(jointDef));
 			}else{
 				return new b2PulleyJointDef();

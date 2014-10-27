@@ -11,7 +11,7 @@ namespace LuaBox2D {
 		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
 		b2Joint * joint = interfaceJoint->get(1);
 		if (joint != nullptr){
-			if (joint->GetType() == b2JointType::e_revoluteJoint){
+			if (joint->GetType() == b2JointType::e_gearJoint){
 				return new b2GearJoint(*dynamic_cast<b2GearJoint*>(joint));
 			}else{
 				return nullptr;

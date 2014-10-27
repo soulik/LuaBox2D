@@ -12,6 +12,18 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("bodyA", &PrismaticJointDef::getBodyA, &PrismaticJointDef::setBodyA);
 			LUTOK_PROPERTY("bodyB", &PrismaticJointDef::getBodyB, &PrismaticJointDef::setBodyB);
 			LUTOK_PROPERTY("collideConnected", &PrismaticJointDef::getCollideConnected, &PrismaticJointDef::setCollideConnected);
+			LUTOK_METHOD("initialize", &PrismaticJointDef::initliaze);
+
+			LUTOK_PROPERTY("localAnchorA", &PrismaticJointDef::getLocalAnchorA, &PrismaticJointDef::setLocalAnchorA);
+			LUTOK_PROPERTY("localAnchorB", &PrismaticJointDef::getLocalAnchorB, &PrismaticJointDef::setLocalAnchorB);
+			LUTOK_PROPERTY("referenceAngle", &PrismaticJointDef::getReferenceAngle, &PrismaticJointDef::setReferenceAngle);
+			LUTOK_PROPERTY("enableLimit", &PrismaticJointDef::getEnableLimit, &PrismaticJointDef::setEnableLimit);
+			LUTOK_PROPERTY("lowerTranslation", &PrismaticJointDef::getLowerTranslation, &PrismaticJointDef::setLowerTranslation);
+			LUTOK_PROPERTY("upperTranslation", &PrismaticJointDef::getUpperTranslation, &PrismaticJointDef::setUpperTranslation);
+			LUTOK_PROPERTY("enableMotor", &PrismaticJointDef::getEnableMotor, &PrismaticJointDef::setEnableMotor);
+			LUTOK_PROPERTY("motorSpeed", &PrismaticJointDef::getMotorSpeed, &PrismaticJointDef::setMotorSpeed);
+			LUTOK_PROPERTY("maxMotorForce", &PrismaticJointDef::getMaxMotorForce, &PrismaticJointDef::setMaxMotorForce);
+
 		}
 
 		b2PrismaticJointDef * constructor(State & state);
@@ -33,6 +45,45 @@ namespace LuaBox2D {
 		int getCollideConnected(State & state, b2PrismaticJointDef * );
 
 		int setCollideConnected(State & state, b2PrismaticJointDef * );
+
+		int initliaze(State & state, b2PrismaticJointDef * );
+
+		int getLocalAnchorA(State & state, b2PrismaticJointDef * object);
+
+		int setLocalAnchorA(State & state, b2PrismaticJointDef * object);
+
+		int getLocalAnchorB(State & state, b2PrismaticJointDef * object);
+
+		int setLocalAnchorB(State & state, b2PrismaticJointDef * object);
+
+		int getReferenceAngle(State & state, b2PrismaticJointDef * object);
+
+		int setReferenceAngle(State & state, b2PrismaticJointDef * object);
+
+		int getEnableLimit(State & state, b2PrismaticJointDef * object);
+
+		int setEnableLimit(State & state, b2PrismaticJointDef * object);
+
+		int getLowerTranslation(State & state, b2PrismaticJointDef * object);
+
+		int setLowerTranslation(State & state, b2PrismaticJointDef * object);
+
+		int getUpperTranslation(State & state, b2PrismaticJointDef * object);
+
+		int setUpperTranslation(State & state, b2PrismaticJointDef * object);
+
+		int getEnableMotor(State & state, b2PrismaticJointDef * object);
+
+		int setEnableMotor(State & state, b2PrismaticJointDef * object);
+
+		int getMotorSpeed(State & state, b2PrismaticJointDef * object);
+
+		int setMotorSpeed(State & state, b2PrismaticJointDef * object);
+
+		int getMaxMotorForce(State & state, b2PrismaticJointDef * object);
+
+		int setMaxMotorForce(State & state, b2PrismaticJointDef * object);
+
 	};
 
 	void initPrismaticJointDef(State * );
