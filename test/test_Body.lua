@@ -21,7 +21,7 @@ do
 
 		local f1 = b1.createFixture(fd1)
 		return b1
-	end)
+	end)()
 
 	local attachment = (function()
 		local bd1 = BD()
@@ -33,7 +33,7 @@ do
 
 		local f1 = b1.createFixture(s1, 2)
 		return b1
-	end)
+	end)()
 
 	local platform = (function()
 		local bd1 = BD()
@@ -49,22 +49,23 @@ do
 		fd.density = 2
 		local f1 = b1.createFixture(fd)
 
-		local j1 = box2d.RevoluteJointDef()
-		j1.initialize(attachment, b1, Vec2(0, 5))
-		j1.maxMotorTorque = 50
-		j1.enableMotor = true
-		w1.createJoint(j1)
+		local jd1 = box2d.RevoluteJointDef()
+		jd1.initialize(attachment, b1, Vec2(0, 5))
+		jd1.maxMotorTorque = 50
+		jd1.enableMotor = true
+		local j1 = w1.createJoint(jd1)
 
-		local j2 = box2d.PrismaticJointDef()
-		j2.initialize(ground, b1, Vec2(0, 5), Vec2(1, 0))
+		local jd2 = box2d.PrismaticJointDef()
+		jd2.initialize(ground, b1, Vec2(0, 5), Vec2(1, 0))
 
-		j2.maxMotorForce = 1000
-		j2.enableMotor = true
-		j2.lowerTranslation = -10
-		j2.upperTranslation = 10
-		j2.enableLimit = true
+		jd2.maxMotorForce = 1000
+		jd2.enableMotor = true
+		jd2.lowerTranslation = -10
+		jd2.upperTranslation = 10
+		jd2.enableLimit = true
 
-		w1.createJoint(j2)
+		local j2 = w1.createJoint(jd2)
+
 		return b1
 	end)()
 

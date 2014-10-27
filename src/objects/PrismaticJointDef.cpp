@@ -59,7 +59,7 @@ namespace LuaBox2D {
 		return base->setCollideConnected(state, object);
 	}
 
-	int PrismaticJointDef::initliaze(State & state, b2PrismaticJointDef * object){
+	int PrismaticJointDef::initialize(State & state, b2PrismaticJointDef * object){
 		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 

@@ -12,7 +12,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("bodyA", &PrismaticJointDef::getBodyA, &PrismaticJointDef::setBodyA);
 			LUTOK_PROPERTY("bodyB", &PrismaticJointDef::getBodyB, &PrismaticJointDef::setBodyB);
 			LUTOK_PROPERTY("collideConnected", &PrismaticJointDef::getCollideConnected, &PrismaticJointDef::setCollideConnected);
-			LUTOK_METHOD("initialize", &PrismaticJointDef::initliaze);
+			LUTOK_METHOD("initialize", &PrismaticJointDef::initialize);
 
 			LUTOK_PROPERTY("localAnchorA", &PrismaticJointDef::getLocalAnchorA, &PrismaticJointDef::setLocalAnchorA);
 			LUTOK_PROPERTY("localAnchorB", &PrismaticJointDef::getLocalAnchorB, &PrismaticJointDef::setLocalAnchorB);
@@ -46,7 +46,7 @@ namespace LuaBox2D {
 
 		int setCollideConnected(State & state, b2PrismaticJointDef * );
 
-		int initliaze(State & state, b2PrismaticJointDef * );
+		int initialize(State & state, b2PrismaticJointDef * );
 
 		int getLocalAnchorA(State & state, b2PrismaticJointDef * object);
 

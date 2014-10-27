@@ -12,7 +12,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("bodyA", &RevoluteJointDef::getBodyA, &RevoluteJointDef::setBodyA);
 			LUTOK_PROPERTY("bodyB", &RevoluteJointDef::getBodyB, &RevoluteJointDef::setBodyB);
 			LUTOK_PROPERTY("collideConnected", &RevoluteJointDef::getCollideConnected, &RevoluteJointDef::setCollideConnected);
-			LUTOK_METHOD("initialize", &RevoluteJointDef::initliaze);
+			LUTOK_METHOD("initialize", &RevoluteJointDef::initialize);
 
 			LUTOK_PROPERTY("localAnchorA", &RevoluteJointDef::getLocalAnchorA, &RevoluteJointDef::setLocalAnchorA);
 			LUTOK_PROPERTY("localAnchorB", &RevoluteJointDef::getLocalAnchorB, &RevoluteJointDef::setLocalAnchorB);
@@ -45,7 +45,7 @@ namespace LuaBox2D {
 
 		int setCollideConnected(State & state, b2RevoluteJointDef * );
 
-		int initliaze(State & state, b2RevoluteJointDef * );
+		int initialize(State & state, b2RevoluteJointDef * );
 
 		int getLocalAnchorA(State & state, b2RevoluteJointDef * object);
 

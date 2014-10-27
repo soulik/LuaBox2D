@@ -12,18 +12,18 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("bodyB", &JointDef::getBodyB, &JointDef::setBodyB);
 			LUTOK_PROPERTY("collideConnected", &JointDef::getCollideConnected, &JointDef::setCollideConnected);
 			
-			ADD_VALID_TYPE(JointDef);
-			ADD_VALID_TYPE(RevoluteJointDef);
-			ADD_VALID_TYPE(PrismaticJointDef);
-			ADD_VALID_TYPE(DistanceJointDef);
-			ADD_VALID_TYPE(PulleyJointDef);
-			ADD_VALID_TYPE(MouseJointDef);
-			ADD_VALID_TYPE(GearJointDef);
-			ADD_VALID_TYPE(WheelJointDef);
-			ADD_VALID_TYPE(WeldJointDef);
-			ADD_VALID_TYPE(FrictionJointDef);
-			ADD_VALID_TYPE(RopeJointDef);
-			ADD_VALID_TYPE(MotorJointDef);
+			ADD_VALID_STRUCT(JointDef);
+			ADD_VALID_STRUCT(RevoluteJointDef);
+			ADD_VALID_STRUCT(PrismaticJointDef);
+			ADD_VALID_STRUCT(DistanceJointDef);
+			ADD_VALID_STRUCT(PulleyJointDef);
+			ADD_VALID_STRUCT(MouseJointDef);
+			ADD_VALID_STRUCT(GearJointDef);
+			ADD_VALID_STRUCT(WheelJointDef);
+			ADD_VALID_STRUCT(WeldJointDef);
+			ADD_VALID_STRUCT(FrictionJointDef);
+			ADD_VALID_STRUCT(RopeJointDef);
+			ADD_VALID_STRUCT(MotorJointDef);
 		}
 
 		b2JointDef * constructor(State & );
