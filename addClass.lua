@@ -50,11 +50,17 @@ local function putFile(name, className, template, path)
 	end
 end
 
-if #arg>1 then
-	local name = tostring(arg[1])
-	local orig_class_name = tostring(arg[2])
+local genClassFile = function(name, orig_class_name)
 	putFile(name, orig_class_name, templates.hpp, ('src/objects/%s.hpp'):format(name))
 	putFile(name, orig_class_name, templates.cpp, ('src/objects/%s.cpp'):format(name))
+end
+
+if #arg>1 then
+	genClassFile(tostring(arg[1]), tostring(arg[2]))
 else
-	print(("lua %s <name> <orig_class_name>"):format(arg[0]))
+--	print(("lua %s <name> <orig_class_name>"):format(arg[0]))
+	return {
+		genclassFile = genClassFile,
+		putFile = putFile,
+	}
 end

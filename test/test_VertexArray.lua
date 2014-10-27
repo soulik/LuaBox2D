@@ -1,9 +1,10 @@
 ﻿local box2d = require 'LuaBox2D'
 local Vec2 = box2d.Vec2
+local VA = box2d.VertexArray
 
 do
 	print('Array 1')
-	local a = box2d.VertexArray({
+	local a = VA({
 		{123.45, 67.89}, {2, 4}
 	})
 
@@ -22,7 +23,7 @@ end
 
 do
 	print('Array 2')
-	local a = box2d.VertexArray({
+	local a = VA({
 		Vec2(123.45, 67.89),
 		Vec2(2, 4),
 	})

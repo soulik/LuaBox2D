@@ -63,6 +63,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LUABOX2D_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -90,8 +91,26 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\objects\AABB.cpp" />
+    <ClCompile Include="src\objects\DistanceJoint.cpp" />
+    <ClCompile Include="src\objects\DistanceJointDef.cpp" />
+    <ClCompile Include="src\objects\FrictionJoint.cpp" />
+    <ClCompile Include="src\objects\FrictionJointDef.cpp" />
+    <ClCompile Include="src\objects\GearJoint.cpp" />
+    <ClCompile Include="src\objects\GearJointDef.cpp" />
     <ClCompile Include="src\objects\Joint.cpp" />
     <ClCompile Include="src\objects\JointDef.cpp" />
+    <ClCompile Include="src\objects\MotorJoint.cpp" />
+    <ClCompile Include="src\objects\MotorJointDef.cpp" />
+    <ClCompile Include="src\objects\MouseJoint.cpp" />
+    <ClCompile Include="src\objects\MouseJointDef.cpp" />
+    <ClCompile Include="src\objects\PrismaticJoint.cpp" />
+    <ClCompile Include="src\objects\PrismaticJointDef.cpp" />
+    <ClCompile Include="src\objects\PulleyJoint.cpp" />
+    <ClCompile Include="src\objects\PulleyJointDef.cpp" />
+    <ClCompile Include="src\objects\RevoluteJoint.cpp" />
+    <ClCompile Include="src\objects\RevoluteJointDef.cpp" />
+    <ClCompile Include="src\objects\RopeJoint.cpp" />
+    <ClCompile Include="src\objects\RopeJointDef.cpp" />
     <ClCompile Include="src\objects\VertexArray.cpp" />
     <ClCompile Include="src\objects\Body.cpp" />
     <ClCompile Include="src\objects\BodyDef.cpp" />
@@ -111,13 +130,35 @@
     <ClCompile Include="src\objects\Timer.cpp" />
     <ClCompile Include="src\objects\Transform.cpp" />
     <ClCompile Include="src\objects\Vec2.cpp" />
+    <ClCompile Include="src\objects\WeldJoint.cpp" />
+    <ClCompile Include="src\objects\WeldJointDef.cpp" />
+    <ClCompile Include="src\objects\WheelJoint.cpp" />
+    <ClCompile Include="src\objects\WheelJointDef.cpp" />
     <ClCompile Include="src\objects\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\common.hpp" />
     <ClInclude Include="src\objects\AABB.hpp" />
+    <ClInclude Include="src\objects\DistanceJoint.hpp" />
+    <ClInclude Include="src\objects\DistanceJointDef.hpp" />
+    <ClInclude Include="src\objects\FrictionJoint.hpp" />
+    <ClInclude Include="src\objects\FrictionJointDef.hpp" />
+    <ClInclude Include="src\objects\GearJoint.hpp" />
+    <ClInclude Include="src\objects\GearJointDef.hpp" />
     <ClInclude Include="src\objects\Joint.hpp" />
     <ClInclude Include="src\objects\JointDef.hpp" />
+    <ClInclude Include="src\objects\MotorJoint.hpp" />
+    <ClInclude Include="src\objects\MotorJointDef.hpp" />
+    <ClInclude Include="src\objects\MouseJoint.hpp" />
+    <ClInclude Include="src\objects\MouseJointDef.hpp" />
+    <ClInclude Include="src\objects\PrismaticJoint.hpp" />
+    <ClInclude Include="src\objects\PrismaticJointDef.hpp" />
+    <ClInclude Include="src\objects\PulleyJoint.hpp" />
+    <ClInclude Include="src\objects\PulleyJointDef.hpp" />
+    <ClInclude Include="src\objects\RevoluteJoint.hpp" />
+    <ClInclude Include="src\objects\RevoluteJointDef.hpp" />
+    <ClInclude Include="src\objects\RopeJoint.hpp" />
+    <ClInclude Include="src\objects\RopeJointDef.hpp" />
     <ClInclude Include="src\objects\VertexArray.hpp" />
     <ClInclude Include="src\objects\Body.hpp" />
     <ClInclude Include="src\objects\BodyDef.hpp" />
@@ -137,6 +178,10 @@
     <ClInclude Include="src\objects\Timer.hpp" />
     <ClInclude Include="src\objects\Transform.hpp" />
     <ClInclude Include="src\objects\Vec2.hpp" />
+    <ClInclude Include="src\objects\WeldJoint.hpp" />
+    <ClInclude Include="src\objects\WeldJointDef.hpp" />
+    <ClInclude Include="src\objects\WheelJoint.hpp" />
+    <ClInclude Include="src\objects\WheelJointDef.hpp" />
     <ClInclude Include="src\objects\World.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

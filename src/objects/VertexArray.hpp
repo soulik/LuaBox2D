@@ -25,6 +25,12 @@ namespace LuaBox2D {
 			return object;
 		}
 
+		b2VertexArray * constructor(State & state, b2Vec2 * array, b2VertexArray::size_type size){
+			b2VertexArray * object = new b2VertexArray();
+			object->assign(array, array + size);
+			return object;
+		}
+
 		void destructor(State & state, b2VertexArray * object){
 			delete object;
 		}

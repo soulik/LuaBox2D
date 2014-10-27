@@ -26,6 +26,29 @@
 #include "objects/PolygonShape.hpp"
 #include "objects/VertexArray.hpp"
 
+#include "objects/RevoluteJoint.hpp"
+#include "objects/RevoluteJointDef.hpp"
+#include "objects/PrismaticJoint.hpp"
+#include "objects/PrismaticJointDef.hpp"
+#include "objects/DistanceJoint.hpp"
+#include "objects/DistanceJointDef.hpp"
+#include "objects/PulleyJoint.hpp"
+#include "objects/PulleyJointDef.hpp"
+#include "objects/MouseJoint.hpp"
+#include "objects/MouseJointDef.hpp"
+#include "objects/GearJoint.hpp"
+#include "objects/GearJointDef.hpp"
+#include "objects/WheelJoint.hpp"
+#include "objects/WheelJointDef.hpp"
+#include "objects/WeldJoint.hpp"
+#include "objects/WeldJointDef.hpp"
+#include "objects/FrictionJoint.hpp"
+#include "objects/FrictionJointDef.hpp"
+#include "objects/RopeJoint.hpp"
+#include "objects/RopeJointDef.hpp"
+#include "objects/MotorJoint.hpp"
+#include "objects/MotorJointDef.hpp"
+
 namespace LuaBox2D {
 	int version(State & state){
 		Stack * stack = state.stack;
@@ -38,6 +61,14 @@ namespace LuaBox2D {
 };
 
 using namespace LuaBox2D;
+
+#define INIT_OBJECT(OBJ_NAME) init ## OBJ_NAME(state); stack->setField(#OBJ_NAME)
+/*
+#define INIT_JOINT(JOINT_NAME) init ## JOINT_NAME ## Joint(state); stack->setField(#JOINT_NAME "Joint"); \
+	init ## JOINT_NAME ## JointDef(state); stack->setField(#JOINT_NAME "JointDef")
+	*/
+#define INIT_JOINT(JOINT_NAME) INIT_OBJECT(JOINT_NAME ## Joint); \
+	INIT_OBJECT(JOINT_NAME ## JointDef)
 
 extern "C" LUA_API int luaopen_LuaBox2D(lua_State * L){
 	State * state = new State(L);
@@ -70,6 +101,18 @@ extern "C" LUA_API int luaopen_LuaBox2D(lua_State * L){
 		initAABB(state); stack->setField("AABB");
 		initMassData(state); stack->setField("MassData");
 		initVertexArray(state); stack->setField("VertexArray");
+
+		INIT_JOINT(Revolute);
+		INIT_JOINT(Prismatic);
+		INIT_JOINT(Distance);
+		INIT_JOINT(Pulley);
+		INIT_JOINT(Mouse);
+		INIT_JOINT(Gear);
+		INIT_JOINT(Wheel);
+		INIT_JOINT(Weld);
+		INIT_JOINT(Friction);
+		INIT_JOINT(Rope);
+		INIT_JOINT(Motor);
 
 		stack->setField<Function>("version", version);
 	return 1;
