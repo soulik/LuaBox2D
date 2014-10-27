@@ -1,4 +1,12 @@
 #include "common.hpp"
+#include "objects/Vec2.hpp"
+#include "objects/Shape.hpp"
+#include "objects/Body.hpp"
+#include "objects/AABB.hpp"
+#include "objects/RayCastInput.hpp"
+#include "objects/RayCastOutput.hpp"
+#include "objects/MassData.hpp"
+#include "objects/Filter.hpp"
 #include "objects/Fixture.hpp"
 
 namespace LuaBox2D {
@@ -10,6 +18,166 @@ namespace LuaBox2D {
 		Body * interfaceBody = dynamic_cast<Body*>(state.interfaces["LuaBox2D_Body"]);
 		interfaceBody->push(object->GetBody(), false);
 		return 1;
+	}
+
+	b2Fixture * Fixture::constructor(State & state){
+		return nullptr;
+	}
+
+	void Fixture::destructor(State & state, b2Fixture * object){
+		object->GetBody()->DestroyFixture(object);
+	}
+
+	int Fixture::getType(State & state, b2Fixture * object){
+		state.stack->push<int>(static_cast<int>(object->GetType()));
+		return 1;
+	}
+
+	int Fixture::getShape(State & state, b2Fixture * object){
+		Shape * interfaceShape = state.getInterface<Shape>("LuaBox2D_Shape");
+		interfaceShape->push(object->GetShape(), false);
+		return 1;
+	}
+
+	int Fixture::getSensor(State & state, b2Fixture * object){
+		state.stack->push<bool>(object->IsSensor());
+		return 1;
+	}
+
+	int Fixture::setSensor(State & state, b2Fixture * object){
+		object->SetSensor(state.stack->to<bool>(1));
+		return 0;
+	}
+
+	int Fixture::getFilter(State & state, b2Fixture * object){
+		Filter * interfaceFilter = dynamic_cast<Filter*>(state.interfaces["LuaBox2D_Filter"]);
+		interfaceFilter->push(new b2Filter(object->GetFilterData()), true);
+		return 1;
+	}
+
+	int Fixture::setFilter(State & state, b2Fixture * object){
+		Filter * interfaceFilter = dynamic_cast<Filter*>(state.interfaces["LuaBox2D_Filter"]);
+		b2Filter * filter = interfaceFilter->get(1);
+		if (filter != nullptr){
+			object->SetFilterData(*filter);
+		}
+		return 0;
+	}
+
+	int Fixture::refilter(State & state, b2Fixture * object){
+		object->Refilter();
+		return 1;
+	}
+
+	int Fixture::getFriction(State & state, b2Fixture * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetFriction()));
+		return 1;
+	}
+
+	int Fixture::setFriction(State & state, b2Fixture * object){
+		object->SetFriction(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
+		return 0;
+	}
+
+	int Fixture::getRestitution(State & state, b2Fixture * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetRestitution()));
+		return 1;
+	}
+
+	int Fixture::setRestitution(State & state, b2Fixture * object){
+		object->SetRestitution(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
+		return 0;
+	}
+
+	int Fixture::getDensity(State & state, b2Fixture * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetDensity()));
+		return 1;
+	}
+
+	int Fixture::setDensity(State & state, b2Fixture * object){
+		object->SetDensity(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
+		return 0;
+	}
+
+	int Fixture::getAABB(State & state, b2Fixture * object){
+		if (state.stack->is<LUA_TNUMBER>(1)){
+			AABB * interfaceAABB = dynamic_cast<AABB*>(state.interfaces["LuaBox2D_AABB"]);
+			interfaceAABB->push(new b2AABB(object->GetAABB(
+				static_cast<int32>(state.stack->to<int>(1))
+				)), true);
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
+	int Fixture::testPoint(State & state, b2Fixture * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+
+		b2Vec2 * p = interfaceVec2->get(1);
+		if (p != nullptr){
+			state.stack->push<bool>(object->TestPoint(
+				*p
+				));
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
+	int Fixture::rayCast(State & state, b2Fixture * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		RayCastInput * interfaceRayCastInput = state.getInterface<RayCastInput>("LuaBox2D_RayCastInput");
+		RayCastOutput * interfaceRayCastOutput = state.getInterface<RayCastOutput>("LuaBox2D_RayCastOutput");
+
+		b2RayCastInput * rayCastInput = interfaceRayCastInput->get(1);
+		b2RayCastOutput * rayCastOutput = interfaceRayCastOutput->get(3);
+
+		if (rayCastInput != nullptr && state.stack->is<LUA_TNUMBER>(2)){
+			bool ownedOutput = false;
+			if (rayCastOutput == nullptr){
+				rayCastOutput = new b2RayCastOutput();
+				ownedOutput = true;
+			}
+			bool result = object->RayCast(
+				rayCastOutput,
+				*rayCastInput,
+				state.stack->to<int>(2));
+			if (result){
+				state.stack->push<bool>(true);
+				interfaceRayCastOutput->push(rayCastOutput, ownedOutput);
+				return 2;
+			}else{
+				if (ownedOutput){
+					delete rayCastOutput;
+				}
+				state.stack->push<bool>(false);
+				return 1;
+			}
+		}else{
+			return 0;
+		}
+	}
+
+	int Fixture::getMassData(State & state, b2Fixture * object){
+		MassData * interfaceMassData = state.getInterface<MassData>("LuaBox2D_MassData");
+		b2MassData * massData = nullptr;
+
+		if (state.stack->is<LUA_TUSERDATA>(1)){
+			massData = interfaceMassData->get(1);
+			if (massData != nullptr){
+				object->GetMassData(massData);
+				interfaceMassData->push(massData, false);
+				return 1;
+			}else{
+				return 0;
+			}
+		}else{
+			massData = new b2MassData();
+			object->GetMassData(massData);
+			interfaceMassData->push(massData, true);
+			return 1;
+		}
 	}
 
 };

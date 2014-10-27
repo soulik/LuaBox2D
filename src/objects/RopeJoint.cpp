@@ -1,9 +1,28 @@
 #include "common.hpp"
+#include "objects/Joint.hpp"
 #include "objects/RopeJoint.hpp"
 
 namespace LuaBox2D {
 	void initRopeJoint(State * state){
 		state->registerInterface<RopeJoint>("LuaBox2D_RopeJoint");
+	}
+
+	b2RopeJoint * RopeJoint::constructor(State & state){
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		b2Joint * joint = interfaceJoint->get(1);
+		if (joint != nullptr){
+			if (joint->GetType() == b2JointType::e_revoluteJoint){
+				return new b2RopeJoint(*dynamic_cast<b2RopeJoint*>(joint));
+			}else{
+				return nullptr;
+			}
+		}else{
+			return nullptr;
+		}
+	}
+
+	void RopeJoint::destructor(State & state, b2RopeJoint * object){
+		delete object;
 	}
 
 	inline int RopeJoint::getType(State & state, b2RopeJoint * object){

@@ -7,8 +7,6 @@ local templates = {
 [[#ifndef LUABOX2D_{{CNAME}}_H
 #define LUABOX2D_{{CNAME}}_H
 
-#include "objects/Joint.hpp"
-
 namespace LuaBox2D {
 	class {{CLASS}} : public Object<{{ORIG_CLASS}}> {
 	private:
@@ -30,41 +28,27 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("collideConnected", &{{CLASS}}::getCollideConnected, &{{CLASS}}::nullMethod);
 		}
 
-		{{ORIG_CLASS}} * constructor(State & state){
-			Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
-			b2Joint * joint = interfaceJoint->get(1);
-			if (joint != nullptr){
-				if (joint->GetType() == b2JointType::e_revoluteJoint){
-					return new {{ORIG_CLASS}}(*dynamic_cast<{{ORIG_CLASS}}*>(joint));
-				}else{
-					return nullptr;
-				}
-			}else{
-				return nullptr;
-			}
-		}
+		{{ORIG_CLASS}} * constructor(State & state);
 
-		void destructor(State & state, {{ORIG_CLASS}} * object){
-			delete object;
-		}
+		void destructor(State & state, {{ORIG_CLASS}} * object);
 
-		inline int getType(State & state, {{ORIG_CLASS}} * );
+		int getType(State & state, {{ORIG_CLASS}} * );
 
-		inline int getBodyA(State & state, {{ORIG_CLASS}} *);
+		int getBodyA(State & state, {{ORIG_CLASS}} *);
 
-		inline int getBodyB(State & state, {{ORIG_CLASS}} *);
+		int getBodyB(State & state, {{ORIG_CLASS}} *);
 
-		inline int getAnchorA(State & state, {{ORIG_CLASS}} *);
+		int getAnchorA(State & state, {{ORIG_CLASS}} *);
 
-		inline int getAnchorB(State & state, {{ORIG_CLASS}} *);
+		int getAnchorB(State & state, {{ORIG_CLASS}} *);
 
-		inline int getReactionForce(State & state, {{ORIG_CLASS}} *);
+		int getReactionForce(State & state, {{ORIG_CLASS}} *);
 
-		inline int getReactionTorque(State & state, {{ORIG_CLASS}} *);
+		int getReactionTorque(State & state, {{ORIG_CLASS}} *);
 
-		inline int getActive(State & state, {{ORIG_CLASS}} * );
+		int getActive(State & state, {{ORIG_CLASS}} * );
 
-		inline int getCollideConnected(State & state, {{ORIG_CLASS}} * );
+		int getCollideConnected(State & state, {{ORIG_CLASS}} * );
 	};
 
 	void init{{CLASS}}(State * );
@@ -74,11 +58,30 @@ namespace LuaBox2D {
 ]],
 	cpp =
 [[#include "common.hpp"
+#include "objects/Joint.hpp"
 #include "objects/{{CLASS}}.hpp"
 
 namespace LuaBox2D {
 	void init{{CLASS}}(State * state){
 		state->registerInterface<{{CLASS}}>("LuaBox2D_{{CLASS}}");
+	}
+
+	{{ORIG_CLASS}} * {{CLASS}}::constructor(State & state){
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		b2Joint * joint = interfaceJoint->get(1);
+		if (joint != nullptr){
+			if (joint->GetType() == b2JointType::e_revoluteJoint){
+				return new {{ORIG_CLASS}}(*dynamic_cast<{{ORIG_CLASS}}*>(joint));
+			}else{
+				return nullptr;
+			}
+		}else{
+			return nullptr;
+		}
+	}
+
+	void {{CLASS}}::destructor(State & state, {{ORIG_CLASS}} * object){
+		delete object;
 	}
 
 	inline int {{CLASS}}::getType(State & state, {{ORIG_CLASS}} * object){
@@ -123,8 +126,6 @@ namespace LuaBox2D {
 [[#ifndef LUABOX2D_{{CNAME}}_H
 #define LUABOX2D_{{CNAME}}_H
 
-#include "objects/JointDef.hpp"
-
 namespace LuaBox2D {
 	class {{CLASS}} : public Object<{{ORIG_CLASS}}> {
 	private:
@@ -138,39 +139,25 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("collideConnected", &{{CLASS}}::getCollideConnected, &{{CLASS}}::setCollideConnected);
 		}
 
-		{{ORIG_CLASS}} * constructor(State & state){
-			JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
-			b2JointDef * jointDef = interfaceJointDef->get(1);
-			if (jointDef != nullptr){
-				if (jointDef->type == b2JointType::e_revoluteJoint){
-					return new {{ORIG_CLASS}}(*({{ORIG_CLASS}}*)(jointDef));
-				}else{
-					return new {{ORIG_CLASS}}();
-				}
-			}else{
-				return new {{ORIG_CLASS}}();
-			}
-		}
+		{{ORIG_CLASS}} * constructor(State & state);
 
-		void destructor(State & state, {{ORIG_CLASS}} * object){
-			delete object;
-		}
+		void destructor(State & state, {{ORIG_CLASS}} * object);
 
-		inline int getBodyA(State & state, {{ORIG_CLASS}} * );
+		int getBodyA(State & state, {{ORIG_CLASS}} * );
 
-		inline int setBodyA(State & state, {{ORIG_CLASS}} * );
+		int setBodyA(State & state, {{ORIG_CLASS}} * );
 
-		inline int getBodyB(State & state, {{ORIG_CLASS}} * );
+		int getBodyB(State & state, {{ORIG_CLASS}} * );
 
-		inline int setBodyB(State & state, {{ORIG_CLASS}} * );
+		int setBodyB(State & state, {{ORIG_CLASS}} * );
 
-		inline int getType(State & state, {{ORIG_CLASS}} * );
+		int getType(State & state, {{ORIG_CLASS}} * );
 
-		inline int setType(State & state, {{ORIG_CLASS}} * );
+		int setType(State & state, {{ORIG_CLASS}} * );
 
-		inline int getCollideConnected(State & state, {{ORIG_CLASS}} * );
+		int getCollideConnected(State & state, {{ORIG_CLASS}} * );
 
-		inline int setCollideConnected(State & state, {{ORIG_CLASS}} * );
+		int setCollideConnected(State & state, {{ORIG_CLASS}} * );
 	};
 
 	void init{{CLASS}}(State * );
@@ -180,11 +167,30 @@ namespace LuaBox2D {
 ]],
 	cppDef =
 [[#include "common.hpp"
+#include "objects/JointDef.hpp"
 #include "objects/{{CLASS}}.hpp"
 
 namespace LuaBox2D {
 	void init{{CLASS}}(State * state){
 		state->registerInterface<{{CLASS}}>("LuaBox2D_{{CLASS}}");
+	}
+
+	{{ORIG_CLASS}} * {{CLASS}}::constructor(State & state){
+		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
+		b2JointDef * jointDef = interfaceJointDef->get(1);
+		if (jointDef != nullptr){
+			if (jointDef->type == b2JointType::e_revoluteJoint){
+				return new {{ORIG_CLASS}}(*({{ORIG_CLASS}}*)(jointDef));
+			}else{
+				return new {{ORIG_CLASS}}();
+			}
+		}else{
+			return new {{ORIG_CLASS}}();
+		}
+	}
+
+	void {{CLASS}}::destructor(State & state, {{ORIG_CLASS}} * object){
+		delete object;
 	}
 
 	inline int {{CLASS}}::getBodyA(State & state, {{ORIG_CLASS}} * object){

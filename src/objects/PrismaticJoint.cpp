@@ -1,9 +1,28 @@
 #include "common.hpp"
+#include "objects/Joint.hpp"
 #include "objects/PrismaticJoint.hpp"
 
 namespace LuaBox2D {
 	void initPrismaticJoint(State * state){
 		state->registerInterface<PrismaticJoint>("LuaBox2D_PrismaticJoint");
+	}
+
+	b2PrismaticJoint * PrismaticJoint::constructor(State & state){
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		b2Joint * joint = interfaceJoint->get(1);
+		if (joint != nullptr){
+			if (joint->GetType() == b2JointType::e_revoluteJoint){
+				return new b2PrismaticJoint(*dynamic_cast<b2PrismaticJoint*>(joint));
+			}else{
+				return nullptr;
+			}
+		}else{
+			return nullptr;
+		}
+	}
+
+	void PrismaticJoint::destructor(State & state, b2PrismaticJoint * object){
+		delete object;
 	}
 
 	inline int PrismaticJoint::getType(State & state, b2PrismaticJoint * object){

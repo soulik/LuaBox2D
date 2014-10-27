@@ -1,9 +1,28 @@
 #include "common.hpp"
+#include "objects/Joint.hpp"
 #include "objects/DistanceJoint.hpp"
 
 namespace LuaBox2D {
 	void initDistanceJoint(State * state){
 		state->registerInterface<DistanceJoint>("LuaBox2D_DistanceJoint");
+	}
+
+	b2DistanceJoint * DistanceJoint::constructor(State & state){
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		b2Joint * joint = interfaceJoint->get(1);
+		if (joint != nullptr){
+			if (joint->GetType() == b2JointType::e_revoluteJoint){
+				return new b2DistanceJoint(*dynamic_cast<b2DistanceJoint*>(joint));
+			}else{
+				return nullptr;
+			}
+		}else{
+			return nullptr;
+		}
+	}
+
+	void DistanceJoint::destructor(State & state, b2DistanceJoint * object){
+		delete object;
 	}
 
 	inline int DistanceJoint::getType(State & state, b2DistanceJoint * object){

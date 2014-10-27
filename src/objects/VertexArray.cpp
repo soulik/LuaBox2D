@@ -1,4 +1,6 @@
 #include "common.hpp"
+#include <vector>
+#include "objects/Vec2.hpp"
 #include "objects/VertexArray.hpp"
 
 namespace LuaBox2D {
@@ -105,5 +107,23 @@ namespace LuaBox2D {
 			}
 		}
 		return 0;
+	}
+
+	b2VertexArray * VertexArray::constructor(State & state){
+		b2VertexArray * object = new b2VertexArray();
+		setVertices(state, object);
+		return object;
+	}
+
+	b2VertexArray * VertexArray::constructor(State & state, const int index){
+		b2VertexArray * object = new b2VertexArray();
+		setVertices(state, object, index);
+		return object;
+	}
+
+	b2VertexArray * VertexArray::constructor(State & state, b2Vec2 * array, b2VertexArray::size_type size){
+		b2VertexArray * object = new b2VertexArray();
+		object->assign(array, array + size);
+		return object;
 	}
 };

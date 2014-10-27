@@ -3,5 +3,7 @@
 	return pcall(loadfile(fname))
 end
 
-print(testFile('Vec2'))
-print(testFile('VertexArray'))
+--print(testFile('Vec2'))
+--print(testFile('VertexArray'))
+--print(testFile('World'))
+print(testFile('Body'))

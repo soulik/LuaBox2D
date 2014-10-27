@@ -1,8 +1,6 @@
 #ifndef LUABOX2D_PULLEYJOINT_H
 #define LUABOX2D_PULLEYJOINT_H
 
-#include "objects/Joint.hpp"
-
 namespace LuaBox2D {
 	class PulleyJoint : public Object<b2PulleyJoint> {
 	private:
@@ -24,41 +22,27 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("collideConnected", &PulleyJoint::getCollideConnected, &PulleyJoint::nullMethod);
 		}
 
-		b2PulleyJoint * constructor(State & state){
-			Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
-			b2Joint * joint = interfaceJoint->get(1);
-			if (joint != nullptr){
-				if (joint->GetType() == b2JointType::e_revoluteJoint){
-					return new b2PulleyJoint(*dynamic_cast<b2PulleyJoint*>(joint));
-				}else{
-					return nullptr;
-				}
-			}else{
-				return nullptr;
-			}
-		}
+		b2PulleyJoint * constructor(State & state);
 
-		void destructor(State & state, b2PulleyJoint * object){
-			delete object;
-		}
+		void destructor(State & state, b2PulleyJoint * object);
 
-		inline int getType(State & state, b2PulleyJoint * );
+		int getType(State & state, b2PulleyJoint * );
 
-		inline int getBodyA(State & state, b2PulleyJoint *);
+		int getBodyA(State & state, b2PulleyJoint *);
 
-		inline int getBodyB(State & state, b2PulleyJoint *);
+		int getBodyB(State & state, b2PulleyJoint *);
 
-		inline int getAnchorA(State & state, b2PulleyJoint *);
+		int getAnchorA(State & state, b2PulleyJoint *);
 
-		inline int getAnchorB(State & state, b2PulleyJoint *);
+		int getAnchorB(State & state, b2PulleyJoint *);
 
-		inline int getReactionForce(State & state, b2PulleyJoint *);
+		int getReactionForce(State & state, b2PulleyJoint *);
 
-		inline int getReactionTorque(State & state, b2PulleyJoint *);
+		int getReactionTorque(State & state, b2PulleyJoint *);
 
-		inline int getActive(State & state, b2PulleyJoint * );
+		int getActive(State & state, b2PulleyJoint * );
 
-		inline int getCollideConnected(State & state, b2PulleyJoint * );
+		int getCollideConnected(State & state, b2PulleyJoint * );
 	};
 
 	void initPulleyJoint(State * );

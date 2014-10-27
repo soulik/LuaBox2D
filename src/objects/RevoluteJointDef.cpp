@@ -1,9 +1,28 @@
 #include "common.hpp"
+#include "objects/JointDef.hpp"
 #include "objects/RevoluteJointDef.hpp"
 
 namespace LuaBox2D {
 	void initRevoluteJointDef(State * state){
 		state->registerInterface<RevoluteJointDef>("LuaBox2D_RevoluteJointDef");
+	}
+
+	b2RevoluteJointDef * RevoluteJointDef::constructor(State & state){
+		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
+		b2JointDef * jointDef = interfaceJointDef->get(1);
+		if (jointDef != nullptr){
+			if (jointDef->type == b2JointType::e_revoluteJoint){
+				return new b2RevoluteJointDef(*(b2RevoluteJointDef*)(jointDef));
+			}else{
+				return new b2RevoluteJointDef();
+			}
+		}else{
+			return new b2RevoluteJointDef();
+		}
+	}
+
+	void RevoluteJointDef::destructor(State & state, b2RevoluteJointDef * object){
+		delete object;
 	}
 
 	inline int RevoluteJointDef::getBodyA(State & state, b2RevoluteJointDef * object){

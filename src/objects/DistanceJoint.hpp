@@ -1,8 +1,6 @@
 #ifndef LUABOX2D_DISTANCEJOINT_H
 #define LUABOX2D_DISTANCEJOINT_H
 
-#include "objects/Joint.hpp"
-
 namespace LuaBox2D {
 	class DistanceJoint : public Object<b2DistanceJoint> {
 	private:
@@ -24,41 +22,27 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("collideConnected", &DistanceJoint::getCollideConnected, &DistanceJoint::nullMethod);
 		}
 
-		b2DistanceJoint * constructor(State & state){
-			Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
-			b2Joint * joint = interfaceJoint->get(1);
-			if (joint != nullptr){
-				if (joint->GetType() == b2JointType::e_revoluteJoint){
-					return new b2DistanceJoint(*dynamic_cast<b2DistanceJoint*>(joint));
-				}else{
-					return nullptr;
-				}
-			}else{
-				return nullptr;
-			}
-		}
+		b2DistanceJoint * constructor(State & state);
 
-		void destructor(State & state, b2DistanceJoint * object){
-			delete object;
-		}
+		void destructor(State & state, b2DistanceJoint * object);
 
-		inline int getType(State & state, b2DistanceJoint * );
+		int getType(State & state, b2DistanceJoint * );
 
-		inline int getBodyA(State & state, b2DistanceJoint *);
+		int getBodyA(State & state, b2DistanceJoint *);
 
-		inline int getBodyB(State & state, b2DistanceJoint *);
+		int getBodyB(State & state, b2DistanceJoint *);
 
-		inline int getAnchorA(State & state, b2DistanceJoint *);
+		int getAnchorA(State & state, b2DistanceJoint *);
 
-		inline int getAnchorB(State & state, b2DistanceJoint *);
+		int getAnchorB(State & state, b2DistanceJoint *);
 
-		inline int getReactionForce(State & state, b2DistanceJoint *);
+		int getReactionForce(State & state, b2DistanceJoint *);
 
-		inline int getReactionTorque(State & state, b2DistanceJoint *);
+		int getReactionTorque(State & state, b2DistanceJoint *);
 
-		inline int getActive(State & state, b2DistanceJoint * );
+		int getActive(State & state, b2DistanceJoint * );
 
-		inline int getCollideConnected(State & state, b2DistanceJoint * );
+		int getCollideConnected(State & state, b2DistanceJoint * );
 	};
 
 	void initDistanceJoint(State * );

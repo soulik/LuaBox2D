@@ -1,9 +1,6 @@
 #ifndef LUABOX2D_JOINT_H
 #define LUABOX2D_JOINT_H
 
-#include "objects/Vec2.hpp"
-#include "objects/Body.hpp"
-
 namespace LuaBox2D {
 	class Joint : public Object<b2Joint> {
 	protected:
@@ -23,40 +20,27 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("active", &Joint::getActive, &Joint::nullMethod);
 			LUTOK_PROPERTY("collideConnected", &Joint::getCollideConnected, &Joint::nullMethod);
 
-			validTypes.push_front("Joint");
-			validTypes.push_front("RevoluteJoint");
-			validTypes.push_front("PrismaticJoint");
-			validTypes.push_front("DistanceJoint");
-			validTypes.push_front("PulleyJoint");
-			validTypes.push_front("MouseJoint");
-			validTypes.push_front("GearJoint");
-			validTypes.push_front("WheelJoint");
-			validTypes.push_front("WeldJoint");
-			validTypes.push_front("FrictionJoint");
-			validTypes.push_front("RopeJoint");
-			validTypes.push_front("MotorJoint");
+			ADD_VALID_TYPE(Joint);
+			ADD_VALID_TYPE(RevoluteJoint);
+			ADD_VALID_TYPE(PrismaticJoint);
+			ADD_VALID_TYPE(DistanceJoint);
+			ADD_VALID_TYPE(PulleyJoint);
+			ADD_VALID_TYPE(MouseJoint);
+			ADD_VALID_TYPE(GearJoint);
+			ADD_VALID_TYPE(WheelJoint);
+			ADD_VALID_TYPE(WeldJoint);
+			ADD_VALID_TYPE(FrictionJoint);
+			ADD_VALID_TYPE(RopeJoint);
+			ADD_VALID_TYPE(MotorJoint);
 		}
 
 		b2Joint * constructor(State & );
 
-		b2Joint * get(const int index){
-			ObjWrapper * wrapper = getWrapped(index, validTypes);
-			if (wrapper){
-				return wrapper->instance;
-			}else{
+		b2Joint * get(const int index);
 
-				return nullptr;
-			}
-		}
+		void destructor(State & state, b2Joint * object);
 
-		void destructor(State & state, b2Joint * object){
-			object->GetBodyA()->GetWorld()->DestroyJoint(object);
-		}
-
-		int getType(State & state, b2Joint * object){
-			state.stack->push<int>(static_cast<int>(object->GetType()));
-			return 1;
-		}
+		int getType(State & state, b2Joint * object);
 
 		int getBodyA(State & state, b2Joint *);
 
@@ -70,15 +54,9 @@ namespace LuaBox2D {
 
 		int getReactionTorque(State & state, b2Joint *);
 
-		int getActive(State & state, b2Joint * object){
-			state.stack->push<bool>(object->IsActive());
-			return 1;
-		}
+		int getActive(State & state, b2Joint * object);
 
-		int getCollideConnected(State & state, b2Joint * object){
-			state.stack->push<bool>(object->GetCollideConnected());
-			return 1;
-		}
+		int getCollideConnected(State & state, b2Joint * object);
 
 	};
 

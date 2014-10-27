@@ -1,9 +1,28 @@
 #include "common.hpp"
+#include "objects/Joint.hpp"
 #include "objects/WheelJoint.hpp"
 
 namespace LuaBox2D {
 	void initWheelJoint(State * state){
 		state->registerInterface<WheelJoint>("LuaBox2D_WheelJoint");
+	}
+
+	b2WheelJoint * WheelJoint::constructor(State & state){
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		b2Joint * joint = interfaceJoint->get(1);
+		if (joint != nullptr){
+			if (joint->GetType() == b2JointType::e_revoluteJoint){
+				return new b2WheelJoint(*dynamic_cast<b2WheelJoint*>(joint));
+			}else{
+				return nullptr;
+			}
+		}else{
+			return nullptr;
+		}
+	}
+
+	void WheelJoint::destructor(State & state, b2WheelJoint * object){
+		delete object;
 	}
 
 	inline int WheelJoint::getType(State & state, b2WheelJoint * object){

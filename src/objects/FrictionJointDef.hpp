@@ -1,8 +1,6 @@
 #ifndef LUABOX2D_FRICTIONJOINTDEF_H
 #define LUABOX2D_FRICTIONJOINTDEF_H
 
-#include "objects/JointDef.hpp"
-
 namespace LuaBox2D {
 	class FrictionJointDef : public Object<b2FrictionJointDef> {
 	private:
@@ -16,39 +14,25 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("collideConnected", &FrictionJointDef::getCollideConnected, &FrictionJointDef::setCollideConnected);
 		}
 
-		b2FrictionJointDef * constructor(State & state){
-			JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
-			b2JointDef * jointDef = interfaceJointDef->get(1);
-			if (jointDef != nullptr){
-				if (jointDef->type == b2JointType::e_revoluteJoint){
-					return new b2FrictionJointDef(*(b2FrictionJointDef*)(jointDef));
-				}else{
-					return new b2FrictionJointDef();
-				}
-			}else{
-				return new b2FrictionJointDef();
-			}
-		}
+		b2FrictionJointDef * constructor(State & state);
 
-		void destructor(State & state, b2FrictionJointDef * object){
-			delete object;
-		}
+		void destructor(State & state, b2FrictionJointDef * object);
 
-		inline int getBodyA(State & state, b2FrictionJointDef * );
+		int getBodyA(State & state, b2FrictionJointDef * );
 
-		inline int setBodyA(State & state, b2FrictionJointDef * );
+		int setBodyA(State & state, b2FrictionJointDef * );
 
-		inline int getBodyB(State & state, b2FrictionJointDef * );
+		int getBodyB(State & state, b2FrictionJointDef * );
 
-		inline int setBodyB(State & state, b2FrictionJointDef * );
+		int setBodyB(State & state, b2FrictionJointDef * );
 
-		inline int getType(State & state, b2FrictionJointDef * );
+		int getType(State & state, b2FrictionJointDef * );
 
-		inline int setType(State & state, b2FrictionJointDef * );
+		int setType(State & state, b2FrictionJointDef * );
 
-		inline int getCollideConnected(State & state, b2FrictionJointDef * );
+		int getCollideConnected(State & state, b2FrictionJointDef * );
 
-		inline int setCollideConnected(State & state, b2FrictionJointDef * );
+		int setCollideConnected(State & state, b2FrictionJointDef * );
 	};
 
 	void initFrictionJointDef(State * );

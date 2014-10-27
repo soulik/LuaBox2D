@@ -1,9 +1,28 @@
 #include "common.hpp"
+#include "objects/JointDef.hpp"
 #include "objects/WeldJointDef.hpp"
 
 namespace LuaBox2D {
 	void initWeldJointDef(State * state){
 		state->registerInterface<WeldJointDef>("LuaBox2D_WeldJointDef");
+	}
+
+	b2WeldJointDef * WeldJointDef::constructor(State & state){
+		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
+		b2JointDef * jointDef = interfaceJointDef->get(1);
+		if (jointDef != nullptr){
+			if (jointDef->type == b2JointType::e_revoluteJoint){
+				return new b2WeldJointDef(*(b2WeldJointDef*)(jointDef));
+			}else{
+				return new b2WeldJointDef();
+			}
+		}else{
+			return new b2WeldJointDef();
+		}
+	}
+
+	void WeldJointDef::destructor(State & state, b2WeldJointDef * object){
+		delete object;
 	}
 
 	inline int WeldJointDef::getBodyA(State & state, b2WeldJointDef * object){

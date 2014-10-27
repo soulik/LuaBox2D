@@ -10,24 +10,13 @@ namespace LuaBox2D {
 			LUTOK_METHOD("reset", &Timer::reset);
 		}
 
-		b2Timer * constructor(State & state){
-			b2Timer * obj = nullptr;
-			obj = new b2Timer();
-			return obj;
-		}
-		void destructor(State & state, b2Timer * object){
-			delete object;
-		}
+		b2Timer * constructor(State & state);
 
-		int getMiliseconds(State & state, b2Timer * object){
-			state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetMilliseconds()));
-			return 1;
-		}
+		void destructor(State & state, b2Timer * object);
 
-		int reset(State & state, b2Timer * object){
-			object->Reset();
-			return 0;
-		}
+		int getMiliseconds(State & state, b2Timer * object);
+
+		int reset(State & state, b2Timer * object);
 	};
 
 	void initTimer(State *);

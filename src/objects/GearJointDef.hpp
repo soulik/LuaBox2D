@@ -1,8 +1,6 @@
 #ifndef LUABOX2D_GEARJOINTDEF_H
 #define LUABOX2D_GEARJOINTDEF_H
 
-#include "objects/JointDef.hpp"
-
 namespace LuaBox2D {
 	class GearJointDef : public Object<b2GearJointDef> {
 	private:
@@ -16,39 +14,25 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("collideConnected", &GearJointDef::getCollideConnected, &GearJointDef::setCollideConnected);
 		}
 
-		b2GearJointDef * constructor(State & state){
-			JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
-			b2JointDef * jointDef = interfaceJointDef->get(1);
-			if (jointDef != nullptr){
-				if (jointDef->type == b2JointType::e_revoluteJoint){
-					return new b2GearJointDef(*(b2GearJointDef*)(jointDef));
-				}else{
-					return new b2GearJointDef();
-				}
-			}else{
-				return new b2GearJointDef();
-			}
-		}
+		b2GearJointDef * constructor(State & state);
 
-		void destructor(State & state, b2GearJointDef * object){
-			delete object;
-		}
+		void destructor(State & state, b2GearJointDef * object);
 
-		inline int getBodyA(State & state, b2GearJointDef * );
+		int getBodyA(State & state, b2GearJointDef * );
 
-		inline int setBodyA(State & state, b2GearJointDef * );
+		int setBodyA(State & state, b2GearJointDef * );
 
-		inline int getBodyB(State & state, b2GearJointDef * );
+		int getBodyB(State & state, b2GearJointDef * );
 
-		inline int setBodyB(State & state, b2GearJointDef * );
+		int setBodyB(State & state, b2GearJointDef * );
 
-		inline int getType(State & state, b2GearJointDef * );
+		int getType(State & state, b2GearJointDef * );
 
-		inline int setType(State & state, b2GearJointDef * );
+		int setType(State & state, b2GearJointDef * );
 
-		inline int getCollideConnected(State & state, b2GearJointDef * );
+		int getCollideConnected(State & state, b2GearJointDef * );
 
-		inline int setCollideConnected(State & state, b2GearJointDef * );
+		int setCollideConnected(State & state, b2GearJointDef * );
 	};
 
 	void initGearJointDef(State * );

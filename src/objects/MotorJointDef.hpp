@@ -1,8 +1,6 @@
 #ifndef LUABOX2D_MOTORJOINTDEF_H
 #define LUABOX2D_MOTORJOINTDEF_H
 
-#include "objects/JointDef.hpp"
-
 namespace LuaBox2D {
 	class MotorJointDef : public Object<b2MotorJointDef> {
 	private:
@@ -16,39 +14,25 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("collideConnected", &MotorJointDef::getCollideConnected, &MotorJointDef::setCollideConnected);
 		}
 
-		b2MotorJointDef * constructor(State & state){
-			JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
-			b2JointDef * jointDef = interfaceJointDef->get(1);
-			if (jointDef != nullptr){
-				if (jointDef->type == b2JointType::e_revoluteJoint){
-					return new b2MotorJointDef(*(b2MotorJointDef*)(jointDef));
-				}else{
-					return new b2MotorJointDef();
-				}
-			}else{
-				return new b2MotorJointDef();
-			}
-		}
+		b2MotorJointDef * constructor(State & state);
 
-		void destructor(State & state, b2MotorJointDef * object){
-			delete object;
-		}
+		void destructor(State & state, b2MotorJointDef * object);
 
-		inline int getBodyA(State & state, b2MotorJointDef * );
+		int getBodyA(State & state, b2MotorJointDef * );
 
-		inline int setBodyA(State & state, b2MotorJointDef * );
+		int setBodyA(State & state, b2MotorJointDef * );
 
-		inline int getBodyB(State & state, b2MotorJointDef * );
+		int getBodyB(State & state, b2MotorJointDef * );
 
-		inline int setBodyB(State & state, b2MotorJointDef * );
+		int setBodyB(State & state, b2MotorJointDef * );
 
-		inline int getType(State & state, b2MotorJointDef * );
+		int getType(State & state, b2MotorJointDef * );
 
-		inline int setType(State & state, b2MotorJointDef * );
+		int setType(State & state, b2MotorJointDef * );
 
-		inline int getCollideConnected(State & state, b2MotorJointDef * );
+		int getCollideConnected(State & state, b2MotorJointDef * );
 
-		inline int setCollideConnected(State & state, b2MotorJointDef * );
+		int setCollideConnected(State & state, b2MotorJointDef * );
 	};
 
 	void initMotorJointDef(State * );

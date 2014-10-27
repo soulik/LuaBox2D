@@ -1,4 +1,6 @@
 #include "common.hpp"
+#include "objects/Vec2.hpp"
+#include "objects/Body.hpp"
 #include "objects/Joint.hpp"
 
 namespace LuaBox2D {
@@ -66,4 +68,34 @@ namespace LuaBox2D {
 			return 0;
 		}
 	}
+
+	b2Joint * Joint::get(const int index){
+		ObjWrapper * wrapper = getWrapped(index, validTypes);
+		if (wrapper){
+			return wrapper->instance;
+		}else{
+
+			return nullptr;
+		}
+	}
+
+	void Joint::destructor(State & state, b2Joint * object){
+		object->GetBodyA()->GetWorld()->DestroyJoint(object);
+	}
+
+	int Joint::getType(State & state, b2Joint * object){
+		state.stack->push<int>(static_cast<int>(object->GetType()));
+		return 1;
+	}
+
+	int Joint::getActive(State & state, b2Joint * object){
+		state.stack->push<bool>(object->IsActive());
+		return 1;
+	}
+
+	int Joint::getCollideConnected(State & state, b2Joint * object){
+		state.stack->push<bool>(object->GetCollideConnected());
+		return 1;
+	}
+
 };

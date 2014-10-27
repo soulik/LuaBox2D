@@ -10,43 +10,21 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("groupIndex", &Filter::getGroupIndex, &Filter::setGroupIndex);
 		}
 
-		b2Filter * constructor(State & state){
-			return new b2Filter();
-		}
+		b2Filter * constructor(State & state);
 
-		void destructor(State & state, b2Filter * object){
-			delete object;
-		}
+		void destructor(State & state, b2Filter * object);
 
-		int getCategoryBits(State & state, b2Filter * object){
-			state.stack->push<int>(static_cast<int>(object->categoryBits));
-			return 1;
-		}
+		int getCategoryBits(State & state, b2Filter * object);
 
-		int setCategoryBits(State & state, b2Filter * object){
-			object->categoryBits = static_cast<int16>(state.stack->to<int>(1));
-			return 0;
-		}
+		int setCategoryBits(State & state, b2Filter * object);
 
-		int getMaskBits(State & state, b2Filter * object){
-			state.stack->push<int>(static_cast<int>(object->maskBits));
-			return 1;
-		}
+		int getMaskBits(State & state, b2Filter * object);
 
-		int setMaskBits(State & state, b2Filter * object){
-			object->maskBits = static_cast<int16>(state.stack->to<int>(1));
-			return 0;
-		}
+		int setMaskBits(State & state, b2Filter * object);
 
-		int getGroupIndex(State & state, b2Filter * object){
-			state.stack->push<int>(static_cast<int>(object->groupIndex));
-			return 1;
-		}
+		int getGroupIndex(State & state, b2Filter * object);
 
-		int setGroupIndex(State & state, b2Filter * object){
-			object->groupIndex = static_cast<int16>(state.stack->to<int>(1));
-			return 0;
-		}
+		int setGroupIndex(State & state, b2Filter * object);
 	};
 
 	void initFilter(State * );

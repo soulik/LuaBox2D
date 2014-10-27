@@ -1,8 +1,6 @@
 #ifndef LUABOX2D_WELDJOINT_H
 #define LUABOX2D_WELDJOINT_H
 
-#include "objects/Joint.hpp"
-
 namespace LuaBox2D {
 	class WeldJoint : public Object<b2WeldJoint> {
 	private:
@@ -24,41 +22,27 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("collideConnected", &WeldJoint::getCollideConnected, &WeldJoint::nullMethod);
 		}
 
-		b2WeldJoint * constructor(State & state){
-			Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
-			b2Joint * joint = interfaceJoint->get(1);
-			if (joint != nullptr){
-				if (joint->GetType() == b2JointType::e_revoluteJoint){
-					return new b2WeldJoint(*dynamic_cast<b2WeldJoint*>(joint));
-				}else{
-					return nullptr;
-				}
-			}else{
-				return nullptr;
-			}
-		}
+		b2WeldJoint * constructor(State & state);
 
-		void destructor(State & state, b2WeldJoint * object){
-			delete object;
-		}
+		void destructor(State & state, b2WeldJoint * object);
 
-		inline int getType(State & state, b2WeldJoint * );
+		int getType(State & state, b2WeldJoint * );
 
-		inline int getBodyA(State & state, b2WeldJoint *);
+		int getBodyA(State & state, b2WeldJoint *);
 
-		inline int getBodyB(State & state, b2WeldJoint *);
+		int getBodyB(State & state, b2WeldJoint *);
 
-		inline int getAnchorA(State & state, b2WeldJoint *);
+		int getAnchorA(State & state, b2WeldJoint *);
 
-		inline int getAnchorB(State & state, b2WeldJoint *);
+		int getAnchorB(State & state, b2WeldJoint *);
 
-		inline int getReactionForce(State & state, b2WeldJoint *);
+		int getReactionForce(State & state, b2WeldJoint *);
 
-		inline int getReactionTorque(State & state, b2WeldJoint *);
+		int getReactionTorque(State & state, b2WeldJoint *);
 
-		inline int getActive(State & state, b2WeldJoint * );
+		int getActive(State & state, b2WeldJoint * );
 
-		inline int getCollideConnected(State & state, b2WeldJoint * );
+		int getCollideConnected(State & state, b2WeldJoint * );
 	};
 
 	void initWeldJoint(State * );

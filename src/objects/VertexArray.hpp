@@ -1,9 +1,6 @@
 #ifndef LUABOX2D_VERTEXARRAY_H
 #define LUABOX2D_VERTEXARRAY_H
 
-#include <vector>
-#include "objects/Vec2.hpp"
-
 namespace LuaBox2D {
 	typedef std::vector<b2Vec2> b2VertexArray;
 
@@ -13,23 +10,11 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("vertices", &VertexArray::nullMethod, &VertexArray::setVertices);
 		}
 
-		b2VertexArray * constructor(State & state){
-			b2VertexArray * object = new b2VertexArray();
-			setVertices(state, object);
-			return object;
-		}
+		b2VertexArray * constructor(State & state);
 
-		b2VertexArray * constructor(State & state, const int index){
-			b2VertexArray * object = new b2VertexArray();
-			setVertices(state, object, index);
-			return object;
-		}
+		b2VertexArray * constructor(State & state, const int index);
 
-		b2VertexArray * constructor(State & state, b2Vec2 * array, b2VertexArray::size_type size){
-			b2VertexArray * object = new b2VertexArray();
-			object->assign(array, array + size);
-			return object;
-		}
+		b2VertexArray * constructor(State & state, b2Vec2 * array, b2VertexArray::size_type size);
 
 		void destructor(State & state, b2VertexArray * object){
 			delete object;

@@ -1,9 +1,28 @@
 #include "common.hpp"
+#include "objects/Joint.hpp"
 #include "objects/WeldJoint.hpp"
 
 namespace LuaBox2D {
 	void initWeldJoint(State * state){
 		state->registerInterface<WeldJoint>("LuaBox2D_WeldJoint");
+	}
+
+	b2WeldJoint * WeldJoint::constructor(State & state){
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		b2Joint * joint = interfaceJoint->get(1);
+		if (joint != nullptr){
+			if (joint->GetType() == b2JointType::e_revoluteJoint){
+				return new b2WeldJoint(*dynamic_cast<b2WeldJoint*>(joint));
+			}else{
+				return nullptr;
+			}
+		}else{
+			return nullptr;
+		}
+	}
+
+	void WeldJoint::destructor(State & state, b2WeldJoint * object){
+		delete object;
 	}
 
 	inline int WeldJoint::getType(State & state, b2WeldJoint * object){

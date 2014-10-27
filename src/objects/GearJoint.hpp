@@ -1,8 +1,6 @@
 #ifndef LUABOX2D_GEARJOINT_H
 #define LUABOX2D_GEARJOINT_H
 
-#include "objects/Joint.hpp"
-
 namespace LuaBox2D {
 	class GearJoint : public Object<b2GearJoint> {
 	private:
@@ -24,41 +22,27 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("collideConnected", &GearJoint::getCollideConnected, &GearJoint::nullMethod);
 		}
 
-		b2GearJoint * constructor(State & state){
-			Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
-			b2Joint * joint = interfaceJoint->get(1);
-			if (joint != nullptr){
-				if (joint->GetType() == b2JointType::e_revoluteJoint){
-					return new b2GearJoint(*dynamic_cast<b2GearJoint*>(joint));
-				}else{
-					return nullptr;
-				}
-			}else{
-				return nullptr;
-			}
-		}
+		b2GearJoint * constructor(State & state);
 
-		void destructor(State & state, b2GearJoint * object){
-			delete object;
-		}
+		void destructor(State & state, b2GearJoint * object);
 
-		inline int getType(State & state, b2GearJoint * );
+		int getType(State & state, b2GearJoint * );
 
-		inline int getBodyA(State & state, b2GearJoint *);
+		int getBodyA(State & state, b2GearJoint *);
 
-		inline int getBodyB(State & state, b2GearJoint *);
+		int getBodyB(State & state, b2GearJoint *);
 
-		inline int getAnchorA(State & state, b2GearJoint *);
+		int getAnchorA(State & state, b2GearJoint *);
 
-		inline int getAnchorB(State & state, b2GearJoint *);
+		int getAnchorB(State & state, b2GearJoint *);
 
-		inline int getReactionForce(State & state, b2GearJoint *);
+		int getReactionForce(State & state, b2GearJoint *);
 
-		inline int getReactionTorque(State & state, b2GearJoint *);
+		int getReactionTorque(State & state, b2GearJoint *);
 
-		inline int getActive(State & state, b2GearJoint * );
+		int getActive(State & state, b2GearJoint * );
 
-		inline int getCollideConnected(State & state, b2GearJoint * );
+		int getCollideConnected(State & state, b2GearJoint * );
 	};
 
 	void initGearJoint(State * );

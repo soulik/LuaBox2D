@@ -1,9 +1,28 @@
 #include "common.hpp"
+#include "objects/JointDef.hpp"
 #include "objects/WheelJointDef.hpp"
 
 namespace LuaBox2D {
 	void initWheelJointDef(State * state){
 		state->registerInterface<WheelJointDef>("LuaBox2D_WheelJointDef");
+	}
+
+	b2WheelJointDef * WheelJointDef::constructor(State & state){
+		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
+		b2JointDef * jointDef = interfaceJointDef->get(1);
+		if (jointDef != nullptr){
+			if (jointDef->type == b2JointType::e_revoluteJoint){
+				return new b2WheelJointDef(*(b2WheelJointDef*)(jointDef));
+			}else{
+				return new b2WheelJointDef();
+			}
+		}else{
+			return new b2WheelJointDef();
+		}
+	}
+
+	void WheelJointDef::destructor(State & state, b2WheelJointDef * object){
+		delete object;
 	}
 
 	inline int WheelJointDef::getBodyA(State & state, b2WheelJointDef * object){

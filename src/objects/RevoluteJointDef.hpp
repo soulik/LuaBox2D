@@ -1,8 +1,6 @@
 #ifndef LUABOX2D_REVOLUTEJOINTDEF_H
 #define LUABOX2D_REVOLUTEJOINTDEF_H
 
-#include "objects/JointDef.hpp"
-
 namespace LuaBox2D {
 	class RevoluteJointDef : public Object<b2RevoluteJointDef> {
 	private:
@@ -16,39 +14,25 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("collideConnected", &RevoluteJointDef::getCollideConnected, &RevoluteJointDef::setCollideConnected);
 		}
 
-		b2RevoluteJointDef * constructor(State & state){
-			JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
-			b2JointDef * jointDef = interfaceJointDef->get(1);
-			if (jointDef != nullptr){
-				if (jointDef->type == b2JointType::e_revoluteJoint){
-					return new b2RevoluteJointDef(*(b2RevoluteJointDef*)(jointDef));
-				}else{
-					return new b2RevoluteJointDef();
-				}
-			}else{
-				return new b2RevoluteJointDef();
-			}
-		}
+		b2RevoluteJointDef * constructor(State & state);
 
-		void destructor(State & state, b2RevoluteJointDef * object){
-			delete object;
-		}
+		void destructor(State & state, b2RevoluteJointDef * object);
 
-		inline int getBodyA(State & state, b2RevoluteJointDef * );
+		int getBodyA(State & state, b2RevoluteJointDef * );
 
-		inline int setBodyA(State & state, b2RevoluteJointDef * );
+		int setBodyA(State & state, b2RevoluteJointDef * );
 
-		inline int getBodyB(State & state, b2RevoluteJointDef * );
+		int getBodyB(State & state, b2RevoluteJointDef * );
 
-		inline int setBodyB(State & state, b2RevoluteJointDef * );
+		int setBodyB(State & state, b2RevoluteJointDef * );
 
-		inline int getType(State & state, b2RevoluteJointDef * );
+		int getType(State & state, b2RevoluteJointDef * );
 
-		inline int setType(State & state, b2RevoluteJointDef * );
+		int setType(State & state, b2RevoluteJointDef * );
 
-		inline int getCollideConnected(State & state, b2RevoluteJointDef * );
+		int getCollideConnected(State & state, b2RevoluteJointDef * );
 
-		inline int setCollideConnected(State & state, b2RevoluteJointDef * );
+		int setCollideConnected(State & state, b2RevoluteJointDef * );
 	};
 
 	void initRevoluteJointDef(State * );

@@ -1,9 +1,28 @@
 #include "common.hpp"
+#include "objects/JointDef.hpp"
 #include "objects/MouseJointDef.hpp"
 
 namespace LuaBox2D {
 	void initMouseJointDef(State * state){
 		state->registerInterface<MouseJointDef>("LuaBox2D_MouseJointDef");
+	}
+
+	b2MouseJointDef * MouseJointDef::constructor(State & state){
+		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
+		b2JointDef * jointDef = interfaceJointDef->get(1);
+		if (jointDef != nullptr){
+			if (jointDef->type == b2JointType::e_revoluteJoint){
+				return new b2MouseJointDef(*(b2MouseJointDef*)(jointDef));
+			}else{
+				return new b2MouseJointDef();
+			}
+		}else{
+			return new b2MouseJointDef();
+		}
+	}
+
+	void MouseJointDef::destructor(State & state, b2MouseJointDef * object){
+		delete object;
 	}
 
 	inline int MouseJointDef::getBodyA(State & state, b2MouseJointDef * object){

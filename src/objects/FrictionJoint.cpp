@@ -1,9 +1,28 @@
 #include "common.hpp"
+#include "objects/Joint.hpp"
 #include "objects/FrictionJoint.hpp"
 
 namespace LuaBox2D {
 	void initFrictionJoint(State * state){
 		state->registerInterface<FrictionJoint>("LuaBox2D_FrictionJoint");
+	}
+
+	b2FrictionJoint * FrictionJoint::constructor(State & state){
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		b2Joint * joint = interfaceJoint->get(1);
+		if (joint != nullptr){
+			if (joint->GetType() == b2JointType::e_revoluteJoint){
+				return new b2FrictionJoint(*dynamic_cast<b2FrictionJoint*>(joint));
+			}else{
+				return nullptr;
+			}
+		}else{
+			return nullptr;
+		}
+	}
+
+	void FrictionJoint::destructor(State & state, b2FrictionJoint * object){
+		delete object;
 	}
 
 	inline int FrictionJoint::getType(State & state, b2FrictionJoint * object){

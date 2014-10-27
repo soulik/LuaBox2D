@@ -1,8 +1,6 @@
 #ifndef LUABOX2D_MOUSEJOINTDEF_H
 #define LUABOX2D_MOUSEJOINTDEF_H
 
-#include "objects/JointDef.hpp"
-
 namespace LuaBox2D {
 	class MouseJointDef : public Object<b2MouseJointDef> {
 	private:
@@ -16,39 +14,25 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("collideConnected", &MouseJointDef::getCollideConnected, &MouseJointDef::setCollideConnected);
 		}
 
-		b2MouseJointDef * constructor(State & state){
-			JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
-			b2JointDef * jointDef = interfaceJointDef->get(1);
-			if (jointDef != nullptr){
-				if (jointDef->type == b2JointType::e_revoluteJoint){
-					return new b2MouseJointDef(*(b2MouseJointDef*)(jointDef));
-				}else{
-					return new b2MouseJointDef();
-				}
-			}else{
-				return new b2MouseJointDef();
-			}
-		}
+		b2MouseJointDef * constructor(State & state);
 
-		void destructor(State & state, b2MouseJointDef * object){
-			delete object;
-		}
+		void destructor(State & state, b2MouseJointDef * object);
 
-		inline int getBodyA(State & state, b2MouseJointDef * );
+		int getBodyA(State & state, b2MouseJointDef * );
 
-		inline int setBodyA(State & state, b2MouseJointDef * );
+		int setBodyA(State & state, b2MouseJointDef * );
 
-		inline int getBodyB(State & state, b2MouseJointDef * );
+		int getBodyB(State & state, b2MouseJointDef * );
 
-		inline int setBodyB(State & state, b2MouseJointDef * );
+		int setBodyB(State & state, b2MouseJointDef * );
 
-		inline int getType(State & state, b2MouseJointDef * );
+		int getType(State & state, b2MouseJointDef * );
 
-		inline int setType(State & state, b2MouseJointDef * );
+		int setType(State & state, b2MouseJointDef * );
 
-		inline int getCollideConnected(State & state, b2MouseJointDef * );
+		int getCollideConnected(State & state, b2MouseJointDef * );
 
-		inline int setCollideConnected(State & state, b2MouseJointDef * );
+		int setCollideConnected(State & state, b2MouseJointDef * );
 	};
 
 	void initMouseJointDef(State * );

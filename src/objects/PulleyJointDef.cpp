@@ -1,9 +1,28 @@
 #include "common.hpp"
+#include "objects/JointDef.hpp"
 #include "objects/PulleyJointDef.hpp"
 
 namespace LuaBox2D {
 	void initPulleyJointDef(State * state){
 		state->registerInterface<PulleyJointDef>("LuaBox2D_PulleyJointDef");
+	}
+
+	b2PulleyJointDef * PulleyJointDef::constructor(State & state){
+		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
+		b2JointDef * jointDef = interfaceJointDef->get(1);
+		if (jointDef != nullptr){
+			if (jointDef->type == b2JointType::e_revoluteJoint){
+				return new b2PulleyJointDef(*(b2PulleyJointDef*)(jointDef));
+			}else{
+				return new b2PulleyJointDef();
+			}
+		}else{
+			return new b2PulleyJointDef();
+		}
+	}
+
+	void PulleyJointDef::destructor(State & state, b2PulleyJointDef * object){
+		delete object;
 	}
 
 	inline int PulleyJointDef::getBodyA(State & state, b2PulleyJointDef * object){

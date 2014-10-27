@@ -1,8 +1,6 @@
 #ifndef LUABOX2D_SWEEP_H
 #define LUABOX2D_SWEEP_H
 
-#include "objects/Transform.hpp"
-
 namespace LuaBox2D {
 	class Sweep : public Object<b2Sweep> {
 	public:
@@ -19,39 +17,15 @@ namespace LuaBox2D {
 			LUTOK_METHOD("normalize", &Sweep::normalize);
 		}
 
-		b2Sweep * constructor(State & state){
-			b2Sweep * obj = nullptr;
-			obj = new b2Sweep();
-			return obj;
-		}
+		b2Sweep * constructor(State & state);
 
-		void destructor(State & state, b2Sweep * object){
-			delete object;
-		}
+		void destructor(State & state, b2Sweep * object);
 
-		int getTransform(State & state, b2Sweep * object){
-			if (state.stack->is<LUA_TNUMBER>(1)){
-				Transform * interfaceTransform = dynamic_cast<Transform*>(state.interfaces["LuaBox2D_Transform"]);
-				b2Transform * transform = new b2Transform();
-				object->GetTransform(transform, static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
-				interfaceTransform->push(transform, true);
-				return 1;
-			}else{
-				return 0;
-			}
-		}
+		int getTransform(State & state, b2Sweep * object);
 
-		int advance(State & state, b2Sweep * object){
-			if (state.stack->is<LUA_TNUMBER>(1)){
-				object->Advance(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
-			}
-			return 0;
-		}
+		int advance(State & state, b2Sweep * object);
 
-		int normalize(State & state, b2Sweep * object){
-			object->Normalize();
-			return 0;
-		}
+		int normalize(State & state, b2Sweep * object);
 	};
 
 	void initSweep(State *);

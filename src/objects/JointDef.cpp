@@ -1,5 +1,6 @@
 #include "common.hpp"
 #include "objects/JointDef.hpp"
+#include "objects/Body.hpp"
 
 namespace LuaBox2D {
 	void initJointDef(State * state){
@@ -58,6 +59,40 @@ namespace LuaBox2D {
 		if (body != nullptr){
 			object->bodyB = body;
 		}
+		return 0;
+	}
+
+	void JointDef::destructor(State & state, b2JointDef * object){
+		delete object;
+	}
+
+	b2JointDef * JointDef::get(const int index){
+		ObjWrapper * wrapper = getWrapped(index, validTypes);
+		if (wrapper){
+			return wrapper->instance;
+		}else{
+
+			return nullptr;
+		}
+	}
+
+	int JointDef::getType(State & state, b2JointDef * object){
+		state.stack->push<int>(static_cast<int>(object->type));
+		return 1;
+	}
+
+	int JointDef::setType(State & state, b2JointDef * object){
+		object->type = static_cast<b2JointType>(state.stack->to<int>(1));
+		return 0;
+	}
+
+	int JointDef::getCollideConnected(State & state, b2JointDef * object){
+		state.stack->push<bool>(object->collideConnected);
+		return 1;
+	}
+
+	int JointDef::setCollideConnected(State & state, b2JointDef * object){
+		object->collideConnected =  state.stack->to<bool>(1);
 		return 0;
 	}
 };

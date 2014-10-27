@@ -1,9 +1,28 @@
 #include "common.hpp"
+#include "objects/Joint.hpp"
 #include "objects/MouseJoint.hpp"
 
 namespace LuaBox2D {
 	void initMouseJoint(State * state){
 		state->registerInterface<MouseJoint>("LuaBox2D_MouseJoint");
+	}
+
+	b2MouseJoint * MouseJoint::constructor(State & state){
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		b2Joint * joint = interfaceJoint->get(1);
+		if (joint != nullptr){
+			if (joint->GetType() == b2JointType::e_revoluteJoint){
+				return new b2MouseJoint(*dynamic_cast<b2MouseJoint*>(joint));
+			}else{
+				return nullptr;
+			}
+		}else{
+			return nullptr;
+		}
+	}
+
+	void MouseJoint::destructor(State & state, b2MouseJoint * object){
+		delete object;
 	}
 
 	inline int MouseJoint::getType(State & state, b2MouseJoint * object){

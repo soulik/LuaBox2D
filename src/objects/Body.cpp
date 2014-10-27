@@ -1,9 +1,22 @@
 #include "common.hpp"
+#include "objects/Shape.hpp"
+#include "objects/BodyDef.hpp"
+#include "objects/Fixture.hpp"
+#include "objects/FixtureDef.hpp"
+#include "objects/World.hpp"
+#include "objects/Transform.hpp"
+#include "objects/MassData.hpp"
+#include "objects/Vec2.hpp"
 #include "objects/Body.hpp"
 
 namespace LuaBox2D {
 	void initBody(State * state){
 		state->registerInterface<Body>("LuaBox2D_Body");
+	}
+
+	void Body::destructor(State & state, b2Body * object){
+		b2World * world = object->GetWorld();
+		world->DestroyBody(object);
 	}
 
 	int Body::createFixture(State & state, b2Body * object){
@@ -49,5 +62,309 @@ namespace LuaBox2D {
 		World * interfaceWorld = dynamic_cast<World*>(state.interfaces["LuaBox2D_World"]);
 		interfaceWorld->push(object->GetWorld(), false);
 		return 1;
+	}
+
+	int Body::getTransform(State & state, b2Body * object){
+		Transform * interfaceTransform = dynamic_cast<Transform*>(state.interfaces["LuaBox2D_Transform"]);
+		interfaceTransform->push(new b2Transform(object->GetTransform()), true);
+		return 1;
+	}
+
+	int Body::setTransform(State & state, b2Body * object){
+		Stack * stack = state.stack;
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		if (stack->is<LUA_TUSERDATA>(1) && stack->is<LUA_TNUMBER>(2)){
+			b2Vec2 * position = interfaceVec2->get(1);
+			if (position != nullptr){
+				object->SetTransform(*position, static_cast<float32>(stack->to<LUA_NUMBER>(2)));
+			}
+		}
+		return 0;
+	}
+
+	int Body::getPosition(State & state, b2Body * object){
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		interfaceVec2->push(new b2Vec2(object->GetPosition()), true);
+		return 1;
+	}
+
+	int Body::getAngle(State & state, b2Body * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetAngle()));
+		return 1;
+	}
+
+	int Body::getWorldCenter(State & state, b2Body * object){
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		interfaceVec2->push(new b2Vec2(object->GetWorldCenter()), true);
+		return 1;
+	}
+
+	int Body::getLocalCenter(State & state, b2Body * object){
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		interfaceVec2->push(new b2Vec2(object->GetLocalCenter()), true);
+		return 1;
+	}
+
+	int Body::getLinearVelocity(State & state, b2Body * object){
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		interfaceVec2->push(new b2Vec2(object->GetLinearVelocity()), true);
+		return 1;
+	}
+
+	int Body::setLinearVelocity(State & state, b2Body * object){
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		b2Vec2 * linearVelocity = interfaceVec2->get(1);
+		if (linearVelocity != nullptr){
+			object->SetLinearVelocity(*linearVelocity);
+		}
+		return 0;
+	}
+
+	int Body::getAngularVelocity(State & state, b2Body * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetAngularVelocity()));
+		return 1;
+	}
+
+	int Body::setAngularVelocity(State & state, b2Body * object){
+		object->SetAngularVelocity(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
+		return 0;
+	}
+
+	int Body::applyForce(State & state, b2Body * object){
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		b2Vec2 * force = interfaceVec2->get(1);
+		b2Vec2 * point = interfaceVec2->get(2);
+		if (force!=nullptr && point!=nullptr){
+			object->ApplyForce(*force, *point, state.stack->to<bool>(3));
+		}
+		return 0;
+	}
+
+	int Body::applyForceToCenter(State & state, b2Body * object){
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		b2Vec2 * force = interfaceVec2->get(1);
+		if (force!=nullptr){
+			object->ApplyForceToCenter(*force, state.stack->to<bool>(2));
+		}
+		return 0;
+	}
+
+	int Body::applyTorque(State & state, b2Body * object){
+		object->ApplyTorque(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)), state.stack->to<bool>(2));
+		return 0;
+	}
+
+	int Body::applyLinearImpulse(State & state, b2Body * object){
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		b2Vec2 * force = interfaceVec2->get(1);
+		b2Vec2 * point = interfaceVec2->get(2);
+		if (force!=nullptr && point!=nullptr){
+			object->ApplyLinearImpulse(*force, *point, state.stack->to<bool>(3));
+		}
+		return 0;
+	}
+
+	int Body::applyAngularImpulse(State & state, b2Body * object){
+		object->ApplyAngularImpulse(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)), state.stack->to<bool>(2));
+		return 0;
+	}
+
+	int Body::getMass(State & state, b2Body * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetMass()));
+		return 1;
+	}
+
+	int Body::getInertia(State & state, b2Body * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetInertia()));
+		return 1;
+	}
+
+	int Body::getMassData(State & state, b2Body * object){
+		MassData * interfaceMassData = state.getInterface<MassData>("LuaBox2D_MassData");
+		b2MassData * massData = new b2MassData();
+		object->GetMassData(massData);
+		interfaceMassData->push(massData, true);
+		return 1;
+	}
+
+	int Body::setMassData(State & state, b2Body * object){
+		MassData * interfaceMassData = state.getInterface<MassData>("LuaBox2D_MassData");
+		b2MassData * massData = interfaceMassData->get(1);
+		if (massData != nullptr){
+			object->SetMassData(massData);
+		}
+		return 0;
+	}
+
+	int Body::resetMassData(State & state, b2Body * object){
+		object->ResetMassData();
+		return 0;
+	}
+
+	int Body::getWorldPoint(State & state, b2Body * object){
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		b2Vec2 * localPoint = interfaceVec2->get(1);
+		if (localPoint != nullptr){
+			interfaceVec2->push(new b2Vec2(object->GetWorldPoint(*localPoint)));
+			return 1;
+		}
+		return 0;
+	}
+
+	int Body::getWorldVector(State & state, b2Body * object){
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		b2Vec2 * localVector = interfaceVec2->get(1);
+		if (localVector != nullptr){
+			interfaceVec2->push(new b2Vec2(object->GetWorldVector(*localVector)));
+			return 1;
+		}
+		return 0;
+	}
+
+	int Body::getLocalPoint(State & state, b2Body * object){
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		b2Vec2 * worldPoint = interfaceVec2->get(1);
+		if (worldPoint != nullptr){
+			interfaceVec2->push(new b2Vec2(object->GetLocalPoint(*worldPoint)));
+			return 1;
+		}
+		return 0;
+	}
+
+	int Body::getLocalVector(State & state, b2Body * object){
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		b2Vec2 * worldVector = interfaceVec2->get(1);
+		if (worldVector != nullptr){
+			interfaceVec2->push(new b2Vec2(object->GetLocalVector(*worldVector)));
+			return 1;
+		}
+		return 0;
+	}
+
+	int Body::getLinearVelocityFromWorldPoint(State & state, b2Body * object){
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		b2Vec2 * worldPoint = interfaceVec2->get(1);
+		if (worldPoint != nullptr){
+			interfaceVec2->push(new b2Vec2(object->GetLinearVelocityFromWorldPoint(*worldPoint)));
+			return 1;
+		}
+		return 0;
+	}
+
+	int Body::getLinearVelocityFromLocalPoint(State & state, b2Body * object){
+		Vec2 * interfaceVec2 = dynamic_cast<Vec2*>(state.interfaces["LuaBox2D_Vec2"]);
+		b2Vec2 * worldPoint = interfaceVec2->get(1);
+		if (worldPoint != nullptr){
+			interfaceVec2->push(new b2Vec2(object->GetLinearVelocityFromLocalPoint(*worldPoint)));
+			return 1;
+		}
+		return 0;
+	}
+
+	int Body::getLinearDamping(State & state, b2Body * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetLinearDamping()));
+		return 1;
+	}
+
+	int Body::setLinearDamping(State & state, b2Body * object){
+		object->SetLinearDamping(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
+		return 0;
+	}
+
+	int Body::getAngularDamping(State & state, b2Body * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetAngularDamping()));
+		return 1;
+	}
+
+	int Body::setAngularDamping(State & state, b2Body * object){
+		object->SetAngularDamping(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
+		return 0;
+	}
+
+	int Body::getGravityScale(State & state, b2Body * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetGravityScale()));
+		return 1;
+	}
+
+	int Body::setGravityScale(State & state, b2Body * object){
+		object->SetGravityScale(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
+		return 0;
+	}
+
+	int Body::getType(State & state, b2Body * object){
+		state.stack->push(bodyTypeToString(object->GetType()));
+		return 1;
+	}
+
+	int Body::setType(State & state, b2Body * object){
+		if (state.stack->is<LUA_TSTRING>(1)){
+			object->SetType(stringToBodyType(state.stack->to<std::string>(1)));
+		}
+		return 0;
+	}
+
+	int Body::getBullet(State & state, b2Body * object){
+		state.stack->push<bool>(object->IsBullet());
+		return 1;
+	}
+
+	int Body::setBullet(State & state, b2Body * object){
+		object->SetBullet(state.stack->to<bool>(1));
+		return 0;
+	}
+
+	int Body::getSleepingAllowed(State & state, b2Body * object){
+		state.stack->push<bool>(object->IsSleepingAllowed());
+		return 1;
+	}
+
+	int Body::setSleepingAllowed(State & state, b2Body * object){
+		object->SetSleepingAllowed(state.stack->to<bool>(1));
+		return 0;
+	}
+
+	int Body::getAwake(State & state, b2Body * object){
+		state.stack->push<bool>(object->IsAwake());
+		return 1;
+	}
+
+	int Body::setAwake(State & state, b2Body * object){
+		object->SetAwake(state.stack->to<bool>(1));
+		return 0;
+	}
+
+	int Body::getActive(State & state, b2Body * object){
+		state.stack->push<bool>(object->IsActive());
+		return 1;
+	}
+
+	int Body::setActive(State & state, b2Body * object){
+		object->SetActive(state.stack->to<bool>(1));
+		return 0;
+	}
+
+	int Body::getFixedRotation(State & state, b2Body * object){
+		state.stack->push<bool>(object->IsFixedRotation());
+		return 1;
+	}
+
+	int Body::setFixedRotation(State & state, b2Body * object){
+		object->SetFixedRotation(state.stack->to<bool>(1));
+		return 0;
+	}
+
+	//TODO
+	int Body::getFixture(State & state, b2Body * object){
+		return 0;
+	}
+
+	//TODO
+	int Body::getJoint(State & state, b2Body * object){
+		return 0;
+	}
+
+	//TODO
+	int Body::getContact(State & state, b2Body * object){
+		return 0;
 	}
 };

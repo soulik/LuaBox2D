@@ -1,9 +1,28 @@
 #include "common.hpp"
+#include "objects/JointDef.hpp"
 #include "objects/GearJointDef.hpp"
 
 namespace LuaBox2D {
 	void initGearJointDef(State * state){
 		state->registerInterface<GearJointDef>("LuaBox2D_GearJointDef");
+	}
+
+	b2GearJointDef * GearJointDef::constructor(State & state){
+		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
+		b2JointDef * jointDef = interfaceJointDef->get(1);
+		if (jointDef != nullptr){
+			if (jointDef->type == b2JointType::e_revoluteJoint){
+				return new b2GearJointDef(*(b2GearJointDef*)(jointDef));
+			}else{
+				return new b2GearJointDef();
+			}
+		}else{
+			return new b2GearJointDef();
+		}
+	}
+
+	void GearJointDef::destructor(State & state, b2GearJointDef * object){
+		delete object;
 	}
 
 	inline int GearJointDef::getBodyA(State & state, b2GearJointDef * object){

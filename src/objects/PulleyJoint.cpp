@@ -1,9 +1,28 @@
 #include "common.hpp"
+#include "objects/Joint.hpp"
 #include "objects/PulleyJoint.hpp"
 
 namespace LuaBox2D {
 	void initPulleyJoint(State * state){
 		state->registerInterface<PulleyJoint>("LuaBox2D_PulleyJoint");
+	}
+
+	b2PulleyJoint * PulleyJoint::constructor(State & state){
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		b2Joint * joint = interfaceJoint->get(1);
+		if (joint != nullptr){
+			if (joint->GetType() == b2JointType::e_revoluteJoint){
+				return new b2PulleyJoint(*dynamic_cast<b2PulleyJoint*>(joint));
+			}else{
+				return nullptr;
+			}
+		}else{
+			return nullptr;
+		}
+	}
+
+	void PulleyJoint::destructor(State & state, b2PulleyJoint * object){
+		delete object;
 	}
 
 	inline int PulleyJoint::getType(State & state, b2PulleyJoint * object){

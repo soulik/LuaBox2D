@@ -1,8 +1,6 @@
 #ifndef LUABOX2D_PRISMATICJOINT_H
 #define LUABOX2D_PRISMATICJOINT_H
 
-#include "objects/Joint.hpp"
-
 namespace LuaBox2D {
 	class PrismaticJoint : public Object<b2PrismaticJoint> {
 	private:
@@ -24,41 +22,27 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("collideConnected", &PrismaticJoint::getCollideConnected, &PrismaticJoint::nullMethod);
 		}
 
-		b2PrismaticJoint * constructor(State & state){
-			Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
-			b2Joint * joint = interfaceJoint->get(1);
-			if (joint != nullptr){
-				if (joint->GetType() == b2JointType::e_revoluteJoint){
-					return new b2PrismaticJoint(*dynamic_cast<b2PrismaticJoint*>(joint));
-				}else{
-					return nullptr;
-				}
-			}else{
-				return nullptr;
-			}
-		}
+		b2PrismaticJoint * constructor(State & state);
 
-		void destructor(State & state, b2PrismaticJoint * object){
-			delete object;
-		}
+		void destructor(State & state, b2PrismaticJoint * object);
 
-		inline int getType(State & state, b2PrismaticJoint * );
+		int getType(State & state, b2PrismaticJoint * );
 
-		inline int getBodyA(State & state, b2PrismaticJoint *);
+		int getBodyA(State & state, b2PrismaticJoint *);
 
-		inline int getBodyB(State & state, b2PrismaticJoint *);
+		int getBodyB(State & state, b2PrismaticJoint *);
 
-		inline int getAnchorA(State & state, b2PrismaticJoint *);
+		int getAnchorA(State & state, b2PrismaticJoint *);
 
-		inline int getAnchorB(State & state, b2PrismaticJoint *);
+		int getAnchorB(State & state, b2PrismaticJoint *);
 
-		inline int getReactionForce(State & state, b2PrismaticJoint *);
+		int getReactionForce(State & state, b2PrismaticJoint *);
 
-		inline int getReactionTorque(State & state, b2PrismaticJoint *);
+		int getReactionTorque(State & state, b2PrismaticJoint *);
 
-		inline int getActive(State & state, b2PrismaticJoint * );
+		int getActive(State & state, b2PrismaticJoint * );
 
-		inline int getCollideConnected(State & state, b2PrismaticJoint * );
+		int getCollideConnected(State & state, b2PrismaticJoint * );
 	};
 
 	void initPrismaticJoint(State * );
