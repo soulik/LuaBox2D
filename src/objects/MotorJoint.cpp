@@ -22,7 +22,7 @@ namespace LuaBox2D {
 	}
 
 	void MotorJoint::destructor(State & state, b2MotorJoint * object){
-		delete object;
+		base->destructor(state, object);
 	}
 
 	inline int MotorJoint::getType(State & state, b2MotorJoint * object){

@@ -80,7 +80,20 @@ namespace LuaBox2D {
 	}
 
 	void Joint::destructor(State & state, b2Joint * object){
-		object->GetBodyA()->GetWorld()->DestroyJoint(object);
+		b2World * world = nullptr;
+		b2Body * bodyA = object->GetBodyA();
+		b2Body * bodyB = object->GetBodyB();
+		if (bodyA != nullptr){
+			world = bodyA->GetWorld();
+		}else if (bodyB != nullptr){
+			world = bodyB->GetWorld();
+		}
+		if (world != nullptr){
+			world->DestroyJoint(object);
+		}else{
+			//delete object;
+			state.error("Couldn't free Joint object!");
+		}
 	}
 
 	int Joint::getType(State & state, b2Joint * object){

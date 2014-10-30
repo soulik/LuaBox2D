@@ -22,7 +22,7 @@ namespace LuaBox2D {
 	}
 
 	void RevoluteJoint::destructor(State & state, b2RevoluteJoint * object){
-		delete object;
+		base->destructor(state, object);
 	}
 
 	inline int RevoluteJoint::getType(State & state, b2RevoluteJoint * object){

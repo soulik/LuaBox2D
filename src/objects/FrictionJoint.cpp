@@ -22,7 +22,7 @@ namespace LuaBox2D {
 	}
 
 	void FrictionJoint::destructor(State & state, b2FrictionJoint * object){
-		delete object;
+		base->destructor(state, object);
 	}
 
 	inline int FrictionJoint::getType(State & state, b2FrictionJoint * object){

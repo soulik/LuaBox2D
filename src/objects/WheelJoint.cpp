@@ -22,7 +22,7 @@ namespace LuaBox2D {
 	}
 
 	void WheelJoint::destructor(State & state, b2WheelJoint * object){
-		delete object;
+		base->destructor(state, object);
 	}
 
 	inline int WheelJoint::getType(State & state, b2WheelJoint * object){

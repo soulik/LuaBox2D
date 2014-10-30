@@ -22,7 +22,7 @@ namespace LuaBox2D {
 	}
 
 	void DistanceJoint::destructor(State & state, b2DistanceJoint * object){
-		delete object;
+		base->destructor(state, object);
 	}
 
 	inline int DistanceJoint::getType(State & state, b2DistanceJoint * object){

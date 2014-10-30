@@ -22,7 +22,7 @@ namespace LuaBox2D {
 	}
 
 	void PrismaticJoint::destructor(State & state, b2PrismaticJoint * object){
-		delete object;
+		base->destructor(state, object);
 	}
 
 	inline int PrismaticJoint::getType(State & state, b2PrismaticJoint * object){

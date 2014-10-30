@@ -22,7 +22,7 @@ namespace LuaBox2D {
 	}
 
 	void WeldJoint::destructor(State & state, b2WeldJoint * object){
-		delete object;
+		base->destructor(state, object);
 	}
 
 	inline int WeldJoint::getType(State & state, b2WeldJoint * object){

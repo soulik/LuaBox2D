@@ -22,7 +22,7 @@ namespace LuaBox2D {
 	}
 
 	void RopeJoint::destructor(State & state, b2RopeJoint * object){
-		delete object;
+		base->destructor(state, object);
 	}
 
 	inline int RopeJoint::getType(State & state, b2RopeJoint * object){

@@ -22,7 +22,7 @@ namespace LuaBox2D {
 	}
 
 	void MouseJoint::destructor(State & state, b2MouseJoint * object){
-		delete object;
+		base->destructor(state, object);
 	}
 
 	inline int MouseJoint::getType(State & state, b2MouseJoint * object){

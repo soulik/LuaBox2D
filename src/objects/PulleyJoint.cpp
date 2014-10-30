@@ -22,7 +22,7 @@ namespace LuaBox2D {
 	}
 
 	void PulleyJoint::destructor(State & state, b2PulleyJoint * object){
-		delete object;
+		base->destructor(state, object);
 	}
 
 	inline int PulleyJoint::getType(State & state, b2PulleyJoint * object){
