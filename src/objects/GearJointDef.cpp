@@ -1,4 +1,7 @@
 #include "common.hpp"
+#include "objects/Vec2.hpp"
+#include "objects/Body.hpp"
+#include "objects/Joint.hpp"
 #include "objects/JointDef.hpp"
 #include "objects/GearJointDef.hpp"
 
@@ -55,5 +58,46 @@ namespace LuaBox2D {
 
 	inline int GearJointDef::setCollideConnected(State & state, b2GearJointDef * object){
 		return base->setCollideConnected(state, object);
+	}
+
+	int GearJointDef::getJoint1(State & state, b2GearJointDef * object){
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		interfaceJoint->push(object->joint1, false);
+		return 1;
+	}
+
+	int GearJointDef::setJoint1(State & state, b2GearJointDef * object){
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		b2Joint * joint = interfaceJoint->get(1);
+		if (joint != nullptr){
+			object->joint1 = joint;
+		}
+		return 0;
+	}
+
+	int GearJointDef::getJoint2(State & state, b2GearJointDef * object){
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		interfaceJoint->push(object->joint2, false);
+		return 1;
+	}
+
+	int GearJointDef::setJoint2(State & state, b2GearJointDef * object){
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		b2Joint * joint = interfaceJoint->get(1);
+		if (joint != nullptr){
+			object->joint2 = joint;
+		}
+		return 0;
+
+	}
+
+	int GearJointDef::getRatio(State & state, b2GearJointDef * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->ratio));
+		return 1;
+	}
+
+	int GearJointDef::setRatio(State & state, b2GearJointDef * object){
+		object->ratio = static_cast<float32>(state.stack->to<LUA_NUMBER>(1));
+		return 0;
 	}
 };

@@ -1,4 +1,6 @@
 #include "common.hpp"
+#include "objects/Vec2.hpp"
+#include "objects/Body.hpp"
 #include "objects/JointDef.hpp"
 #include "objects/RopeJointDef.hpp"
 
@@ -56,4 +58,45 @@ namespace LuaBox2D {
 	inline int RopeJointDef::setCollideConnected(State & state, b2RopeJointDef * object){
 		return base->setCollideConnected(state, object);
 	}
+
+	int RopeJointDef::getLocalAnchorA(State & state, b2RopeJointDef * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(&object->localAnchorA, false);
+		return 1;
+	}
+
+	int RopeJointDef::setLocalAnchorA(State & state, b2RopeJointDef * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		b2Vec2 * anchor = interfaceVec2->get(1);
+		if (anchor != nullptr){
+			object->localAnchorA = *anchor;
+		}
+		return 0;
+	}
+
+	int RopeJointDef::getLocalAnchorB(State & state, b2RopeJointDef * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(&object->localAnchorB, false);
+		return 1;
+	}
+
+	int RopeJointDef::setLocalAnchorB(State & state, b2RopeJointDef * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		b2Vec2 * anchor = interfaceVec2->get(1);
+		if (anchor != nullptr){
+			object->localAnchorB = *anchor;
+		}
+		return 0;
+	}
+
+	int RopeJointDef::getMaxLength(State & state, b2RopeJointDef * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->maxLength));
+		return 1;
+	}
+
+	int RopeJointDef::setMaxLength(State & state, b2RopeJointDef * object){
+		object->maxLength = static_cast<float32>(state.stack->to<LUA_NUMBER>(1));
+		return 0;
+	}
+
 };

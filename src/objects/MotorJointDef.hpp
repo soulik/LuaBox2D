@@ -12,6 +12,13 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("bodyA", &MotorJointDef::getBodyA, &MotorJointDef::setBodyA);
 			LUTOK_PROPERTY("bodyB", &MotorJointDef::getBodyB, &MotorJointDef::setBodyB);
 			LUTOK_PROPERTY("collideConnected", &MotorJointDef::getCollideConnected, &MotorJointDef::setCollideConnected);
+			LUTOK_METHOD("initialize", &MotorJointDef::initialize);
+
+			LUTOK_PROPERTY("linearOffset", &MotorJointDef::getLinearOffset, &MotorJointDef::setLinearOffset);
+			LUTOK_PROPERTY("angularOffset", &MotorJointDef::getAngularOffset, &MotorJointDef::setAngularOffset);
+			LUTOK_PROPERTY("maxForce", &MotorJointDef::getMaxForce, &MotorJointDef::setMaxForce);
+			LUTOK_PROPERTY("maxTorque", &MotorJointDef::getMaxTorque, &MotorJointDef::setMaxTorque);
+			LUTOK_PROPERTY("correctionFactor", &MotorJointDef::getCorrectionFactor, &MotorJointDef::setCorrectionFactor);
 		}
 
 		b2MotorJointDef * constructor(State & state);
@@ -33,6 +40,28 @@ namespace LuaBox2D {
 		int getCollideConnected(State & state, b2MotorJointDef * );
 
 		int setCollideConnected(State & state, b2MotorJointDef * );
+
+		int initialize(State & state, b2MotorJointDef * object);
+
+		int getLinearOffset(State & state, b2MotorJointDef * object);
+
+		int setLinearOffset(State & state, b2MotorJointDef * object);
+
+		int getAngularOffset(State & state, b2MotorJointDef * object);
+
+		int setAngularOffset(State & state, b2MotorJointDef * object);
+
+		int getMaxForce(State & state, b2MotorJointDef * object);
+
+		int setMaxForce(State & state, b2MotorJointDef * object);
+
+		int getMaxTorque(State & state, b2MotorJointDef * object);
+
+		int setMaxTorque(State & state, b2MotorJointDef * object);
+
+		int getCorrectionFactor(State & state, b2MotorJointDef * object);
+
+		int setCorrectionFactor(State & state, b2MotorJointDef * object);
 	};
 
 	void initMotorJointDef(State * );

@@ -12,6 +12,13 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("bodyA", &DistanceJointDef::getBodyA, &DistanceJointDef::setBodyA);
 			LUTOK_PROPERTY("bodyB", &DistanceJointDef::getBodyB, &DistanceJointDef::setBodyB);
 			LUTOK_PROPERTY("collideConnected", &DistanceJointDef::getCollideConnected, &DistanceJointDef::setCollideConnected);
+			LUTOK_METHOD("initialize", &DistanceJointDef::initialize);
+
+			LUTOK_PROPERTY("localAnchorA", &DistanceJointDef::getLocalAnchorA, &DistanceJointDef::setLocalAnchorA);
+			LUTOK_PROPERTY("localAnchorB", &DistanceJointDef::getLocalAnchorB, &DistanceJointDef::setLocalAnchorB);
+			LUTOK_PROPERTY("length", &DistanceJointDef::getLength, &DistanceJointDef::setLength);
+			LUTOK_PROPERTY("frequencyHz", &DistanceJointDef::getFrequencyHz, &DistanceJointDef::setFrequencyHz);
+			LUTOK_PROPERTY("dampingRatio", &DistanceJointDef::getDampingRatio, &DistanceJointDef::setDampingRatio);
 		}
 
 		b2DistanceJointDef * constructor(State & state);
@@ -33,6 +40,28 @@ namespace LuaBox2D {
 		int getCollideConnected(State & state, b2DistanceJointDef * );
 
 		int setCollideConnected(State & state, b2DistanceJointDef * );
+
+		int initialize(State & state, b2DistanceJointDef * );
+
+		int getLocalAnchorA(State & state, b2DistanceJointDef * object);
+
+		int setLocalAnchorA(State & state, b2DistanceJointDef * object);
+
+		int getLocalAnchorB(State & state, b2DistanceJointDef * object);
+
+		int setLocalAnchorB(State & state, b2DistanceJointDef * object);
+
+		int getLength(State & state, b2DistanceJointDef * object);
+
+		int setLength(State & state, b2DistanceJointDef * object);
+
+		int getFrequencyHz(State & state, b2DistanceJointDef * object);
+
+		int setFrequencyHz(State & state, b2DistanceJointDef * object);
+
+		int getDampingRatio(State & state, b2DistanceJointDef * object);
+
+		int setDampingRatio(State & state, b2DistanceJointDef * object);
 	};
 
 	void initDistanceJointDef(State * );

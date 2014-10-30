@@ -12,6 +12,16 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("bodyA", &WheelJointDef::getBodyA, &WheelJointDef::setBodyA);
 			LUTOK_PROPERTY("bodyB", &WheelJointDef::getBodyB, &WheelJointDef::setBodyB);
 			LUTOK_PROPERTY("collideConnected", &WheelJointDef::getCollideConnected, &WheelJointDef::setCollideConnected);
+			LUTOK_METHOD("initialize", &WheelJointDef::initialize);
+
+			LUTOK_PROPERTY("localAnchorA", &WheelJointDef::getLocalAnchorA, &WheelJointDef::setLocalAnchorA);
+			LUTOK_PROPERTY("localAnchorB", &WheelJointDef::getLocalAnchorB, &WheelJointDef::setLocalAnchorB);
+			LUTOK_PROPERTY("localAxisA", &WheelJointDef::getLocalAxisA, &WheelJointDef::setLocalAxisA);
+			LUTOK_PROPERTY("enableMotor", &WheelJointDef::getEnableMotor, &WheelJointDef::setEnableMotor);
+			LUTOK_PROPERTY("motorSpeed", &WheelJointDef::getMotorSpeed, &WheelJointDef::setMotorSpeed);
+			LUTOK_PROPERTY("maxMotorTorque", &WheelJointDef::getMaxMotorTorque, &WheelJointDef::setMaxMotorTorque);
+			LUTOK_PROPERTY("frequencyHz", &WheelJointDef::getFrequencyHz, &WheelJointDef::setFrequencyHz);
+			LUTOK_PROPERTY("dampingRatio", &WheelJointDef::getDampingRatio, &WheelJointDef::setDampingRatio);
 		}
 
 		b2WheelJointDef * constructor(State & state);
@@ -33,6 +43,40 @@ namespace LuaBox2D {
 		int getCollideConnected(State & state, b2WheelJointDef * );
 
 		int setCollideConnected(State & state, b2WheelJointDef * );
+
+		int initialize(State & state, b2WheelJointDef * );
+
+		int getLocalAnchorA(State & state, b2WheelJointDef * object);
+
+		int setLocalAnchorA(State & state, b2WheelJointDef * object);
+
+		int getLocalAnchorB(State & state, b2WheelJointDef * object);
+
+		int setLocalAnchorB(State & state, b2WheelJointDef * object);
+
+		int getLocalAxisA(State & state, b2WheelJointDef * object);
+
+		int setLocalAxisA(State & state, b2WheelJointDef * object);
+
+		int getEnableMotor(State & state, b2WheelJointDef * object);
+
+		int setEnableMotor(State & state, b2WheelJointDef * object);
+
+		int getMotorSpeed(State & state, b2WheelJointDef * object);
+
+		int setMotorSpeed(State & state, b2WheelJointDef * object);
+
+		int getMaxMotorTorque(State & state, b2WheelJointDef * object);
+
+		int setMaxMotorTorque(State & state, b2WheelJointDef * object);
+
+		int getFrequencyHz(State & state, b2WheelJointDef * object);
+
+		int setFrequencyHz(State & state, b2WheelJointDef * object);
+
+		int getDampingRatio(State & state, b2WheelJointDef * object);
+
+		int setDampingRatio(State & state, b2WheelJointDef * object);
 	};
 
 	void initWheelJointDef(State * );

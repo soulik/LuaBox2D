@@ -12,6 +12,10 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("bodyA", &RopeJointDef::getBodyA, &RopeJointDef::setBodyA);
 			LUTOK_PROPERTY("bodyB", &RopeJointDef::getBodyB, &RopeJointDef::setBodyB);
 			LUTOK_PROPERTY("collideConnected", &RopeJointDef::getCollideConnected, &RopeJointDef::setCollideConnected);
+		
+			LUTOK_PROPERTY("localAnchorA", &RopeJointDef::getLocalAnchorA, &RopeJointDef::setLocalAnchorA);
+			LUTOK_PROPERTY("localAnchorB", &RopeJointDef::getLocalAnchorB, &RopeJointDef::setLocalAnchorB);
+			LUTOK_PROPERTY("maxLength", &RopeJointDef::getMaxLength, &RopeJointDef::setMaxLength);
 		}
 
 		b2RopeJointDef * constructor(State & state);
@@ -33,6 +37,18 @@ namespace LuaBox2D {
 		int getCollideConnected(State & state, b2RopeJointDef * );
 
 		int setCollideConnected(State & state, b2RopeJointDef * );
+
+		int getLocalAnchorA(State & state, b2RopeJointDef * object);
+
+		int setLocalAnchorA(State & state, b2RopeJointDef * object);
+
+		int getLocalAnchorB(State & state, b2RopeJointDef * object);
+
+		int setLocalAnchorB(State & state, b2RopeJointDef * object);
+
+		int getMaxLength(State & state, b2RopeJointDef * object);
+
+		int setMaxLength(State & state, b2RopeJointDef * object);
 	};
 
 	void initRopeJointDef(State * );

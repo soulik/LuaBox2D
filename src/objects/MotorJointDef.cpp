@@ -1,4 +1,6 @@
 #include "common.hpp"
+#include "objects/Vec2.hpp"
+#include "objects/Body.hpp"
 #include "objects/JointDef.hpp"
 #include "objects/MotorJointDef.hpp"
 
@@ -55,5 +57,74 @@ namespace LuaBox2D {
 
 	inline int MotorJointDef::setCollideConnected(State & state, b2MotorJointDef * object){
 		return base->setCollideConnected(state, object);
+	}
+
+	int MotorJointDef::initialize(State & state, b2MotorJointDef * object){
+		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
+
+		if (state.stack->is<LUA_TUSERDATA>(1) && state.stack->is<LUA_TUSERDATA>(2)){
+			b2Body * bodyA = interfaceBody->get(1);
+			b2Body * bodyB = interfaceBody->get(2);
+
+			if (bodyA != nullptr && bodyB != nullptr){
+				object->Initialize(bodyA, bodyB);
+			}
+		}
+		return 0;
+	}
+
+	int MotorJointDef::getLinearOffset(State & state, b2MotorJointDef * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(&object->linearOffset, false);
+		return 1;
+	}
+
+	int MotorJointDef::setLinearOffset(State & state, b2MotorJointDef * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		b2Vec2 * linearOffset = interfaceVec2->get(1);
+		if (linearOffset != nullptr){
+			object->linearOffset = *linearOffset;
+		}
+		return 0;
+	}
+
+	int MotorJointDef::getAngularOffset(State & state, b2MotorJointDef * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->angularOffset));
+		return 1;
+	}
+
+	int MotorJointDef::setAngularOffset(State & state, b2MotorJointDef * object){
+		object->angularOffset = static_cast<float32>(state.stack->to<LUA_NUMBER>(1));
+		return 0;
+	}
+
+	int MotorJointDef::getMaxForce(State & state, b2MotorJointDef * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->maxForce));
+		return 1;
+	}
+
+	int MotorJointDef::setMaxForce(State & state, b2MotorJointDef * object){
+		object->maxForce = static_cast<float32>(state.stack->to<LUA_NUMBER>(1));
+		return 0;
+	}
+
+	int MotorJointDef::getMaxTorque(State & state, b2MotorJointDef * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->maxTorque));
+		return 1;
+	}
+
+	int MotorJointDef::setMaxTorque(State & state, b2MotorJointDef * object){
+		object->maxTorque = static_cast<float32>(state.stack->to<LUA_NUMBER>(1));
+		return 0;
+	}
+
+	int MotorJointDef::getCorrectionFactor(State & state, b2MotorJointDef * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->correctionFactor));
+		return 1;
+	}
+
+	int MotorJointDef::setCorrectionFactor(State & state, b2MotorJointDef * object){
+		object->correctionFactor = static_cast<float32>(state.stack->to<LUA_NUMBER>(1));
+		return 0;
 	}
 };

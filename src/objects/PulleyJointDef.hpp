@@ -12,6 +12,15 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("bodyA", &PulleyJointDef::getBodyA, &PulleyJointDef::setBodyA);
 			LUTOK_PROPERTY("bodyB", &PulleyJointDef::getBodyB, &PulleyJointDef::setBodyB);
 			LUTOK_PROPERTY("collideConnected", &PulleyJointDef::getCollideConnected, &PulleyJointDef::setCollideConnected);
+			LUTOK_METHOD("initialize", &PulleyJointDef::initialize);
+
+			LUTOK_PROPERTY("groundAnchorA", &PulleyJointDef::getGroundAnchorA, &PulleyJointDef::setGroundAnchorA);
+			LUTOK_PROPERTY("groundAnchorB", &PulleyJointDef::getGroundAnchorB, &PulleyJointDef::setGroundAnchorB);
+			LUTOK_PROPERTY("localAnchorA", &PulleyJointDef::getLocalAnchorA, &PulleyJointDef::setLocalAnchorA);
+			LUTOK_PROPERTY("localAnchorB", &PulleyJointDef::getLocalAnchorB, &PulleyJointDef::setLocalAnchorB);
+			LUTOK_PROPERTY("lengthA", &PulleyJointDef::getLengthA, &PulleyJointDef::setLengthA);
+			LUTOK_PROPERTY("lengthB", &PulleyJointDef::getLengthB, &PulleyJointDef::setLengthB);
+			LUTOK_PROPERTY("ratio", &PulleyJointDef::getRatio, &PulleyJointDef::setRatio);
 		}
 
 		b2PulleyJointDef * constructor(State & state);
@@ -33,6 +42,36 @@ namespace LuaBox2D {
 		int getCollideConnected(State & state, b2PulleyJointDef * );
 
 		int setCollideConnected(State & state, b2PulleyJointDef * );
+
+		int initialize(State & state, b2PulleyJointDef * );
+
+		int getLocalAnchorA(State & state, b2PulleyJointDef * object);
+
+		int setLocalAnchorA(State & state, b2PulleyJointDef * object);
+
+		int getLocalAnchorB(State & state, b2PulleyJointDef * object);
+
+		int setLocalAnchorB(State & state, b2PulleyJointDef * object);
+
+		int getGroundAnchorA(State & state, b2PulleyJointDef * object);
+
+		int setGroundAnchorA(State & state, b2PulleyJointDef * object);
+
+		int getGroundAnchorB(State & state, b2PulleyJointDef * object);
+
+		int setGroundAnchorB(State & state, b2PulleyJointDef * object);
+
+		int getLengthA(State & state, b2PulleyJointDef * object);
+
+		int setLengthA(State & state, b2PulleyJointDef * object);
+
+		int getLengthB(State & state, b2PulleyJointDef * object);
+
+		int setLengthB(State & state, b2PulleyJointDef * object);
+
+		int getRatio(State & state, b2PulleyJointDef * object);
+
+		int setRatio(State & state, b2PulleyJointDef * object);
 	};
 
 	void initPulleyJointDef(State * );

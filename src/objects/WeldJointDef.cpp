@@ -1,4 +1,6 @@
 #include "common.hpp"
+#include "objects/Vec2.hpp"
+#include "objects/Body.hpp"
 #include "objects/JointDef.hpp"
 #include "objects/WeldJointDef.hpp"
 
@@ -56,4 +58,81 @@ namespace LuaBox2D {
 	inline int WeldJointDef::setCollideConnected(State & state, b2WeldJointDef * object){
 		return base->setCollideConnected(state, object);
 	}
+
+	int WeldJointDef::initialize(State & state, b2WeldJointDef * object){
+		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+
+		if (state.stack->is<LUA_TUSERDATA>(1) && state.stack->is<LUA_TUSERDATA>(2) && state.stack->is<LUA_TUSERDATA>(3)){
+			b2Body * bodyA = interfaceBody->get(1);
+			b2Body * bodyB = interfaceBody->get(2);
+			b2Vec2 * anchor = interfaceVec2->get(3);
+
+			if (bodyA != nullptr && bodyB != nullptr && anchor != nullptr){
+				object->Initialize(bodyA, bodyB, *anchor);
+			}
+		}
+		return 0;
+	}
+
+	int WeldJointDef::getLocalAnchorA(State & state, b2WeldJointDef * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(&object->localAnchorA, false);
+		return 1;
+	}
+
+	int WeldJointDef::setLocalAnchorA(State & state, b2WeldJointDef * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		b2Vec2 * anchor = interfaceVec2->get(1);
+		if (anchor != nullptr){
+			object->localAnchorA = *anchor;
+		}
+		return 0;
+	}
+
+	int WeldJointDef::getLocalAnchorB(State & state, b2WeldJointDef * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(&object->localAnchorB, false);
+		return 1;
+	}
+
+	int WeldJointDef::setLocalAnchorB(State & state, b2WeldJointDef * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		b2Vec2 * anchor = interfaceVec2->get(1);
+		if (anchor != nullptr){
+			object->localAnchorB = *anchor;
+		}
+		return 0;
+	}
+
+	int WeldJointDef::getReferenceAngle(State & state, b2WeldJointDef * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->referenceAngle));
+		return 1;
+	}
+
+	int WeldJointDef::setReferenceAngle(State & state, b2WeldJointDef * object){
+		object->referenceAngle = static_cast<float32>(state.stack->to<LUA_NUMBER>(1));
+		return 0;
+	}
+
+	int WeldJointDef::getFrequencyHz(State & state, b2WeldJointDef * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->frequencyHz));
+		return 1;
+	}
+
+	int WeldJointDef::setFrequencyHz(State & state, b2WeldJointDef * object){
+		object->frequencyHz = static_cast<float32>(state.stack->to<LUA_NUMBER>(1));
+		return 0;
+	}
+
+	int WeldJointDef::getDampingRatio(State & state, b2WeldJointDef * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->dampingRatio));
+		return 1;
+	}
+
+	int WeldJointDef::setDampingRatio(State & state, b2WeldJointDef * object){
+		object->dampingRatio = static_cast<float32>(state.stack->to<LUA_NUMBER>(1));
+		return 0;
+	}
+
 };
