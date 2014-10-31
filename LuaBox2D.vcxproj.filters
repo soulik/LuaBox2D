@@ -31,6 +31,12 @@
     <Filter Include="Source Files\objects\shapes">
       <UniqueIdentifier>{e7eb748c-8a31-43cb-b477-d46e655827b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\objects\joints\defs">
+      <UniqueIdentifier>{d33eb891-eeac-4cc9-a0b1-75c3b5c603ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\objects\joints\defs">
+      <UniqueIdentifier>{53d08f65-6c6b-4df7-9fe5-5bc959ea9c12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -102,74 +108,74 @@
     <ClCompile Include="src\objects\Joint.cpp">
       <Filter>Source Files\objects\joints</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\JointDef.cpp">
-      <Filter>Source Files\objects\joints</Filter>
-    </ClCompile>
     <ClCompile Include="src\objects\PrismaticJoint.cpp">
-      <Filter>Source Files\objects\joints</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\PrismaticJointDef.cpp">
       <Filter>Source Files\objects\joints</Filter>
     </ClCompile>
     <ClCompile Include="src\objects\RevoluteJoint.cpp">
       <Filter>Source Files\objects\joints</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\RevoluteJointDef.cpp">
-      <Filter>Source Files\objects\joints</Filter>
-    </ClCompile>
     <ClCompile Include="src\objects\DistanceJoint.cpp">
-      <Filter>Source Files\objects\joints</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\DistanceJointDef.cpp">
       <Filter>Source Files\objects\joints</Filter>
     </ClCompile>
     <ClCompile Include="src\objects\FrictionJoint.cpp">
       <Filter>Source Files\objects\joints</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\FrictionJointDef.cpp">
-      <Filter>Source Files\objects\joints</Filter>
-    </ClCompile>
     <ClCompile Include="src\objects\GearJoint.cpp">
-      <Filter>Source Files\objects\joints</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\GearJointDef.cpp">
       <Filter>Source Files\objects\joints</Filter>
     </ClCompile>
     <ClCompile Include="src\objects\MotorJoint.cpp">
       <Filter>Source Files\objects\joints</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\MotorJointDef.cpp">
-      <Filter>Source Files\objects\joints</Filter>
-    </ClCompile>
     <ClCompile Include="src\objects\MouseJoint.cpp">
-      <Filter>Source Files\objects\joints</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\MouseJointDef.cpp">
       <Filter>Source Files\objects\joints</Filter>
     </ClCompile>
     <ClCompile Include="src\objects\PulleyJoint.cpp">
       <Filter>Source Files\objects\joints</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\PulleyJointDef.cpp">
-      <Filter>Source Files\objects\joints</Filter>
-    </ClCompile>
     <ClCompile Include="src\objects\RopeJoint.cpp">
-      <Filter>Source Files\objects\joints</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\RopeJointDef.cpp">
       <Filter>Source Files\objects\joints</Filter>
     </ClCompile>
     <ClCompile Include="src\objects\WeldJoint.cpp">
       <Filter>Source Files\objects\joints</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\WeldJointDef.cpp">
-      <Filter>Source Files\objects\joints</Filter>
-    </ClCompile>
     <ClCompile Include="src\objects\WheelJoint.cpp">
       <Filter>Source Files\objects\joints</Filter>
     </ClCompile>
+    <ClCompile Include="src\objects\DistanceJointDef.cpp">
+      <Filter>Source Files\objects\joints\defs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\FrictionJointDef.cpp">
+      <Filter>Source Files\objects\joints\defs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\GearJointDef.cpp">
+      <Filter>Source Files\objects\joints\defs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\JointDef.cpp">
+      <Filter>Source Files\objects\joints\defs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\MotorJointDef.cpp">
+      <Filter>Source Files\objects\joints\defs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\MouseJointDef.cpp">
+      <Filter>Source Files\objects\joints\defs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\PrismaticJointDef.cpp">
+      <Filter>Source Files\objects\joints\defs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\PulleyJointDef.cpp">
+      <Filter>Source Files\objects\joints\defs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\RevoluteJointDef.cpp">
+      <Filter>Source Files\objects\joints\defs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\RopeJointDef.cpp">
+      <Filter>Source Files\objects\joints\defs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\WeldJointDef.cpp">
+      <Filter>Source Files\objects\joints\defs</Filter>
+    </ClCompile>
     <ClCompile Include="src\objects\WheelJointDef.cpp">
-      <Filter>Source Files\objects\joints</Filter>
+      <Filter>Source Files\objects\joints\defs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -242,74 +248,74 @@
     <ClInclude Include="src\objects\PrismaticJoint.hpp">
       <Filter>Header Files\objects\joints</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\PrismaticJointDef.hpp">
-      <Filter>Header Files\objects\joints</Filter>
-    </ClInclude>
     <ClInclude Include="src\objects\RevoluteJoint.hpp">
-      <Filter>Header Files\objects\joints</Filter>
-    </ClInclude>
-    <ClInclude Include="src\objects\RevoluteJointDef.hpp">
       <Filter>Header Files\objects\joints</Filter>
     </ClInclude>
     <ClInclude Include="src\objects\Joint.hpp">
       <Filter>Header Files\objects\joints</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\JointDef.hpp">
-      <Filter>Header Files\objects\joints</Filter>
-    </ClInclude>
     <ClInclude Include="src\objects\DistanceJoint.hpp">
-      <Filter>Header Files\objects\joints</Filter>
-    </ClInclude>
-    <ClInclude Include="src\objects\DistanceJointDef.hpp">
       <Filter>Header Files\objects\joints</Filter>
     </ClInclude>
     <ClInclude Include="src\objects\FrictionJoint.hpp">
       <Filter>Header Files\objects\joints</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\FrictionJointDef.hpp">
-      <Filter>Header Files\objects\joints</Filter>
-    </ClInclude>
     <ClInclude Include="src\objects\GearJoint.hpp">
-      <Filter>Header Files\objects\joints</Filter>
-    </ClInclude>
-    <ClInclude Include="src\objects\GearJointDef.hpp">
       <Filter>Header Files\objects\joints</Filter>
     </ClInclude>
     <ClInclude Include="src\objects\MotorJoint.hpp">
       <Filter>Header Files\objects\joints</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\MotorJointDef.hpp">
-      <Filter>Header Files\objects\joints</Filter>
-    </ClInclude>
     <ClInclude Include="src\objects\MouseJoint.hpp">
-      <Filter>Header Files\objects\joints</Filter>
-    </ClInclude>
-    <ClInclude Include="src\objects\MouseJointDef.hpp">
       <Filter>Header Files\objects\joints</Filter>
     </ClInclude>
     <ClInclude Include="src\objects\PulleyJoint.hpp">
       <Filter>Header Files\objects\joints</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\PulleyJointDef.hpp">
-      <Filter>Header Files\objects\joints</Filter>
-    </ClInclude>
     <ClInclude Include="src\objects\RopeJoint.hpp">
-      <Filter>Header Files\objects\joints</Filter>
-    </ClInclude>
-    <ClInclude Include="src\objects\RopeJointDef.hpp">
       <Filter>Header Files\objects\joints</Filter>
     </ClInclude>
     <ClInclude Include="src\objects\WeldJoint.hpp">
       <Filter>Header Files\objects\joints</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\WeldJointDef.hpp">
-      <Filter>Header Files\objects\joints</Filter>
-    </ClInclude>
     <ClInclude Include="src\objects\WheelJoint.hpp">
       <Filter>Header Files\objects\joints</Filter>
     </ClInclude>
+    <ClInclude Include="src\objects\DistanceJointDef.hpp">
+      <Filter>Header Files\objects\joints\defs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\FrictionJointDef.hpp">
+      <Filter>Header Files\objects\joints\defs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\GearJointDef.hpp">
+      <Filter>Header Files\objects\joints\defs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\JointDef.hpp">
+      <Filter>Header Files\objects\joints\defs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\MotorJointDef.hpp">
+      <Filter>Header Files\objects\joints\defs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\MouseJointDef.hpp">
+      <Filter>Header Files\objects\joints\defs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\PrismaticJointDef.hpp">
+      <Filter>Header Files\objects\joints\defs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\PulleyJointDef.hpp">
+      <Filter>Header Files\objects\joints\defs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\RevoluteJointDef.hpp">
+      <Filter>Header Files\objects\joints\defs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\RopeJointDef.hpp">
+      <Filter>Header Files\objects\joints\defs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\WeldJointDef.hpp">
+      <Filter>Header Files\objects\joints\defs</Filter>
+    </ClInclude>
     <ClInclude Include="src\objects\WheelJointDef.hpp">
-      <Filter>Header Files\objects\joints</Filter>
+      <Filter>Header Files\objects\joints\defs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 #include "common.hpp"
+#include "objects/Vec2.hpp"
 #include "objects/Joint.hpp"
 #include "objects/DistanceJoint.hpp"
 
@@ -37,20 +38,31 @@ namespace LuaBox2D {
 		return base->getBodyB(state, object);
 	}
 
-	inline int DistanceJoint::getAnchorA(State & state, b2DistanceJoint * object){
-		return base->getAnchorA(state, object);
+	int DistanceJoint::getReactionForce(State & state, b2DistanceJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		if (state.stack->is<LUA_TNUMBER>(1)){
+			interfaceVec2->push(new b2Vec2(object->GetReactionForce(
+				static_cast<float32>(state.stack->to<LUA_NUMBER>(1))
+				)), true);
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
-	inline int DistanceJoint::getAnchorB(State & state, b2DistanceJoint * object){
-		return base->getAnchorB(state, object);
-	}
-
-	inline int DistanceJoint::getReactionForce(State & state, b2DistanceJoint * object){
-		return base->getReactionForce(state, object);
-	}
-
-	inline int DistanceJoint::getReactionTorque(State & state, b2DistanceJoint * object){
-		return base->getReactionTorque(state, object);
+	int DistanceJoint::getReactionTorque(State & state, b2DistanceJoint * object){
+		if (state.stack->is<LUA_TNUMBER>(1)){
+			state.stack->push<LUA_NUMBER>(
+				static_cast<LUA_NUMBER>(
+				object->GetReactionTorque(
+				static_cast<float32>(state.stack->to<LUA_NUMBER>(1))
+				)
+				)
+				);
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
 	inline int DistanceJoint::getActive(State & state, b2DistanceJoint * object){
@@ -60,4 +72,59 @@ namespace LuaBox2D {
 	inline int DistanceJoint::getCollideConnected(State & state, b2DistanceJoint * object){
 		return base->getCollideConnected(state, object);
 	}
+
+	int DistanceJoint::getAnchorA(State & state, b2DistanceJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(new b2Vec2(object->GetAnchorA()), true);
+		return 1;
+	}
+
+	int DistanceJoint::getAnchorB(State & state, b2DistanceJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(new b2Vec2(object->GetAnchorB()), true);
+		return 1;
+	}
+
+	int DistanceJoint::getLocalAnchorA(State & state, b2DistanceJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(new b2Vec2(object->GetLocalAnchorA()), true);
+		return 1;
+	}
+
+	int DistanceJoint::getLocalAnchorB(State & state, b2DistanceJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(new b2Vec2(object->GetLocalAnchorB()), true);
+		return 1;
+	}
+
+	int DistanceJoint::getLength(State & state, b2DistanceJoint * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetLength()));
+		return 1;
+	}
+
+	int DistanceJoint::setLength(State & state, b2DistanceJoint * object){
+		object->SetLength(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
+		return 0;
+	}
+
+	int DistanceJoint::getFrequencyHz(State & state, b2DistanceJoint * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetFrequency()));
+		return 1;
+	}
+
+	int DistanceJoint::setFrequencyHz(State & state, b2DistanceJoint * object){
+		object->SetFrequency(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
+		return 0;
+	}
+
+	int DistanceJoint::getDampingRatio(State & state, b2DistanceJoint * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetDampingRatio()));
+		return 1;
+	}
+
+	int DistanceJoint::setDampingRatio(State & state, b2DistanceJoint * object){
+		object->SetDampingRatio(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
+		return 0;
+	}
+
 };

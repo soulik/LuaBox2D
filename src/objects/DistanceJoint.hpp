@@ -20,6 +20,15 @@ namespace LuaBox2D {
 
 			LUTOK_PROPERTY("active", &DistanceJoint::getActive, &DistanceJoint::nullMethod);
 			LUTOK_PROPERTY("collideConnected", &DistanceJoint::getCollideConnected, &DistanceJoint::nullMethod);
+
+			LUTOK_PROPERTY("anchorA", &DistanceJoint::getAnchorA, &DistanceJoint::nullMethod);
+			LUTOK_PROPERTY("anchorB", &DistanceJoint::getAnchorB, &DistanceJoint::nullMethod);
+			LUTOK_PROPERTY("localAnchorA", &DistanceJoint::getLocalAnchorA, &DistanceJoint::nullMethod);
+			LUTOK_PROPERTY("localAnchorB", &DistanceJoint::getLocalAnchorB, &DistanceJoint::nullMethod);
+
+			LUTOK_PROPERTY("length", &DistanceJoint::getLength, &DistanceJoint::setLength);
+			LUTOK_PROPERTY("frequencyHz", &DistanceJoint::getFrequencyHz, &DistanceJoint::setFrequencyHz);
+			LUTOK_PROPERTY("dampingRatio", &DistanceJoint::getDampingRatio, &DistanceJoint::setDampingRatio);
 		}
 
 		b2DistanceJoint * constructor(State & state);
@@ -32,10 +41,6 @@ namespace LuaBox2D {
 
 		int getBodyB(State & state, b2DistanceJoint *);
 
-		int getAnchorA(State & state, b2DistanceJoint *);
-
-		int getAnchorB(State & state, b2DistanceJoint *);
-
 		int getReactionForce(State & state, b2DistanceJoint *);
 
 		int getReactionTorque(State & state, b2DistanceJoint *);
@@ -43,6 +48,26 @@ namespace LuaBox2D {
 		int getActive(State & state, b2DistanceJoint * );
 
 		int getCollideConnected(State & state, b2DistanceJoint * );
+
+		int getAnchorA(State & state, b2DistanceJoint * object);
+
+		int getAnchorB(State & state, b2DistanceJoint * object);
+
+		int getLocalAnchorA(State & state, b2DistanceJoint * object);
+
+		int getLocalAnchorB(State & state, b2DistanceJoint * object);
+
+		int getLength(State & state, b2DistanceJoint * object);
+
+		int setLength(State & state, b2DistanceJoint * object);
+
+		int getFrequencyHz(State & state, b2DistanceJoint * object);
+
+		int setFrequencyHz(State & state, b2DistanceJoint * object);
+
+		int getDampingRatio(State & state, b2DistanceJoint * object);
+
+		int setDampingRatio(State & state, b2DistanceJoint * object);
 	};
 
 	void initDistanceJoint(State * );
