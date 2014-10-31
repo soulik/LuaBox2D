@@ -1,4 +1,5 @@
 #include "common.hpp"
+#include "objects/Vec2.hpp"
 #include "objects/Joint.hpp"
 #include "objects/FrictionJoint.hpp"
 
@@ -37,14 +38,6 @@ namespace LuaBox2D {
 		return base->getBodyB(state, object);
 	}
 
-	inline int FrictionJoint::getAnchorA(State & state, b2FrictionJoint * object){
-		return base->getAnchorA(state, object);
-	}
-
-	inline int FrictionJoint::getAnchorB(State & state, b2FrictionJoint * object){
-		return base->getAnchorB(state, object);
-	}
-
 	inline int FrictionJoint::getReactionForce(State & state, b2FrictionJoint * object){
 		return base->getReactionForce(state, object);
 	}
@@ -60,4 +53,49 @@ namespace LuaBox2D {
 	inline int FrictionJoint::getCollideConnected(State & state, b2FrictionJoint * object){
 		return base->getCollideConnected(state, object);
 	}
+
+	int FrictionJoint::getAnchorA(State & state, b2FrictionJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(new b2Vec2(object->GetAnchorA()), true);
+		return 1;
+	}
+
+	int FrictionJoint::getAnchorB(State & state, b2FrictionJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(new b2Vec2(object->GetAnchorB()), true);
+		return 1;
+	}
+
+	int FrictionJoint::getLocalAnchorA(State & state, b2FrictionJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(new b2Vec2(object->GetLocalAnchorA()), true);
+		return 1;
+	}
+
+	int FrictionJoint::getLocalAnchorB(State & state, b2FrictionJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(new b2Vec2(object->GetLocalAnchorB()), true);
+		return 1;
+	}
+
+	int FrictionJoint::getMaxForce(State & state, b2FrictionJoint * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetMaxForce()));
+		return 1;
+	}
+
+	int FrictionJoint::setMaxForce(State & state, b2FrictionJoint * object){
+		object->SetMaxForce(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
+		return 0;
+	}
+
+	int FrictionJoint::getMaxTorque(State & state, b2FrictionJoint * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetMaxTorque()));
+		return 1;
+	}
+
+	int FrictionJoint::setMaxTorque(State & state, b2FrictionJoint * object){
+		object->SetMaxTorque(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
+		return 0;
+	}
+
 };

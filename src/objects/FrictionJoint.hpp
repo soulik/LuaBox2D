@@ -14,12 +14,17 @@ namespace LuaBox2D {
 
 			LUTOK_PROPERTY("anchorA", &FrictionJoint::getAnchorA, &FrictionJoint::nullMethod);
 			LUTOK_PROPERTY("anchorB", &FrictionJoint::getAnchorB, &FrictionJoint::nullMethod);
+			LUTOK_PROPERTY("localAnchorA", &FrictionJoint::getLocalAnchorA, &FrictionJoint::nullMethod);
+			LUTOK_PROPERTY("localAnchorB", &FrictionJoint::getLocalAnchorB, &FrictionJoint::nullMethod);
 
 			LUTOK_METHOD("reactionForce", &FrictionJoint::getReactionForce);
 			LUTOK_METHOD("reactionTorque", &FrictionJoint::getReactionTorque);
 
 			LUTOK_PROPERTY("active", &FrictionJoint::getActive, &FrictionJoint::nullMethod);
 			LUTOK_PROPERTY("collideConnected", &FrictionJoint::getCollideConnected, &FrictionJoint::nullMethod);
+			LUTOK_PROPERTY("maxForce", &FrictionJoint::getMaxForce, &FrictionJoint::setMaxForce);
+			LUTOK_PROPERTY("maxTorque", &FrictionJoint::getMaxTorque, &FrictionJoint::setMaxTorque);
+
 		}
 
 		b2FrictionJoint * constructor(State & state);
@@ -32,10 +37,6 @@ namespace LuaBox2D {
 
 		int getBodyB(State & state, b2FrictionJoint *);
 
-		int getAnchorA(State & state, b2FrictionJoint *);
-
-		int getAnchorB(State & state, b2FrictionJoint *);
-
 		int getReactionForce(State & state, b2FrictionJoint *);
 
 		int getReactionTorque(State & state, b2FrictionJoint *);
@@ -43,6 +44,23 @@ namespace LuaBox2D {
 		int getActive(State & state, b2FrictionJoint * );
 
 		int getCollideConnected(State & state, b2FrictionJoint * );
+
+		int getAnchorA(State & state, b2FrictionJoint *);
+
+		int getAnchorB(State & state, b2FrictionJoint *);
+
+		int getLocalAnchorA(State & state, b2FrictionJoint *);
+
+		int getLocalAnchorB(State & state, b2FrictionJoint *);
+
+		int getMaxForce(State & state, b2FrictionJoint * object);
+
+		int setMaxForce(State & state, b2FrictionJoint * object);
+
+		int getMaxTorque(State & state, b2FrictionJoint * object);
+
+		int setMaxTorque(State & state, b2FrictionJoint * object);
+
 	};
 
 	void initFrictionJoint(State * );
