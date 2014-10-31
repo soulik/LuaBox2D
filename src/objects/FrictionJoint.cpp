@@ -38,12 +38,31 @@ namespace LuaBox2D {
 		return base->getBodyB(state, object);
 	}
 
-	inline int FrictionJoint::getReactionForce(State & state, b2FrictionJoint * object){
-		return base->getReactionForce(state, object);
+	int FrictionJoint::getReactionForce(State & state, b2FrictionJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		if (state.stack->is<LUA_TNUMBER>(1)){
+			interfaceVec2->push(new b2Vec2(object->GetReactionForce(
+				static_cast<float32>(state.stack->to<LUA_NUMBER>(1))
+				)), true);
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
-	inline int FrictionJoint::getReactionTorque(State & state, b2FrictionJoint * object){
-		return base->getReactionTorque(state, object);
+	int FrictionJoint::getReactionTorque(State & state, b2FrictionJoint * object){
+		if (state.stack->is<LUA_TNUMBER>(1)){
+			state.stack->push<LUA_NUMBER>(
+				static_cast<LUA_NUMBER>(
+				object->GetReactionTorque(
+				static_cast<float32>(state.stack->to<LUA_NUMBER>(1))
+				)
+				)
+				);
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
 	inline int FrictionJoint::getActive(State & state, b2FrictionJoint * object){

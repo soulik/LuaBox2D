@@ -20,6 +20,10 @@ namespace LuaBox2D {
 
 			LUTOK_PROPERTY("active", &GearJoint::getActive, &GearJoint::nullMethod);
 			LUTOK_PROPERTY("collideConnected", &GearJoint::getCollideConnected, &GearJoint::nullMethod);
+
+			LUTOK_PROPERTY("joint1", &GearJoint::getJoint1, &GearJoint::nullMethod);
+			LUTOK_PROPERTY("joint2", &GearJoint::getJoint2, &GearJoint::nullMethod);
+			LUTOK_PROPERTY("ratio", &GearJoint::getRatio, &GearJoint::setRatio);
 		}
 
 		b2GearJoint * constructor(State & state);
@@ -43,6 +47,14 @@ namespace LuaBox2D {
 		int getActive(State & state, b2GearJoint * );
 
 		int getCollideConnected(State & state, b2GearJoint * );
+
+		int getJoint1(State & state, b2GearJoint * object);
+
+		int getJoint2(State & state, b2GearJoint * object);
+
+		int getRatio(State & state, b2GearJoint * object);
+
+		int setRatio(State & state, b2GearJoint * object);
 	};
 
 	void initGearJoint(State * );
