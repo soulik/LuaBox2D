@@ -1,4 +1,5 @@
 #include "common.hpp"
+#include "objects/Vec2.hpp"
 #include "objects/Joint.hpp"
 #include "objects/RopeJoint.hpp"
 
@@ -37,21 +38,45 @@ namespace LuaBox2D {
 		return base->getBodyB(state, object);
 	}
 
-	inline int RopeJoint::getAnchorA(State & state, b2RopeJoint * object){
-		return base->getAnchorA(state, object);
+	int RopeJoint::getAnchorA(State & state, b2RopeJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(new b2Vec2(object->GetAnchorA()), true);
+		return 1;
 	}
 
-	inline int RopeJoint::getAnchorB(State & state, b2RopeJoint * object){
-		return base->getAnchorB(state, object);
+	int RopeJoint::getAnchorB(State & state, b2RopeJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(new b2Vec2(object->GetAnchorB()), true);
+		return 1;
 	}
 
-	inline int RopeJoint::getReactionForce(State & state, b2RopeJoint * object){
-		return base->getReactionForce(state, object);
+	int RopeJoint::getReactionForce(State & state, b2RopeJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		if (state.stack->is<LUA_TNUMBER>(1)){
+			interfaceVec2->push(new b2Vec2(object->GetReactionForce(
+				static_cast<float32>(state.stack->to<LUA_NUMBER>(1))
+				)), true);
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
-	inline int RopeJoint::getReactionTorque(State & state, b2RopeJoint * object){
-		return base->getReactionTorque(state, object);
+	int RopeJoint::getReactionTorque(State & state, b2RopeJoint * object){
+		if (state.stack->is<LUA_TNUMBER>(1)){
+			state.stack->push<LUA_NUMBER>(
+				static_cast<LUA_NUMBER>(
+				object->GetReactionTorque(
+				static_cast<float32>(state.stack->to<LUA_NUMBER>(1))
+				)
+				)
+				);
+			return 1;
+		}else{
+			return 0;
+		}
 	}
+
 
 	inline int RopeJoint::getActive(State & state, b2RopeJoint * object){
 		return base->getActive(state, object);
@@ -60,4 +85,32 @@ namespace LuaBox2D {
 	inline int RopeJoint::getCollideConnected(State & state, b2RopeJoint * object){
 		return base->getCollideConnected(state, object);
 	}
+
+	int RopeJoint::getLocalAnchorA(State & state, b2RopeJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(new b2Vec2(object->GetLocalAnchorA()), true);
+		return 1;
+	}
+
+	int RopeJoint::getLocalAnchorB(State & state, b2RopeJoint * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(new b2Vec2(object->GetLocalAnchorB()), true);
+		return 1;
+	}
+
+	int RopeJoint::getMaxLength(State & state, b2RopeJoint * object){
+		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetMaxLength()));
+		return 1;
+	}
+
+	int RopeJoint::setMaxLength(State & state, b2RopeJoint * object){
+		object->SetMaxLength(static_cast<float32>(state.stack->to<LUA_NUMBER>(1)));
+		return 0;
+	}
+
+	int RopeJoint::getLimitState(State & state, b2RopeJoint * object){
+		state.stack->push<int>(static_cast<int>(object->GetLimitState()));
+		return 1;
+	}
+
 };

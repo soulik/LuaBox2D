@@ -20,6 +20,12 @@ namespace LuaBox2D {
 
 			LUTOK_PROPERTY("active", &RopeJoint::getActive, &RopeJoint::nullMethod);
 			LUTOK_PROPERTY("collideConnected", &RopeJoint::getCollideConnected, &RopeJoint::nullMethod);
+
+			LUTOK_PROPERTY("localAnchorA", &RopeJoint::getLocalAnchorA, &RopeJoint::nullMethod);
+			LUTOK_PROPERTY("localAnchorB", &RopeJoint::getLocalAnchorB, &RopeJoint::nullMethod);
+			LUTOK_PROPERTY("maxLength", &RopeJoint::getMaxLength, &RopeJoint::setMaxLength);
+
+			LUTOK_PROPERTY("limitState", &RopeJoint::getLimitState, &RopeJoint::nullMethod);
 		}
 
 		b2RopeJoint * constructor(State & state);
@@ -43,6 +49,16 @@ namespace LuaBox2D {
 		int getActive(State & state, b2RopeJoint * );
 
 		int getCollideConnected(State & state, b2RopeJoint * );
+
+		int getLocalAnchorA(State & state, b2RopeJoint * object);
+
+		int getLocalAnchorB(State & state, b2RopeJoint * object);
+
+		int getMaxLength(State & state, b2RopeJoint * object);
+
+		int setMaxLength(State & state, b2RopeJoint * object);
+
+		int getLimitState(State & state, b2RopeJoint * object);
 	};
 
 	void initRopeJoint(State * );

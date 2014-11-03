@@ -20,6 +20,16 @@ namespace LuaBox2D {
 
 			LUTOK_PROPERTY("active", &PulleyJoint::getActive, &PulleyJoint::nullMethod);
 			LUTOK_PROPERTY("collideConnected", &PulleyJoint::getCollideConnected, &PulleyJoint::nullMethod);
+
+			LUTOK_PROPERTY("groundAnchorA", &PulleyJoint::getGroundAnchorA, &PulleyJoint::nullMethod);
+			LUTOK_PROPERTY("groundAnchorB", &PulleyJoint::getGroundAnchorB, &PulleyJoint::nullMethod);
+			LUTOK_PROPERTY("lengthA", &PulleyJoint::getLengthA, &PulleyJoint::nullMethod);
+			LUTOK_PROPERTY("lengthB", &PulleyJoint::getLengthB, &PulleyJoint::nullMethod);
+			LUTOK_PROPERTY("ratio", &PulleyJoint::getRatio, &PulleyJoint::nullMethod);
+			LUTOK_PROPERTY("currentLengthA", &PulleyJoint::getCurrentLengthA, &PulleyJoint::nullMethod);
+			LUTOK_PROPERTY("currentLengthB", &PulleyJoint::getCurrentLengthB, &PulleyJoint::nullMethod);
+
+			LUTOK_METHOD("shiftOrigin", &PulleyJoint::shiftOrigin);
 		}
 
 		b2PulleyJoint * constructor(State & state);
@@ -43,6 +53,22 @@ namespace LuaBox2D {
 		int getActive(State & state, b2PulleyJoint * );
 
 		int getCollideConnected(State & state, b2PulleyJoint * );
+
+		int getGroundAnchorA(State & state, b2PulleyJoint * object);
+
+		int getGroundAnchorB(State & state, b2PulleyJoint * object);
+
+		int getLengthA(State & state, b2PulleyJoint * object);
+
+		int getLengthB(State & state, b2PulleyJoint * object);
+
+		int getRatio(State & state, b2PulleyJoint * object);
+
+		int getCurrentLengthA(State & state, b2PulleyJoint * object);
+
+		int getCurrentLengthB(State & state, b2PulleyJoint * object);
+
+		int shiftOrigin(State & state, b2PulleyJoint * object);
 	};
 
 	void initPulleyJoint(State * );

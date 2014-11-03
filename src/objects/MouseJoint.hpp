@@ -20,6 +20,13 @@ namespace LuaBox2D {
 
 			LUTOK_PROPERTY("active", &MouseJoint::getActive, &MouseJoint::nullMethod);
 			LUTOK_PROPERTY("collideConnected", &MouseJoint::getCollideConnected, &MouseJoint::nullMethod);
+
+			LUTOK_PROPERTY("target", &MouseJoint::getTarget, &MouseJoint::setTarget);
+			LUTOK_PROPERTY("maxForce", &MouseJoint::getMaxForce, &MouseJoint::setMaxForce);
+			LUTOK_PROPERTY("frequencyHz", &MouseJoint::getFrequencyHz, &MouseJoint::setFrequencyHz);
+			LUTOK_PROPERTY("dampingRatio", &MouseJoint::getDampingRatio, &MouseJoint::setDampingRatio);
+
+			LUTOK_METHOD("shiftOrigin", &MouseJoint::shiftOrigin);
 		}
 
 		b2MouseJoint * constructor(State & state);
@@ -36,13 +43,31 @@ namespace LuaBox2D {
 
 		int getAnchorB(State & state, b2MouseJoint *);
 
+		int getActive(State & state, b2MouseJoint * );
+
+		int getCollideConnected(State & state, b2MouseJoint * );
+
 		int getReactionForce(State & state, b2MouseJoint *);
 
 		int getReactionTorque(State & state, b2MouseJoint *);
 
-		int getActive(State & state, b2MouseJoint * );
+		int getTarget(State & state, b2MouseJoint * object);
 
-		int getCollideConnected(State & state, b2MouseJoint * );
+		int setTarget(State & state, b2MouseJoint * object);
+
+		int getMaxForce(State & state, b2MouseJoint * object);
+
+		int setMaxForce(State & state, b2MouseJoint * object);
+
+		int getFrequencyHz(State & state, b2MouseJoint * object);
+
+		int setFrequencyHz(State & state, b2MouseJoint * object);
+
+		int getDampingRatio(State & state, b2MouseJoint * object);
+
+		int setDampingRatio(State & state, b2MouseJoint * object);
+
+		int shiftOrigin(State & state, b2MouseJoint * object);
 	};
 
 	void initMouseJoint(State * );

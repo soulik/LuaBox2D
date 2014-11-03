@@ -20,6 +20,13 @@ namespace LuaBox2D {
 
 			LUTOK_PROPERTY("active", &WeldJoint::getActive, &WeldJoint::nullMethod);
 			LUTOK_PROPERTY("collideConnected", &WeldJoint::getCollideConnected, &WeldJoint::nullMethod);
+
+			LUTOK_PROPERTY("localAnchorA", &WeldJoint::getLocalAnchorA, &WeldJoint::nullMethod);
+			LUTOK_PROPERTY("localAnchorB", &WeldJoint::getLocalAnchorB, &WeldJoint::nullMethod);
+			LUTOK_PROPERTY("referenceAngle", &WeldJoint::getReferenceAngle, &WeldJoint::nullMethod);
+			LUTOK_PROPERTY("frequencyHz", &WeldJoint::getFrequencyHz, &WeldJoint::setFrequencyHz);
+			LUTOK_PROPERTY("dampingRatio", &WeldJoint::getDampingRatio, &WeldJoint::setDampingRatio);
+
 		}
 
 		b2WeldJoint * constructor(State & state);
@@ -43,6 +50,20 @@ namespace LuaBox2D {
 		int getActive(State & state, b2WeldJoint * );
 
 		int getCollideConnected(State & state, b2WeldJoint * );
+
+		int getReferenceAngle(State & state, b2WeldJoint * object);
+
+		int getLocalAnchorA(State & state, b2WeldJoint * object);
+
+		int getLocalAnchorB(State & state, b2WeldJoint * object);
+
+		int getFrequencyHz(State & state, b2WeldJoint * object);
+
+		int setFrequencyHz(State & state, b2WeldJoint * object);
+
+		int getDampingRatio(State & state, b2WeldJoint * object);
+
+		int setDampingRatio(State & state, b2WeldJoint * object);
 	};
 
 	void initWeldJoint(State * );

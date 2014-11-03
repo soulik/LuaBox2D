@@ -20,6 +20,20 @@ namespace LuaBox2D {
 
 			LUTOK_PROPERTY("active", &PrismaticJoint::getActive, &PrismaticJoint::nullMethod);
 			LUTOK_PROPERTY("collideConnected", &PrismaticJoint::getCollideConnected, &PrismaticJoint::nullMethod);
+
+			LUTOK_PROPERTY("localAnchorA", &PrismaticJoint::getLocalAnchorA, &PrismaticJoint::nullMethod);
+			LUTOK_PROPERTY("localAnchorB", &PrismaticJoint::getLocalAnchorB, &PrismaticJoint::nullMethod);
+			LUTOK_PROPERTY("localAxisA", &PrismaticJoint::getLocalAxisA, &PrismaticJoint::nullMethod);
+
+			LUTOK_PROPERTY("referenceAngle", &PrismaticJoint::getReferenceAngle, &PrismaticJoint::nullMethod);
+			LUTOK_PROPERTY("enableLimit", &PrismaticJoint::getEnableLimit, &PrismaticJoint::setEnableLimit);
+			LUTOK_PROPERTY("lowerLimit", &PrismaticJoint::getLowerLimit, &PrismaticJoint::nullMethod);
+			LUTOK_PROPERTY("upperLimit", &PrismaticJoint::getUpperLimit, &PrismaticJoint::nullMethod);
+			LUTOK_METHOD("setLimits", &PrismaticJoint::setLimits);
+			LUTOK_PROPERTY("enableMotor", &PrismaticJoint::getEnableMotor, &PrismaticJoint::setEnableMotor);
+			LUTOK_PROPERTY("motorSpeed", &PrismaticJoint::getMotorSpeed, &PrismaticJoint::setMotorSpeed);
+			LUTOK_PROPERTY("maxMotorForce", &PrismaticJoint::getMaxMotorForce, &PrismaticJoint::setMaxMotorForce);
+
 		}
 
 		b2PrismaticJoint * constructor(State & state);
@@ -43,6 +57,36 @@ namespace LuaBox2D {
 		int getActive(State & state, b2PrismaticJoint * );
 
 		int getCollideConnected(State & state, b2PrismaticJoint * );
+
+		int getLocalAnchorA(State & state, b2PrismaticJoint *);
+
+		int getLocalAnchorB(State & state, b2PrismaticJoint *);
+
+		int getLocalAxisA(State & state, b2PrismaticJoint *);
+
+		int getReferenceAngle(State & state, b2PrismaticJoint * object);
+
+		int getEnableLimit(State & state, b2PrismaticJoint * object);
+
+		int setEnableLimit(State & state, b2PrismaticJoint * object);
+
+		int getLowerLimit(State & state, b2PrismaticJoint * object);
+
+		int getUpperLimit(State & state, b2PrismaticJoint * object);
+
+		int setLimits(State & state, b2PrismaticJoint * object);
+
+		int getEnableMotor(State & state, b2PrismaticJoint * object);
+
+		int setEnableMotor(State & state, b2PrismaticJoint * object);
+
+		int getMotorSpeed(State & state, b2PrismaticJoint * object);
+
+		int setMotorSpeed(State & state, b2PrismaticJoint * object);
+
+		int getMaxMotorForce(State & state, b2PrismaticJoint * object);
+
+		int setMaxMotorForce(State & state, b2PrismaticJoint * object);
 	};
 
 	void initPrismaticJoint(State * );
