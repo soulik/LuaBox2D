@@ -94,7 +94,11 @@
     <ClCompile Include="src\objects\AABB.cpp" />
     <ClCompile Include="src\objects\Contact.cpp" />
     <ClCompile Include="src\objects\ContactFeature.cpp" />
+    <ClCompile Include="src\objects\ContactFilter.cpp" />
     <ClCompile Include="src\objects\ContactID.cpp" />
+    <ClCompile Include="src\objects\ContactImpulse.cpp" />
+    <ClCompile Include="src\objects\ContactListener.cpp" />
+    <ClCompile Include="src\objects\ContactManager.cpp" />
     <ClCompile Include="src\objects\DistanceJoint.cpp" />
     <ClCompile Include="src\objects\DistanceJointDef.cpp" />
     <ClCompile Include="src\objects\FrictionJoint.cpp" />
@@ -148,7 +152,11 @@
     <ClInclude Include="src\objects\AABB.hpp" />
     <ClInclude Include="src\objects\Contact.hpp" />
     <ClInclude Include="src\objects\ContactFeature.hpp" />
+    <ClInclude Include="src\objects\ContactFilter.hpp" />
     <ClInclude Include="src\objects\ContactID.hpp" />
+    <ClInclude Include="src\objects\ContactImpulse.hpp" />
+    <ClInclude Include="src\objects\ContactListener.hpp" />
+    <ClInclude Include="src\objects\ContactManager.hpp" />
     <ClInclude Include="src\objects\DistanceJoint.hpp" />
     <ClInclude Include="src\objects\DistanceJointDef.hpp" />
     <ClInclude Include="src\objects\FrictionJoint.hpp" />

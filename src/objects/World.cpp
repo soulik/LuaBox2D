@@ -5,6 +5,9 @@
 #include "objects/JointDef.hpp"
 #include "objects/Body.hpp"
 #include "objects/Joint.hpp"
+#include "objects/ContactListener.hpp"
+#include "objects/ContactFilter.hpp"
+#include "objects/ContactManager.hpp"
 
 #include "objects/World.hpp"
 
@@ -198,5 +201,52 @@ namespace LuaBox2D {
 	int World::getTreeQuality(State & state, b2World * object){
 		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->GetTreeQuality()));
 		return 1;
+	}
+
+
+	int World::getContactListener(State & state, b2World * object){
+		ContactListener * interfaceContactListener = state.getInterface<ContactListener>("LuaBox2D_ContactListener");
+		interfaceContactListener->push( dynamic_cast<LuaBox2DContactListener*>(object->GetContactManager().m_contactListener), false);
+		return 1;
+	}
+
+	int World::setContactListener(State & state, b2World * object){
+		ContactListener * interfaceContactListener = state.getInterface<ContactListener>("LuaBox2D_ContactListener");
+		LuaBox2DContactListener * listener = interfaceContactListener->get(1);
+		if (listener != nullptr){
+			object->SetContactListener(listener);
+		}
+		return 0;
+	}
+
+	int World::getContactFilter(State & state, b2World * object){
+		ContactFilter * interfaceContactFilter = state.getInterface<ContactFilter>("LuaBox2D_ContactFilter");
+		interfaceContactFilter->push( dynamic_cast<LuaBox2DContactFilter*>(object->GetContactManager().m_contactFilter), false);
+		return 1;
+	}
+
+	int World::setContactFilter(State & state, b2World * object){
+		ContactFilter * interfaceContactFilter = state.getInterface<ContactFilter>("LuaBox2D_ContactFilter");
+		LuaBox2DContactFilter * filter = interfaceContactFilter->get(1);
+		if (filter != nullptr){
+			object->SetContactFilter(filter);
+		}
+		return 0;
+	}
+
+	int World::getContactManager(State & state, b2World * object){
+		ContactManager * interfaceContactManager = state.getInterface<ContactManager>("LuaBox2D_ContactManager");
+		interfaceContactManager->push(new b2ContactManager(object->GetContactManager()), true);
+		return 1;
+	}
+
+	//TODO
+	int World::queryAABB(State & state, b2World * object){
+		return 0;
+	}
+
+	//TODO
+	int World::rayCast(State & state, b2World * object){
+		return 0;
 	}
 };

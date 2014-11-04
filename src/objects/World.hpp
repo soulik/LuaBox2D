@@ -32,6 +32,13 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("body", &World::getBody, &World::nullMethod);
 			LUTOK_PROPERTY("joint", &World::getJoint, &World::nullMethod);
 			LUTOK_PROPERTY("contact", &World::getContact, &World::nullMethod);
+
+			LUTOK_PROPERTY("contactListener", &World::getContactListener, &World::setContactListener);
+			LUTOK_PROPERTY("contactFilter", &World::getContactFilter, &World::setContactFilter);
+			LUTOK_PROPERTY("contactManager", &World::getContactManager, &World::nullMethod);
+
+			LUTOK_METHOD("queryAABB", &World::queryAABB);
+			LUTOK_METHOD("rayCast", &World::rayCast);
 		}
 
 		b2World * constructor(State & state);
@@ -94,6 +101,19 @@ namespace LuaBox2D {
 
 		int getTreeQuality(State & state, b2World * object);
 
+		int getContactListener(State & state, b2World * object);
+
+		int setContactListener(State & state, b2World * object);
+
+		int getContactFilter(State & state, b2World * object);
+
+		int setContactFilter(State & state, b2World * object);
+
+		int getContactManager(State & state, b2World * object);
+
+		int queryAABB(State & state, b2World * object);
+
+		int rayCast(State & state, b2World * object);
 	};
 
 	void initWorld(State *);

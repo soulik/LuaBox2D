@@ -31,6 +31,10 @@
 #include "objects/ContactID.hpp"
 #include "objects/ContactFeature.hpp"
 #include "objects/WorldManifold.hpp"
+#include "objects/ContactListener.hpp"
+#include "objects/ContactImpulse.hpp"
+#include "objects/ContactManager.hpp"
+#include "objects/ContactFilter.hpp"
 
 #include "objects/RevoluteJoint.hpp"
 #include "objects/RevoluteJointDef.hpp"
@@ -109,6 +113,10 @@ extern "C" LUA_API int luaopen_LuaBox2D(lua_State * L){
 		initContactID(state); stack->setField("ContactID");
 		initContactFeature(state); stack->setField("ContactFeature");
 		initWorldManifold(state); stack->setField("WorldManifold");
+		initContactListener(state); stack->setField("ContactListener");
+		initContactImpulse(state); stack->setField("ContactImpulse");
+		initContactManager(state); stack->setField("ContactManager");
+		initContactFilter(state); stack->setField("ContactFilter");
 
 		INIT_JOINT(Revolute);
 		INIT_JOINT(Prismatic);

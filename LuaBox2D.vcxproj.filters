@@ -195,6 +195,18 @@
     <ClCompile Include="src\objects\WorldManifold.cpp">
       <Filter>Source Files\objects</Filter>
     </ClCompile>
+    <ClCompile Include="src\objects\ContactListener.cpp">
+      <Filter>Source Files\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\ContactImpulse.cpp">
+      <Filter>Source Files\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\ContactManager.cpp">
+      <Filter>Source Files\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\ContactFilter.cpp">
+      <Filter>Source Files\objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\common.hpp">
@@ -351,6 +363,18 @@
       <Filter>Header Files\objects</Filter>
     </ClInclude>
     <ClInclude Include="src\objects\WorldManifold.hpp">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\ContactListener.hpp">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\ContactImpulse.hpp">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\ContactManager.hpp">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\ContactFilter.hpp">
       <Filter>Header Files\objects</Filter>
     </ClInclude>
   </ItemGroup>
