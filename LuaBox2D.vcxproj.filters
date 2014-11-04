@@ -177,6 +177,24 @@
     <ClCompile Include="src\objects\WheelJointDef.cpp">
       <Filter>Source Files\objects\joints\defs</Filter>
     </ClCompile>
+    <ClCompile Include="src\objects\Contact.cpp">
+      <Filter>Source Files\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\Manifold.cpp">
+      <Filter>Source Files\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\ManifoldPoint.cpp">
+      <Filter>Source Files\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\ContactID.cpp">
+      <Filter>Source Files\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\ContactFeature.cpp">
+      <Filter>Source Files\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\WorldManifold.cpp">
+      <Filter>Source Files\objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\common.hpp">
@@ -316,6 +334,24 @@
     </ClInclude>
     <ClInclude Include="src\objects\WheelJointDef.hpp">
       <Filter>Header Files\objects\joints\defs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\Contact.hpp">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\Manifold.hpp">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\ManifoldPoint.hpp">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\ContactID.hpp">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\ContactFeature.hpp">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\WorldManifold.hpp">
+      <Filter>Header Files\objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

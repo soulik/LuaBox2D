@@ -25,6 +25,12 @@
 #include "objects/EdgeShape.hpp"
 #include "objects/PolygonShape.hpp"
 #include "objects/VertexArray.hpp"
+#include "objects/Contact.hpp"
+#include "objects/Manifold.hpp"
+#include "objects/ManifoldPoint.hpp"
+#include "objects/ContactID.hpp"
+#include "objects/ContactFeature.hpp"
+#include "objects/WorldManifold.hpp"
 
 #include "objects/RevoluteJoint.hpp"
 #include "objects/RevoluteJointDef.hpp"
@@ -63,10 +69,6 @@ namespace LuaBox2D {
 using namespace LuaBox2D;
 
 #define INIT_OBJECT(OBJ_NAME) init ## OBJ_NAME(state); stack->setField(#OBJ_NAME)
-/*
-#define INIT_JOINT(JOINT_NAME) init ## JOINT_NAME ## Joint(state); stack->setField(#JOINT_NAME "Joint"); \
-	init ## JOINT_NAME ## JointDef(state); stack->setField(#JOINT_NAME "JointDef")
-	*/
 #define INIT_JOINT(JOINT_NAME) INIT_OBJECT(JOINT_NAME ## Joint); \
 	INIT_OBJECT(JOINT_NAME ## JointDef)
 
@@ -101,6 +103,12 @@ extern "C" LUA_API int luaopen_LuaBox2D(lua_State * L){
 		initAABB(state); stack->setField("AABB");
 		initMassData(state); stack->setField("MassData");
 		initVertexArray(state); stack->setField("VertexArray");
+		initContact(state); stack->setField("Contact");
+		initManifold(state); stack->setField("Manifold");
+		initManifoldPoint(state); stack->setField("ManifoldPoint");
+		initContactID(state); stack->setField("ContactID");
+		initContactFeature(state); stack->setField("ContactFeature");
+		initWorldManifold(state); stack->setField("WorldManifold");
 
 		INIT_JOINT(Revolute);
 		INIT_JOINT(Prismatic);

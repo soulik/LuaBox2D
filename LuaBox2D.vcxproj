@@ -92,6 +92,9 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\objects\AABB.cpp" />
+    <ClCompile Include="src\objects\Contact.cpp" />
+    <ClCompile Include="src\objects\ContactFeature.cpp" />
+    <ClCompile Include="src\objects\ContactID.cpp" />
     <ClCompile Include="src\objects\DistanceJoint.cpp" />
     <ClCompile Include="src\objects\DistanceJointDef.cpp" />
     <ClCompile Include="src\objects\FrictionJoint.cpp" />
@@ -100,6 +103,8 @@
     <ClCompile Include="src\objects\GearJointDef.cpp" />
     <ClCompile Include="src\objects\Joint.cpp" />
     <ClCompile Include="src\objects\JointDef.cpp" />
+    <ClCompile Include="src\objects\Manifold.cpp" />
+    <ClCompile Include="src\objects\ManifoldPoint.cpp" />
     <ClCompile Include="src\objects\MotorJoint.cpp" />
     <ClCompile Include="src\objects\MotorJointDef.cpp" />
     <ClCompile Include="src\objects\MouseJoint.cpp" />
@@ -136,10 +141,14 @@
     <ClCompile Include="src\objects\WheelJoint.cpp" />
     <ClCompile Include="src\objects\WheelJointDef.cpp" />
     <ClCompile Include="src\objects\World.cpp" />
+    <ClCompile Include="src\objects\WorldManifold.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\common.hpp" />
     <ClInclude Include="src\objects\AABB.hpp" />
+    <ClInclude Include="src\objects\Contact.hpp" />
+    <ClInclude Include="src\objects\ContactFeature.hpp" />
+    <ClInclude Include="src\objects\ContactID.hpp" />
     <ClInclude Include="src\objects\DistanceJoint.hpp" />
     <ClInclude Include="src\objects\DistanceJointDef.hpp" />
     <ClInclude Include="src\objects\FrictionJoint.hpp" />
@@ -148,6 +157,8 @@
     <ClInclude Include="src\objects\GearJointDef.hpp" />
     <ClInclude Include="src\objects\Joint.hpp" />
     <ClInclude Include="src\objects\JointDef.hpp" />
+    <ClInclude Include="src\objects\Manifold.hpp" />
+    <ClInclude Include="src\objects\ManifoldPoint.hpp" />
     <ClInclude Include="src\objects\MotorJoint.hpp" />
     <ClInclude Include="src\objects\MotorJointDef.hpp" />
     <ClInclude Include="src\objects\MouseJoint.hpp" />
@@ -184,6 +195,7 @@
     <ClInclude Include="src\objects\WheelJoint.hpp" />
     <ClInclude Include="src\objects\WheelJointDef.hpp" />
     <ClInclude Include="src\objects\World.hpp" />
+    <ClInclude Include="src\objects\WorldManifold.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
