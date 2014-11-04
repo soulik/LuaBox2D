@@ -37,6 +37,12 @@
     <Filter Include="Source Files\objects\joints\defs">
       <UniqueIdentifier>{53d08f65-6c6b-4df7-9fe5-5bc959ea9c12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\objects\contacts">
+      <UniqueIdentifier>{beb808e8-c41b-4b05-9e0d-e0ce5ce8e5de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\objects\contacts">
+      <UniqueIdentifier>{5105904a-1df9-48af-b411-0789f4b9b967}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -177,35 +183,41 @@
     <ClCompile Include="src\objects\WheelJointDef.cpp">
       <Filter>Source Files\objects\joints\defs</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\Contact.cpp">
-      <Filter>Source Files\objects</Filter>
-    </ClCompile>
     <ClCompile Include="src\objects\Manifold.cpp">
       <Filter>Source Files\objects</Filter>
     </ClCompile>
     <ClCompile Include="src\objects\ManifoldPoint.cpp">
       <Filter>Source Files\objects</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\ContactID.cpp">
-      <Filter>Source Files\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\ContactFeature.cpp">
-      <Filter>Source Files\objects</Filter>
-    </ClCompile>
     <ClCompile Include="src\objects\WorldManifold.cpp">
       <Filter>Source Files\objects</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\ContactListener.cpp">
-      <Filter>Source Files\objects</Filter>
+    <ClCompile Include="src\objects\Contact.cpp">
+      <Filter>Source Files\objects\contacts</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\ContactImpulse.cpp">
-      <Filter>Source Files\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\ContactManager.cpp">
-      <Filter>Source Files\objects</Filter>
+    <ClCompile Include="src\objects\ContactFeature.cpp">
+      <Filter>Source Files\objects\contacts</Filter>
     </ClCompile>
     <ClCompile Include="src\objects\ContactFilter.cpp">
-      <Filter>Source Files\objects</Filter>
+      <Filter>Source Files\objects\contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\ContactID.cpp">
+      <Filter>Source Files\objects\contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\ContactImpulse.cpp">
+      <Filter>Source Files\objects\contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\ContactListener.cpp">
+      <Filter>Source Files\objects\contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\ContactManager.cpp">
+      <Filter>Source Files\objects\contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\QueryCallback.cpp">
+      <Filter>Source Files\objects\contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\RayCastCallback.cpp">
+      <Filter>Source Files\objects\contacts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -347,35 +359,41 @@
     <ClInclude Include="src\objects\WheelJointDef.hpp">
       <Filter>Header Files\objects\joints\defs</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\Contact.hpp">
-      <Filter>Header Files\objects</Filter>
-    </ClInclude>
     <ClInclude Include="src\objects\Manifold.hpp">
       <Filter>Header Files\objects</Filter>
     </ClInclude>
     <ClInclude Include="src\objects\ManifoldPoint.hpp">
       <Filter>Header Files\objects</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\ContactID.hpp">
-      <Filter>Header Files\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\objects\ContactFeature.hpp">
-      <Filter>Header Files\objects</Filter>
-    </ClInclude>
     <ClInclude Include="src\objects\WorldManifold.hpp">
       <Filter>Header Files\objects</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\ContactListener.hpp">
-      <Filter>Header Files\objects</Filter>
+    <ClInclude Include="src\objects\Contact.hpp">
+      <Filter>Header Files\objects\contacts</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\ContactImpulse.hpp">
-      <Filter>Header Files\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\objects\ContactManager.hpp">
-      <Filter>Header Files\objects</Filter>
+    <ClInclude Include="src\objects\ContactFeature.hpp">
+      <Filter>Header Files\objects\contacts</Filter>
     </ClInclude>
     <ClInclude Include="src\objects\ContactFilter.hpp">
-      <Filter>Header Files\objects</Filter>
+      <Filter>Header Files\objects\contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\ContactID.hpp">
+      <Filter>Header Files\objects\contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\ContactImpulse.hpp">
+      <Filter>Header Files\objects\contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\ContactListener.hpp">
+      <Filter>Header Files\objects\contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\ContactManager.hpp">
+      <Filter>Header Files\objects\contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\QueryCallback.hpp">
+      <Filter>Header Files\objects\contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\RayCastCallback.hpp">
+      <Filter>Header Files\objects\contacts</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

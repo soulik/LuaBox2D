@@ -36,6 +36,9 @@
 #include "objects/ContactManager.hpp"
 #include "objects/ContactFilter.hpp"
 
+#include "objects/QueryCallback.hpp"
+#include "objects/RayCastCallback.hpp"
+
 #include "objects/RevoluteJoint.hpp"
 #include "objects/RevoluteJointDef.hpp"
 #include "objects/PrismaticJoint.hpp"
@@ -117,6 +120,9 @@ extern "C" LUA_API int luaopen_LuaBox2D(lua_State * L){
 		initContactImpulse(state); stack->setField("ContactImpulse");
 		initContactManager(state); stack->setField("ContactManager");
 		initContactFilter(state); stack->setField("ContactFilter");
+
+		initQueryCallback(state); stack->setField("QueryCallback");
+		initRayCastCallback(state); stack->setField("RayCastCallback");
 
 		INIT_JOINT(Revolute);
 		INIT_JOINT(Prismatic);

@@ -11,6 +11,10 @@
 
 #include "objects/World.hpp"
 
+#include "objects/QueryCallback.hpp"
+#include "objects/RayCastCallback.hpp"
+#include "objects/AABB.hpp"
+
 namespace LuaBox2D {
 	void initWorld(State * state){
 		state->registerInterface<World>("LuaBox2D_World");
@@ -240,13 +244,32 @@ namespace LuaBox2D {
 		return 1;
 	}
 
-	//TODO
 	int World::queryAABB(State & state, b2World * object){
+		if (state.stack->is<LUA_TUSERDATA>(1) && state.stack->is<LUA_TUSERDATA>(2)){
+			QueryCallback * interfaceQueryCallback = state.getInterface<QueryCallback>("LuaBox2D_QueryCallback");
+			AABB * interfaceAABB = state.getInterface<AABB>("LuaBox2D_AABB");
+
+			LuaBox2DQueryCallback * callback = interfaceQueryCallback->get(1);
+			b2AABB * aabb = interfaceAABB->get(2);
+			if (callback != nullptr && aabb != nullptr){
+				object->QueryAABB(callback, *aabb);
+			}
+		}
 		return 0;
 	}
 
-	//TODO
 	int World::rayCast(State & state, b2World * object){
+		if (state.stack->is<LUA_TUSERDATA>(1) && state.stack->is<LUA_TUSERDATA>(2) && state.stack->is<LUA_TUSERDATA>(3)){
+			RayCastCallback * interfaceRayCastCallback = state.getInterface<RayCastCallback>("LuaBox2D_RayCastCallback");
+			Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+
+			LuaBox2DRayCastCallback * callback = interfaceRayCastCallback->get(1);
+			b2Vec2 * point1 = interfaceVec2->get(2);
+			b2Vec2 * point2 = interfaceVec2->get(3);
+			if (callback != nullptr && point1 != nullptr && point2 != nullptr){
+				object->RayCast(callback, *point1, *point2);
+			}
+		}
 		return 0;
 	}
 };

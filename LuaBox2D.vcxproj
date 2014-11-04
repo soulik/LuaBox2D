@@ -117,6 +117,8 @@
     <ClCompile Include="src\objects\PrismaticJointDef.cpp" />
     <ClCompile Include="src\objects\PulleyJoint.cpp" />
     <ClCompile Include="src\objects\PulleyJointDef.cpp" />
+    <ClCompile Include="src\objects\QueryCallback.cpp" />
+    <ClCompile Include="src\objects\RayCastCallback.cpp" />
     <ClCompile Include="src\objects\RevoluteJoint.cpp" />
     <ClCompile Include="src\objects\RevoluteJointDef.cpp" />
     <ClCompile Include="src\objects\RopeJoint.cpp" />
@@ -175,6 +177,8 @@
     <ClInclude Include="src\objects\PrismaticJointDef.hpp" />
     <ClInclude Include="src\objects\PulleyJoint.hpp" />
     <ClInclude Include="src\objects\PulleyJointDef.hpp" />
+    <ClInclude Include="src\objects\QueryCallback.hpp" />
+    <ClInclude Include="src\objects\RayCastCallback.hpp" />
     <ClInclude Include="src\objects\RevoluteJoint.hpp" />
     <ClInclude Include="src\objects\RevoluteJointDef.hpp" />
     <ClInclude Include="src\objects\RopeJoint.hpp" />
