@@ -1,6 +1,8 @@
 ﻿local box2d = require 'LuaBox2D'
-local v1 = box2d.Vec2(1,2)
-local v2 = box2d.Vec2(3,5)
+local Vec2 = box2d.Vec2
+
+local v1 = Vec2(1,2)
+local v2 = Vec2(3,5)
 local v3 = v1 + v2
 local v4 = v1 - v2
 local v5 = v1 * v2
@@ -9,6 +11,7 @@ local v7 = v1 * 5
 local v8 = 5 * v2
 local v9 = v1.normalizeTo()
 local v10 = v1.skew()
+local v11 = v1.clamp(Vec2(0,0), Vec2(1,1))
 
 print(v1, v1.x, v1.y)
 print(v2, v2.x, v2.y)
@@ -26,3 +29,4 @@ print(v1.valid)
 v2.zero()
 print(v2, v2.x, v2.y)
 print(#v1, v1.length, v1.lengthSquared)
+print(v11, v11.x, v11.y)

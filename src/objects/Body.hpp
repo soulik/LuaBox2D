@@ -18,6 +18,7 @@ namespace LuaBox2D {
 
 			LUTOK_METHOD("applyForce", &Body::applyForce);
 			LUTOK_METHOD("applyForceToCenter", &Body::applyForceToCenter);
+			LUTOK_METHOD("applyTorque", &Body::applyTorque);
 			LUTOK_METHOD("applyLinearImpulse", &Body::applyLinearImpulse);
 			LUTOK_METHOD("applyAngularImpulse", &Body::applyAngularImpulse);
 
@@ -28,7 +29,7 @@ namespace LuaBox2D {
 			LUTOK_METHOD("localPoint", &Body::getLocalPoint);
 			LUTOK_METHOD("localVector", &Body::getLocalVector);
 			LUTOK_METHOD("worldPoint", &Body::getWorldPoint);
-			LUTOK_METHOD("WorldVector", &Body::getWorldVector);
+			LUTOK_METHOD("worldVector", &Body::getWorldVector);
 			LUTOK_METHOD("linearVelocityFromWorldPoint", &Body::getLinearVelocityFromWorldPoint);
 			LUTOK_METHOD("linearVelocityFromLocalPoint", &Body::getLinearVelocityFromLocalPoint);
 
