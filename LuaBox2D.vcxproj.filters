@@ -219,6 +219,12 @@
     <ClCompile Include="src\objects\RayCastCallback.cpp">
       <Filter>Source Files\objects\contacts</Filter>
     </ClCompile>
+    <ClCompile Include="src\objects\JointEdge.cpp">
+      <Filter>Source Files\objects\joints</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\ContactEdge.cpp">
+      <Filter>Source Files\objects\contacts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\common.hpp">
@@ -393,6 +399,15 @@
       <Filter>Header Files\objects\contacts</Filter>
     </ClInclude>
     <ClInclude Include="src\objects\RayCastCallback.hpp">
+      <Filter>Header Files\objects\contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="src\array.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\JointEdge.hpp">
+      <Filter>Header Files\objects\joints</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\ContactEdge.hpp">
       <Filter>Header Files\objects\contacts</Filter>
     </ClInclude>
   </ItemGroup>

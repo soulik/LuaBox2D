@@ -100,7 +100,7 @@ namespace LuaBox2D {
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * anchor = interfaceVec2->get(1);
 		if (anchor != nullptr){
-			object->localAnchorA = *anchor;
+			object->localAnchorB = *anchor;
 		}
 		return 0;
 	}

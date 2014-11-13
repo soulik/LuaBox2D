@@ -93,6 +93,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\objects\AABB.cpp" />
     <ClCompile Include="src\objects\Contact.cpp" />
+    <ClCompile Include="src\objects\ContactEdge.cpp" />
     <ClCompile Include="src\objects\ContactFeature.cpp" />
     <ClCompile Include="src\objects\ContactFilter.cpp" />
     <ClCompile Include="src\objects\ContactID.cpp" />
@@ -107,6 +108,7 @@
     <ClCompile Include="src\objects\GearJointDef.cpp" />
     <ClCompile Include="src\objects\Joint.cpp" />
     <ClCompile Include="src\objects\JointDef.cpp" />
+    <ClCompile Include="src\objects\JointEdge.cpp" />
     <ClCompile Include="src\objects\Manifold.cpp" />
     <ClCompile Include="src\objects\ManifoldPoint.cpp" />
     <ClCompile Include="src\objects\MotorJoint.cpp" />
@@ -150,9 +152,11 @@
     <ClCompile Include="src\objects\WorldManifold.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\array.hpp" />
     <ClInclude Include="src\common.hpp" />
     <ClInclude Include="src\objects\AABB.hpp" />
     <ClInclude Include="src\objects\Contact.hpp" />
+    <ClInclude Include="src\objects\ContactEdge.hpp" />
     <ClInclude Include="src\objects\ContactFeature.hpp" />
     <ClInclude Include="src\objects\ContactFilter.hpp" />
     <ClInclude Include="src\objects\ContactID.hpp" />
@@ -167,6 +171,7 @@
     <ClInclude Include="src\objects\GearJointDef.hpp" />
     <ClInclude Include="src\objects\Joint.hpp" />
     <ClInclude Include="src\objects\JointDef.hpp" />
+    <ClInclude Include="src\objects\JointEdge.hpp" />
     <ClInclude Include="src\objects\Manifold.hpp" />
     <ClInclude Include="src\objects\ManifoldPoint.hpp" />
     <ClInclude Include="src\objects\MotorJoint.hpp" />

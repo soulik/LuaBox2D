@@ -8,6 +8,8 @@
 #include "objects/MassData.hpp"
 #include "objects/Vec2.hpp"
 #include "objects/Body.hpp"
+#include "objects/JointEdge.hpp"
+#include "objects/ContactEdge.hpp"
 
 namespace LuaBox2D {
 	void initBody(State * state){
@@ -353,18 +355,36 @@ namespace LuaBox2D {
 		return 0;
 	}
 
-	//TODO
 	int Body::getFixture(State & state, b2Body * object){
-		return 0;
+		Fixture * interfaceFixture = state.getInterface<Fixture>("LuaBox2D_Fixture");
+		b2Fixture * fixture = object->GetFixtureList();
+		if (fixture){
+			interfaceFixture->push(fixture, false);
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
-	//TODO
 	int Body::getJoint(State & state, b2Body * object){
-		return 0;
+		JointEdge * interfaceJointEdge = state.getInterface<JointEdge>("LuaBox2D_JointEdge");
+		b2JointEdge * jointEdge = object->GetJointList();
+		if (jointEdge){
+			interfaceJointEdge->push(jointEdge, false);
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
-	//TODO
 	int Body::getContact(State & state, b2Body * object){
-		return 0;
+		ContactEdge * interfaceContactEdge = state.getInterface<ContactEdge>("LuaBox2D_ContactEdge");
+		b2ContactEdge * contactEdge = object->GetContactList();
+		if (contactEdge){
+			interfaceContactEdge->push(contactEdge, false);
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 };

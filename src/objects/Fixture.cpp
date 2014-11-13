@@ -180,4 +180,15 @@ namespace LuaBox2D {
 		}
 	}
 
+	int Fixture::getNext(State & state, b2Fixture * object){
+		Fixture * interfaceFixture = state.getInterface<Fixture>("LuaBox2D_Fixture");
+		b2Fixture * next = object->GetNext();
+		if (next){
+			interfaceFixture->push(next, false);
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
 };

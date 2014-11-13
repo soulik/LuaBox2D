@@ -15,6 +15,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("density", &Fixture::getDensity, &Fixture::setDensity);
 			LUTOK_PROPERTY("AABB", &Fixture::getAABB, &Fixture::nullMethod);
 			LUTOK_PROPERTY("massData", &Fixture::getMassData, &Fixture::nullMethod);
+			LUTOK_PROPERTY("next", &Fixture::getNext, &Fixture::nullMethod);
 
 			LUTOK_METHOD("refilter", &Fixture::refilter);
 			LUTOK_METHOD("testPoint", &Fixture::testPoint);
@@ -61,6 +62,7 @@ namespace LuaBox2D {
 
 		int getMassData(State & state, b2Fixture * object);
 
+		int getNext(State & state, b2Fixture * object);
 	};
 
 	void initFixture(State * );
