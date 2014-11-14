@@ -50,6 +50,8 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("joint", &Body::getJoint, &Body::nullMethod);
 			LUTOK_PROPERTY("contact", &Body::getContact, &Body::nullMethod);
 
+			LUTOK_PROPERTY("next", &Body::getNext, &Body::nullMethod);
+			LUTOK_PROPERTY("userData", &Body::getUserData, &Body::setUserData);
 		}
 
 		b2Body * constructor(State & state);
@@ -147,14 +149,19 @@ namespace LuaBox2D {
 		int setFixedRotation(State & state, b2Body * object);
 
 		int getWorld(State & state, b2Body * object);
-		//TODO
+
 		int getFixture(State & state, b2Body * object);
 
-		//TODO
 		int getJoint(State & state, b2Body * object);
 
-		//TODO
 		int getContact(State & state, b2Body * object);
+
+		int getNext(State & state, b2Body * object);
+
+		int getUserData(State & state, b2Body * object);
+
+		int setUserData(State & state, b2Body * object);
+
 	};
 
 	void initBody(State *);

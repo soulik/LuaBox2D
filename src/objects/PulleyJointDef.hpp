@@ -21,6 +21,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("lengthA", &PulleyJointDef::getLengthA, &PulleyJointDef::setLengthA);
 			LUTOK_PROPERTY("lengthB", &PulleyJointDef::getLengthB, &PulleyJointDef::setLengthB);
 			LUTOK_PROPERTY("ratio", &PulleyJointDef::getRatio, &PulleyJointDef::setRatio);
+			LUTOK_PROPERTY("userData", &PulleyJointDef::getUserData, &PulleyJointDef::setUserData);
 		}
 
 		b2PulleyJointDef * constructor(State & state);
@@ -72,6 +73,10 @@ namespace LuaBox2D {
 		int getRatio(State & state, b2PulleyJointDef * object);
 
 		int setRatio(State & state, b2PulleyJointDef * object);
+
+		int getUserData(State & state, b2PulleyJointDef * object);
+
+		int setUserData(State & state, b2PulleyJointDef * object);
 	};
 
 	void initPulleyJointDef(State * );

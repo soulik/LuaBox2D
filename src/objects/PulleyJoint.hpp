@@ -30,6 +30,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("currentLengthB", &PulleyJoint::getCurrentLengthB, &PulleyJoint::nullMethod);
 
 			LUTOK_METHOD("shiftOrigin", &PulleyJoint::shiftOrigin);
+			LUTOK_PROPERTY("userData", &PulleyJoint::getUserData, &PulleyJoint::setUserData);
 		}
 
 		b2PulleyJoint * constructor(State & state);
@@ -69,6 +70,11 @@ namespace LuaBox2D {
 		int getCurrentLengthB(State & state, b2PulleyJoint * object);
 
 		int shiftOrigin(State & state, b2PulleyJoint * object);
+
+		int getUserData(State & state, b2PulleyJoint * object);
+
+		int setUserData(State & state, b2PulleyJoint * object);
+
 	};
 
 	void initPulleyJoint(State * );

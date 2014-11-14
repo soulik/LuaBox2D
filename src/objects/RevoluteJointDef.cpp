@@ -59,6 +59,14 @@ namespace LuaBox2D {
 		return base->setCollideConnected(state, object);
 	}
 
+	inline int RevoluteJointDef::getUserData(State & state, b2RevoluteJointDef * object){
+		return base->getUserData(state, object);
+	}
+
+	inline int RevoluteJointDef::setUserData(State & state, b2RevoluteJointDef * object){
+		return base->setUserData(state, object);
+	}
+
 	int RevoluteJointDef::initialize(State & state, b2RevoluteJointDef * object){
 		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");

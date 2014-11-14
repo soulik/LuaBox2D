@@ -20,6 +20,8 @@ namespace LuaBox2D {
 			LUTOK_METHOD("refilter", &Fixture::refilter);
 			LUTOK_METHOD("testPoint", &Fixture::testPoint);
 			LUTOK_METHOD("rayCast", &Fixture::rayCast);
+
+			LUTOK_PROPERTY("userData", &Fixture::getUserData, &Fixture::setUserData);
 		}
 
 		b2Fixture * constructor(State & state);
@@ -63,6 +65,10 @@ namespace LuaBox2D {
 		int getMassData(State & state, b2Fixture * object);
 
 		int getNext(State & state, b2Fixture * object);
+
+		int getUserData(State & state, b2Fixture * object);
+
+		int setUserData(State & state, b2Fixture * object);
 	};
 
 	void initFixture(State * );

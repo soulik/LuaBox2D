@@ -95,4 +95,28 @@ namespace LuaBox2D {
 		object->collideConnected =  state.stack->to<bool>(1);
 		return 0;
 	}
+
+	int JointDef::getUserData(State & state, b2JointDef * object){
+		int ref = reinterpret_cast<int>(object->userData);
+		if (ref != LUA_NOREF && ref != NULL){
+			state.stack->rawGet(LUA_REGISTRYINDEX, ref);
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
+	int JointDef::setUserData(State & state, b2JointDef * object){
+		int oldRef = reinterpret_cast<int>(object->userData);
+		if (oldRef != LUA_NOREF && oldRef != NULL){
+			state.stack->unref(oldRef);
+		}
+		if (!state.stack->is<LUA_TNIL>(1)){
+			state.stack->pushValue(1);
+			int ref = state.stack->ref();
+
+			object->userData = reinterpret_cast<void*>(ref);
+		}
+		return 0;
+	}
 };

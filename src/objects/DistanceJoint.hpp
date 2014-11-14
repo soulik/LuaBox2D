@@ -29,6 +29,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("length", &DistanceJoint::getLength, &DistanceJoint::setLength);
 			LUTOK_PROPERTY("frequencyHz", &DistanceJoint::getFrequencyHz, &DistanceJoint::setFrequencyHz);
 			LUTOK_PROPERTY("dampingRatio", &DistanceJoint::getDampingRatio, &DistanceJoint::setDampingRatio);
+			LUTOK_PROPERTY("userData", &DistanceJoint::getUserData, &DistanceJoint::setUserData);
 		}
 
 		b2DistanceJoint * constructor(State & state);
@@ -68,6 +69,10 @@ namespace LuaBox2D {
 		int getDampingRatio(State & state, b2DistanceJoint * object);
 
 		int setDampingRatio(State & state, b2DistanceJoint * object);
+
+		int getUserData(State & state, b2DistanceJoint * object);
+
+		int setUserData(State & state, b2DistanceJoint * object);
 	};
 
 	void initDistanceJoint(State * );

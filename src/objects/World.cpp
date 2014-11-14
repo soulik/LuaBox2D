@@ -8,6 +8,7 @@
 #include "objects/ContactListener.hpp"
 #include "objects/ContactFilter.hpp"
 #include "objects/ContactManager.hpp"
+#include "objects/Contact.hpp"
 
 #include "objects/World.hpp"
 
@@ -66,15 +67,36 @@ namespace LuaBox2D {
 	}
 
 	int World::getBody(State & state, b2World * object){
-		return 0;
+		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
+		b2Body * body = object->GetBodyList();
+		if (body){
+			interfaceBody->push(body, false);
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
 	int World::getJoint(State & state, b2World * object){
-		return 0;
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		b2Joint * joint = object->GetJointList();
+		if (joint){
+			interfaceJoint->push(joint, false);
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
 	int World::getContact(State & state, b2World * object){
-		return 0;
+		Contact * interfaceContact = state.getInterface<Contact>("LuaBox2D_Contact");
+		b2Contact * contact = object->GetContactList();
+		if (contact){
+			interfaceContact->push(contact, false);
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
 	int World::step(State & state, b2World * object){

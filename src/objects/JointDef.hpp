@@ -11,6 +11,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("bodyA", &JointDef::getBodyA, &JointDef::setBodyA);
 			LUTOK_PROPERTY("bodyB", &JointDef::getBodyB, &JointDef::setBodyB);
 			LUTOK_PROPERTY("collideConnected", &JointDef::getCollideConnected, &JointDef::setCollideConnected);
+			LUTOK_PROPERTY("userData", &JointDef::getUserData, &JointDef::setUserData);
 			
 			ADD_VALID_STRUCT(JointDef);
 			ADD_VALID_STRUCT(RevoluteJointDef);
@@ -47,6 +48,10 @@ namespace LuaBox2D {
 		int getCollideConnected(State & state, b2JointDef * object);
 
 		int setCollideConnected(State & state, b2JointDef * object);
+
+		int getUserData(State & state, b2JointDef * object);
+
+		int setUserData(State & state, b2JointDef * object);
 	};
 
 	void initJointDef(State * );

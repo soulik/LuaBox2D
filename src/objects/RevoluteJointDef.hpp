@@ -23,6 +23,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("enableMotor", &RevoluteJointDef::getEnableMotor, &RevoluteJointDef::setEnableMotor);
 			LUTOK_PROPERTY("motorSpeed", &RevoluteJointDef::getMotorSpeed, &RevoluteJointDef::setMotorSpeed);
 			LUTOK_PROPERTY("maxMotorTorque", &RevoluteJointDef::getMaxMotorTorque, &RevoluteJointDef::setMaxMotorTorque);
+			LUTOK_PROPERTY("userData", &RevoluteJointDef::getUserData, &RevoluteJointDef::setUserData);
 		}
 
 		b2RevoluteJointDef * constructor(State & state);
@@ -83,6 +84,9 @@ namespace LuaBox2D {
 
 		int setMaxMotorTorque(State & state, b2RevoluteJointDef * object);
 
+		int getUserData(State & state, b2RevoluteJointDef * object);
+
+		int setUserData(State & state, b2RevoluteJointDef * object);
 	};
 
 	void initRevoluteJointDef(State * );

@@ -24,7 +24,7 @@ namespace LuaBox2D {
 
 			LUTOK_PROPERTY("gravityScale", &BodyDef::getGravityScale, &BodyDef::setGravityScale);
 
-			//LUTOK_METHOD("step", &World::step);
+			LUTOK_PROPERTY("userData", &BodyDef::getUserData, &BodyDef::setUserData);
 		}
 
 		b2BodyDef * constructor(State & state);
@@ -82,6 +82,10 @@ namespace LuaBox2D {
 		int getGravityScale(State & state, b2BodyDef * object);
 
 		int setGravityScale(State & state, b2BodyDef * object);
+
+		int getUserData(State & state, b2BodyDef * object);
+
+		int setUserData(State & state, b2BodyDef * object);
 	};
 
 	void initBodyDef(State *);

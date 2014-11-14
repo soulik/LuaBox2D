@@ -26,7 +26,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("referenceAngle", &WeldJoint::getReferenceAngle, &WeldJoint::nullMethod);
 			LUTOK_PROPERTY("frequencyHz", &WeldJoint::getFrequencyHz, &WeldJoint::setFrequencyHz);
 			LUTOK_PROPERTY("dampingRatio", &WeldJoint::getDampingRatio, &WeldJoint::setDampingRatio);
-
+			LUTOK_PROPERTY("userData", &WeldJoint::getUserData, &WeldJoint::setUserData);
 		}
 
 		b2WeldJoint * constructor(State & state);
@@ -64,6 +64,11 @@ namespace LuaBox2D {
 		int getDampingRatio(State & state, b2WeldJoint * object);
 
 		int setDampingRatio(State & state, b2WeldJoint * object);
+
+		int getUserData(State & state, b2WeldJoint * object);
+
+		int setUserData(State & state, b2WeldJoint * object);
+
 	};
 
 	void initWeldJoint(State * );

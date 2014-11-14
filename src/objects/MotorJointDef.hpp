@@ -19,6 +19,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("maxForce", &MotorJointDef::getMaxForce, &MotorJointDef::setMaxForce);
 			LUTOK_PROPERTY("maxTorque", &MotorJointDef::getMaxTorque, &MotorJointDef::setMaxTorque);
 			LUTOK_PROPERTY("correctionFactor", &MotorJointDef::getCorrectionFactor, &MotorJointDef::setCorrectionFactor);
+			LUTOK_PROPERTY("userData", &MotorJointDef::getUserData, &MotorJointDef::setUserData);
 		}
 
 		b2MotorJointDef * constructor(State & state);
@@ -62,6 +63,10 @@ namespace LuaBox2D {
 		int getCorrectionFactor(State & state, b2MotorJointDef * object);
 
 		int setCorrectionFactor(State & state, b2MotorJointDef * object);
+
+		int getUserData(State & state, b2MotorJointDef * object);
+
+		int setUserData(State & state, b2MotorJointDef * object);
 	};
 
 	void initMotorJointDef(State * );

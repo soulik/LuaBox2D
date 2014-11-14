@@ -33,7 +33,7 @@ namespace LuaBox2D {
 
 			LUTOK_PROPERTY("jointTranslation", &WheelJoint::getJointTranslation, &WheelJoint::nullMethod);
 			LUTOK_PROPERTY("jointSpeed", &WheelJoint::getJointSpeed, &WheelJoint::nullMethod);
-
+			LUTOK_PROPERTY("userData", &WheelJoint::getUserData, &WheelJoint::setUserData);
 		}
 
 		b2WheelJoint * constructor(State & state);
@@ -89,6 +89,11 @@ namespace LuaBox2D {
 		int getJointTranslation(State & state, b2WheelJoint * object);
 
 		int getJointSpeed(State & state, b2WheelJoint * object);
+
+		int getUserData(State & state, b2WheelJoint * object);
+
+		int setUserData(State & state, b2WheelJoint * object);
+
 	};
 
 	void initWheelJoint(State * );

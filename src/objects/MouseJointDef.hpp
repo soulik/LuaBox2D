@@ -17,6 +17,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("maxForce", &MouseJointDef::getMaxForce, &MouseJointDef::setMaxForce);
 			LUTOK_PROPERTY("frequencyHz", &MouseJointDef::getFrequencyHz, &MouseJointDef::setFrequencyHz);
 			LUTOK_PROPERTY("dampingRatio", &MouseJointDef::getDampingRatio, &MouseJointDef::setDampingRatio);
+			LUTOK_PROPERTY("userData", &MouseJointDef::getUserData, &MouseJointDef::setUserData);
 		}
 
 		b2MouseJointDef * constructor(State & state);
@@ -54,6 +55,11 @@ namespace LuaBox2D {
 		int getDampingRatio(State & state, b2MouseJointDef * object);
 
 		int setDampingRatio(State & state, b2MouseJointDef * object);
+
+		int getUserData(State & state, b2MouseJointDef * object);
+
+		int setUserData(State & state, b2MouseJointDef * object);
+
 	};
 
 	void initMouseJointDef(State * );

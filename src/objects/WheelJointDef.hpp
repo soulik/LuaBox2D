@@ -22,6 +22,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("maxMotorTorque", &WheelJointDef::getMaxMotorTorque, &WheelJointDef::setMaxMotorTorque);
 			LUTOK_PROPERTY("frequencyHz", &WheelJointDef::getFrequencyHz, &WheelJointDef::setFrequencyHz);
 			LUTOK_PROPERTY("dampingRatio", &WheelJointDef::getDampingRatio, &WheelJointDef::setDampingRatio);
+			LUTOK_PROPERTY("userData", &WheelJointDef::getUserData, &WheelJointDef::setUserData);
 		}
 
 		b2WheelJointDef * constructor(State & state);
@@ -77,6 +78,10 @@ namespace LuaBox2D {
 		int getDampingRatio(State & state, b2WheelJointDef * object);
 
 		int setDampingRatio(State & state, b2WheelJointDef * object);
+
+		int getUserData(State & state, b2WheelJointDef * object);
+
+		int setUserData(State & state, b2WheelJointDef * object);
 	};
 
 	void initWheelJointDef(State * );

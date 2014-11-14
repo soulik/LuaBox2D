@@ -60,6 +60,14 @@ namespace LuaBox2D {
 		return base->setCollideConnected(state, object);
 	}
 
+	inline int GearJointDef::getUserData(State & state, b2GearJointDef * object){
+		return base->getUserData(state, object);
+	}
+
+	inline int GearJointDef::setUserData(State & state, b2GearJointDef * object){
+		return base->setUserData(state, object);
+	}
+
 	int GearJointDef::getJoint1(State & state, b2GearJointDef * object){
 		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
 		interfaceJoint->push(object->joint1, false);

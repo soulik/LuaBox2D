@@ -23,6 +23,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("enableMotor", &PrismaticJointDef::getEnableMotor, &PrismaticJointDef::setEnableMotor);
 			LUTOK_PROPERTY("motorSpeed", &PrismaticJointDef::getMotorSpeed, &PrismaticJointDef::setMotorSpeed);
 			LUTOK_PROPERTY("maxMotorForce", &PrismaticJointDef::getMaxMotorForce, &PrismaticJointDef::setMaxMotorForce);
+			LUTOK_PROPERTY("userData", &PrismaticJointDef::getUserData, &PrismaticJointDef::setUserData);
 
 		}
 
@@ -83,6 +84,10 @@ namespace LuaBox2D {
 		int getMaxMotorForce(State & state, b2PrismaticJointDef * object);
 
 		int setMaxMotorForce(State & state, b2PrismaticJointDef * object);
+
+		int getUserData(State & state, b2PrismaticJointDef * object);
+
+		int setUserData(State & state, b2PrismaticJointDef * object);
 
 	};
 

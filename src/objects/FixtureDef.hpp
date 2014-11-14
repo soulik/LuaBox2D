@@ -11,6 +11,8 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("sensor", &FixtureDef::getSensor, &FixtureDef::setSensor);
 			LUTOK_PROPERTY("filter", &FixtureDef::getFilter, &FixtureDef::setFilter);
 			LUTOK_PROPERTY("shape", &FixtureDef::getShape, &FixtureDef::setShape);
+
+			LUTOK_PROPERTY("userData", &FixtureDef::getUserData, &FixtureDef::setUserData);
 		}
 
 		b2FixtureDef * constructor(State & state);
@@ -40,6 +42,10 @@ namespace LuaBox2D {
 		int getShape(State & state, b2FixtureDef * object);
 
 		int setShape(State & state, b2FixtureDef * object);
+
+		int getUserData(State & state, b2FixtureDef * object);
+
+		int setUserData(State & state, b2FixtureDef * object);
 
 };
 

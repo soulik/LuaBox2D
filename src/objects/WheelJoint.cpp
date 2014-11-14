@@ -44,6 +44,14 @@ namespace LuaBox2D {
 		return 1;
 	}
 
+	inline int WheelJoint::getUserData(State & state, b2WheelJoint * object){
+		return base->getUserData(state, object);
+	}
+
+	inline int WheelJoint::setUserData(State & state, b2WheelJoint * object){
+		return base->setUserData(state, object);
+	}
+
 	int WheelJoint::getAnchorB(State & state, b2WheelJoint * object){
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		interfaceVec2->push(new b2Vec2(object->GetAnchorB()), true);

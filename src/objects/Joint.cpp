@@ -80,6 +80,10 @@ namespace LuaBox2D {
 	}
 
 	void Joint::destructor(State & state, b2Joint * object){
+		int oldRef = reinterpret_cast<int>(object->GetUserData());
+		if (oldRef != LUA_NOREF && oldRef != NULL){
+			state.stack->unref(oldRef);
+		}
 		b2World * world = nullptr;
 		b2Body * bodyA = object->GetBodyA();
 		b2Body * bodyB = object->GetBodyB();
@@ -109,6 +113,41 @@ namespace LuaBox2D {
 	int Joint::getCollideConnected(State & state, b2Joint * object){
 		state.stack->push<bool>(object->GetCollideConnected());
 		return 1;
+	}
+
+	int Joint::getNext(State & state, b2Joint * object){
+		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
+		b2Joint * joint = object->GetNext();
+		if (joint){
+			interfaceJoint->push(joint, false);
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
+	int Joint::getUserData(State & state, b2Joint * object){
+		int ref = reinterpret_cast<int>(object->GetUserData());
+		if (ref != LUA_NOREF && ref != NULL){
+			state.stack->rawGet(LUA_REGISTRYINDEX, ref);
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
+	int Joint::setUserData(State & state, b2Joint * object){
+		int oldRef = reinterpret_cast<int>(object->GetUserData());
+		if (oldRef != LUA_NOREF && oldRef != NULL){
+			state.stack->unref(oldRef);
+		}
+		if (!state.stack->is<LUA_TNIL>(1)){
+			state.stack->pushValue(1);
+			int ref = state.stack->ref();
+
+			object->SetUserData(reinterpret_cast<void*>(ref));
+		}
+		return 0;
 	}
 
 };

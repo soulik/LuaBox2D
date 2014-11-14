@@ -26,6 +26,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("maxLength", &RopeJoint::getMaxLength, &RopeJoint::setMaxLength);
 
 			LUTOK_PROPERTY("limitState", &RopeJoint::getLimitState, &RopeJoint::nullMethod);
+			LUTOK_PROPERTY("userData", &RopeJoint::getUserData, &RopeJoint::setUserData);
 		}
 
 		b2RopeJoint * constructor(State & state);
@@ -59,6 +60,11 @@ namespace LuaBox2D {
 		int setMaxLength(State & state, b2RopeJoint * object);
 
 		int getLimitState(State & state, b2RopeJoint * object);
+
+		int getUserData(State & state, b2RopeJoint * object);
+
+		int setUserData(State & state, b2RopeJoint * object);
+
 	};
 
 	void initRopeJoint(State * );

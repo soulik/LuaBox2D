@@ -16,6 +16,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("joint1", &GearJointDef::getJoint1, &GearJointDef::setJoint1);
 			LUTOK_PROPERTY("joint2", &GearJointDef::getJoint2, &GearJointDef::setJoint2);
 			LUTOK_PROPERTY("ratio", &GearJointDef::getRatio, &GearJointDef::setRatio);
+			LUTOK_PROPERTY("userData", &GearJointDef::getUserData, &GearJointDef::setUserData);
 		}
 
 		b2GearJointDef * constructor(State & state);
@@ -49,6 +50,10 @@ namespace LuaBox2D {
 		int getRatio(State & state, b2GearJointDef * object);
 
 		int setRatio(State & state, b2GearJointDef * object);
+
+		int getUserData(State & state, b2GearJointDef * object);
+
+		int setUserData(State & state, b2GearJointDef * object);
 	};
 
 	void initGearJointDef(State * );

@@ -38,6 +38,14 @@ namespace LuaBox2D {
 		return base->getBodyB(state, object);
 	}
 
+	inline int PrismaticJoint::getUserData(State & state, b2PrismaticJoint * object){
+		return base->getUserData(state, object);
+	}
+
+	inline int PrismaticJoint::setUserData(State & state, b2PrismaticJoint * object){
+		return base->setUserData(state, object);
+	}
+
 	int PrismaticJoint::getAnchorA(State & state, b2PrismaticJoint * object){
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		interfaceVec2->push(new b2Vec2(object->GetAnchorA()), true);

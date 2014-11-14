@@ -24,7 +24,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("collideConnected", &FrictionJoint::getCollideConnected, &FrictionJoint::nullMethod);
 			LUTOK_PROPERTY("maxForce", &FrictionJoint::getMaxForce, &FrictionJoint::setMaxForce);
 			LUTOK_PROPERTY("maxTorque", &FrictionJoint::getMaxTorque, &FrictionJoint::setMaxTorque);
-
+			LUTOK_PROPERTY("userData", &FrictionJoint::getUserData, &FrictionJoint::setUserData);
 		}
 
 		b2FrictionJoint * constructor(State & state);
@@ -60,7 +60,10 @@ namespace LuaBox2D {
 		int getMaxTorque(State & state, b2FrictionJoint * object);
 
 		int setMaxTorque(State & state, b2FrictionJoint * object);
+		
+		int getUserData(State & state, b2FrictionJoint * object);
 
+		int setUserData(State & state, b2FrictionJoint * object);
 	};
 
 	void initFrictionJoint(State * );

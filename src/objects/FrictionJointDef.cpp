@@ -59,6 +59,14 @@ namespace LuaBox2D {
 		return base->setCollideConnected(state, object);
 	}
 
+	inline int FrictionJointDef::getUserData(State & state, b2FrictionJointDef * object){
+		return base->getUserData(state, object);
+	}
+
+	inline int FrictionJointDef::setUserData(State & state, b2FrictionJointDef * object){
+		return base->setUserData(state, object);
+	}
+
 	int FrictionJointDef::initialize(State & state, b2FrictionJointDef * object){
 		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");

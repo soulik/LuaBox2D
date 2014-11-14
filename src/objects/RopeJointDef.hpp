@@ -16,6 +16,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("localAnchorA", &RopeJointDef::getLocalAnchorA, &RopeJointDef::setLocalAnchorA);
 			LUTOK_PROPERTY("localAnchorB", &RopeJointDef::getLocalAnchorB, &RopeJointDef::setLocalAnchorB);
 			LUTOK_PROPERTY("maxLength", &RopeJointDef::getMaxLength, &RopeJointDef::setMaxLength);
+			LUTOK_PROPERTY("userData", &RopeJointDef::getUserData, &RopeJointDef::setUserData);
 		}
 
 		b2RopeJointDef * constructor(State & state);
@@ -49,6 +50,10 @@ namespace LuaBox2D {
 		int getMaxLength(State & state, b2RopeJointDef * object);
 
 		int setMaxLength(State & state, b2RopeJointDef * object);
+
+		int getUserData(State & state, b2RopeJointDef * object);
+
+		int setUserData(State & state, b2RopeJointDef * object);
 	};
 
 	void initRopeJointDef(State * );

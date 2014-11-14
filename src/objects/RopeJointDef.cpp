@@ -59,6 +59,14 @@ namespace LuaBox2D {
 		return base->setCollideConnected(state, object);
 	}
 
+	inline int RopeJointDef::getUserData(State & state, b2RopeJointDef * object){
+		return base->getUserData(state, object);
+	}
+
+	inline int RopeJointDef::setUserData(State & state, b2RopeJointDef * object){
+		return base->setUserData(state, object);
+	}
+
 	int RopeJointDef::getLocalAnchorA(State & state, b2RopeJointDef * object){
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		interfaceVec2->push(&object->localAnchorA, false);

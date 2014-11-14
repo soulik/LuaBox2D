@@ -18,7 +18,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("localAnchorB", &FrictionJointDef::getLocalAnchorB, &FrictionJointDef::setLocalAnchorB);
 			LUTOK_PROPERTY("maxForce", &FrictionJointDef::getMaxForce, &FrictionJointDef::setMaxForce);
 			LUTOK_PROPERTY("maxTorque", &FrictionJointDef::getMaxTorque, &FrictionJointDef::setMaxTorque);
-
+			LUTOK_PROPERTY("userData", &FrictionJointDef::getUserData, &FrictionJointDef::setUserData);
 		}
 
 		b2FrictionJointDef * constructor(State & state);
@@ -58,6 +58,10 @@ namespace LuaBox2D {
 		int getMaxTorque(State & state, b2FrictionJointDef * object);
 
 		int setMaxTorque(State & state, b2FrictionJointDef * object);
+
+		int getUserData(State & state, b2FrictionJointDef * object);
+
+		int setUserData(State & state, b2FrictionJointDef * object);
 	};
 
 	void initFrictionJointDef(State * );

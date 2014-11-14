@@ -59,6 +59,14 @@ namespace LuaBox2D {
 		return base->setCollideConnected(state, object);
 	}
 
+	inline int MouseJointDef::getUserData(State & state, b2MouseJointDef * object){
+		return base->getUserData(state, object);
+	}
+
+	inline int MouseJointDef::setUserData(State & state, b2MouseJointDef * object){
+		return base->setUserData(state, object);
+	}
+
 	int MouseJointDef::getTarget(State & state, b2MouseJointDef * object){
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		interfaceVec2->push(&object->target, false);

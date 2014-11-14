@@ -27,6 +27,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("dampingRatio", &MouseJoint::getDampingRatio, &MouseJoint::setDampingRatio);
 
 			LUTOK_METHOD("shiftOrigin", &MouseJoint::shiftOrigin);
+			LUTOK_PROPERTY("userData", &MouseJoint::getUserData, &MouseJoint::setUserData);
 		}
 
 		b2MouseJoint * constructor(State & state);
@@ -68,6 +69,11 @@ namespace LuaBox2D {
 		int setDampingRatio(State & state, b2MouseJoint * object);
 
 		int shiftOrigin(State & state, b2MouseJoint * object);
+
+		int getUserData(State & state, b2MouseJoint * object);
+
+		int setUserData(State & state, b2MouseJoint * object);
+
 	};
 
 	void initMouseJoint(State * );

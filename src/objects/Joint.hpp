@@ -20,6 +20,9 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("active", &Joint::getActive, &Joint::nullMethod);
 			LUTOK_PROPERTY("collideConnected", &Joint::getCollideConnected, &Joint::nullMethod);
 
+			LUTOK_PROPERTY("next", &Joint::getNext, &Joint::nullMethod);
+			LUTOK_PROPERTY("userData", &Joint::getUserData, &Joint::setUserData);
+
 			ADD_VALID_TYPE(Joint);
 			ADD_VALID_TYPE(RevoluteJoint);
 			ADD_VALID_TYPE(PrismaticJoint);
@@ -57,6 +60,12 @@ namespace LuaBox2D {
 		int getActive(State & state, b2Joint * object);
 
 		int getCollideConnected(State & state, b2Joint * object);
+
+		int getNext(State & state, b2Joint * object);
+
+		int getUserData(State & state, b2Joint * object);
+
+		int setUserData(State & state, b2Joint * object);
 
 	};
 

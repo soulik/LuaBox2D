@@ -38,6 +38,14 @@ namespace LuaBox2D {
 		return base->getBodyB(state, object);
 	}
 
+	inline int PulleyJoint::getUserData(State & state, b2PulleyJoint * object){
+		return base->getUserData(state, object);
+	}
+
+	inline int PulleyJoint::setUserData(State & state, b2PulleyJoint * object){
+		return base->setUserData(state, object);
+	}
+
 	int PulleyJoint::getAnchorA(State & state, b2PulleyJoint * object){
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		interfaceVec2->push(new b2Vec2(object->GetAnchorA()), true);
