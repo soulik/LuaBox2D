@@ -37,7 +37,7 @@ namespace LuaBox2D {
 		void add(C * element){
 			size++;
 			usedArray = static_cast<C **>(std::realloc(usedArray, sizeof(C*) * size));
-			(*usedArray)[size-1] = *C;
+			(*usedArray)[size-1] = *element;
 		}
 
 		C & operator[](size_t index){

@@ -26,19 +26,19 @@ namespace LuaBox2D {
 
 		void destructor(State & state, b2CircleShape * object);
 		
-		inline int getType(State & state, b2CircleShape * object);
+		int getType(State & state, b2CircleShape * object);
 
-		inline int getRadius(State & state, b2CircleShape * object);
+		int getRadius(State & state, b2CircleShape * object);
 
-		inline int setRadius(State & state, b2CircleShape * object);
+		int setRadius(State & state, b2CircleShape * object);
 
-		inline int testPoint(State & state, b2CircleShape * object);
+		int testPoint(State & state, b2CircleShape * object);
 
-		inline int rayCast(State & state, b2CircleShape * object);
+		int rayCast(State & state, b2CircleShape * object);
 
-		inline int computeAABB(State & state, b2CircleShape * object);
+		int computeAABB(State & state, b2CircleShape * object);
 
-		inline int computeMass(State & state, b2CircleShape * object);
+		int computeMass(State & state, b2CircleShape * object);
 		
 		int getMP(State & state, b2CircleShape * object);
 

@@ -29,19 +29,19 @@ namespace LuaBox2D {
 
 		void destructor(State & state, b2EdgeShape * object);
 
-		inline int getType(State & state, b2EdgeShape * object);
+		int getType(State & state, b2EdgeShape * object);
 
-		inline int getRadius(State & state, b2EdgeShape * object);
+		int getRadius(State & state, b2EdgeShape * object);
 
-		inline int setRadius(State & state, b2EdgeShape * object);
+		int setRadius(State & state, b2EdgeShape * object);
 
-		inline int testPoint(State & state, b2EdgeShape * object);
+		int testPoint(State & state, b2EdgeShape * object);
 
-		inline int rayCast(State & state, b2EdgeShape * object);
+		int rayCast(State & state, b2EdgeShape * object);
 
-		inline int computeAABB(State & state, b2EdgeShape * object);
+		int computeAABB(State & state, b2EdgeShape * object);
 
-		inline int computeMass(State & state, b2EdgeShape * object);
+		int computeMass(State & state, b2EdgeShape * object);
 
 		int operator_len(State & state, b2EdgeShape * object);
 
