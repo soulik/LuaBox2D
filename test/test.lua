@@ -1,4 +1,4 @@
-﻿local function testFile(name)
+local function testFile(name)
 	local fname = ("test_%s.lua"):format(name)
 	return pcall(loadfile(fname))
 end

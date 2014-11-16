@@ -1,4 +1,4 @@
-﻿local box2d = require 'LuaBox2D'
+local box2d = require 'LuaBox2D'
 local Vec2 = box2d.Vec2
 
 local v1 = Vec2(1,2)

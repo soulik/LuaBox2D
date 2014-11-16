@@ -1,4 +1,4 @@
-﻿local box2d = require 'LuaBox2D'
+local box2d = require 'LuaBox2D'
 local Vec2 = box2d.Vec2
 local VA = box2d.VertexArray
 local W = box2d.World
@@ -18,10 +18,12 @@ do
 
 		local fd1 = FD()
 		fd1.shape = s1
+		local mt = getmetatable(fd1)
 
+		print("OK", mt.typename)
 		local f1 = b1.createFixture(fd1)
 		return b1
-	end)()
+	end)
 
 	local attachment = (function()
 		local bd1 = BD()
@@ -33,7 +35,7 @@ do
 
 		local f1 = b1.createFixture(s1, 2)
 		return b1
-	end)()
+	end)
 
 	local platform = (function()
 		local bd1 = BD()
@@ -67,8 +69,9 @@ do
 		local j2 = w1.createJoint(jd2)
 
 		return b1
-	end)()
+	end)
 
+--[[
 	local step = function()
 		if platform.type == 'kinematicBody' then
 			local p = platform.getTransform().p
@@ -86,4 +89,6 @@ do
 	for i=1,30 do
 		step()
 	end
+	]]--
+	local G = ground()
 end

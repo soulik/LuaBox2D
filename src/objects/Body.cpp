@@ -18,8 +18,8 @@ namespace LuaBox2D {
 
 	void Body::destructor(State & state, b2Body * object){
 		b2World * world = object->GetWorld();
-		int oldRef = reinterpret_cast<int>(object->GetUserData());
-		if (oldRef != LUA_NOREF && oldRef != NULL){
+		int oldRef = static_cast<int>(reinterpret_cast<intptr_t>(object->GetUserData()));
+		if (oldRef != LUA_NOREF && oldRef != 0){
 			state.stack->unref(oldRef);
 		}
 		world->DestroyBody(object);
@@ -298,7 +298,7 @@ namespace LuaBox2D {
 	}
 
 	int Body::getType(State & state, b2Body * object){
-		state.stack->push(bodyTypeToString(object->GetType()));
+		state.stack->push<const std::string &>(bodyTypeToString(object->GetType()));
 		return 1;
 	}
 
@@ -393,8 +393,8 @@ namespace LuaBox2D {
 	}
 
 	int Body::getUserData(State & state, b2Body * object){
-		int ref = reinterpret_cast<int>(object->GetUserData());
-		if (ref != LUA_NOREF && ref != NULL){
+		int ref = static_cast<int>(reinterpret_cast<intptr_t>(object->GetUserData()));
+		if (ref != LUA_NOREF && ref != 0){
 			state.stack->rawGet(LUA_REGISTRYINDEX, ref);
 			return 1;
 		}else{
@@ -403,8 +403,8 @@ namespace LuaBox2D {
 	}
 
 	int Body::setUserData(State & state, b2Body * object){
-		int oldRef = reinterpret_cast<int>(object->GetUserData());
-		if (oldRef != LUA_NOREF && oldRef != NULL){
+		int oldRef = static_cast<int>(reinterpret_cast<intptr_t>(object->GetUserData()));
+		if (oldRef != LUA_NOREF && oldRef != 0){
 			state.stack->unref(oldRef);
 		}
 		if (!state.stack->is<LUA_TNIL>(1)){

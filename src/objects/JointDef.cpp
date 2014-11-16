@@ -97,8 +97,8 @@ namespace LuaBox2D {
 	}
 
 	int JointDef::getUserData(State & state, b2JointDef * object){
-		int ref = reinterpret_cast<int>(object->userData);
-		if (ref != LUA_NOREF && ref != NULL){
+		int ref = static_cast<int>(reinterpret_cast<intptr_t>(object->userData));
+		if (ref != LUA_NOREF && ref != 0){
 			state.stack->rawGet(LUA_REGISTRYINDEX, ref);
 			return 1;
 		}else{
@@ -107,8 +107,8 @@ namespace LuaBox2D {
 	}
 
 	int JointDef::setUserData(State & state, b2JointDef * object){
-		int oldRef = reinterpret_cast<int>(object->userData);
-		if (oldRef != LUA_NOREF && oldRef != NULL){
+		int oldRef = static_cast<int>(reinterpret_cast<intptr_t>(object->userData));
+		if (oldRef != LUA_NOREF && oldRef != 0){
 			state.stack->unref(oldRef);
 		}
 		if (!state.stack->is<LUA_TNIL>(1)){

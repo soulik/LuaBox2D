@@ -188,3 +188,14 @@ test/*.exe
 test/*.dll
 
 out/
+
+# CMake
+CMakeCache.txt
+cmake_install.cmake
+CMakeFiles/
+*.cmake
+Makefile
+
+# Binaries
+*.so
+*.a

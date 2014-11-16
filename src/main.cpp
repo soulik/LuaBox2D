@@ -64,6 +64,7 @@
 #include "objects/RopeJointDef.hpp"
 #include "objects/MotorJoint.hpp"
 #include "objects/MotorJointDef.hpp"
+#include "main.hpp"
 
 namespace LuaBox2D {
 	int version(State & state){
@@ -82,7 +83,7 @@ using namespace LuaBox2D;
 #define INIT_JOINT(JOINT_NAME) INIT_OBJECT(JOINT_NAME ## Joint); \
 	INIT_OBJECT(JOINT_NAME ## JointDef)
 
-extern "C" LUA_API int luaopen_LuaBox2D(lua_State * L){
+int luaopen_LuaBox2D(lua_State * L){
 	State * state = new State(L);
 	Stack * stack = state->stack;
 	stack->newTable();

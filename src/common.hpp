@@ -10,4 +10,14 @@ using namespace lutok2;
 #define ADD_VALID_TYPE(NAME)	validTypes.push_front("class lutok2::Object<class b2" #NAME "> *")
 #define ADD_VALID_STRUCT(NAME)	validTypes.push_front("class lutok2::Object<struct b2" #NAME "> *")
 
+#if BUILDING_LIBLUABOX2D && HAVE_VISIBILITY
+#define LIBLUABOX2D_DLL_EXPORTED __attribute__((visibility("default")))
+#elif BUILDING_LIBLUABOX2D && defined _MSC_VER
+#define LIBLUABOX2D_DLL_EXPORTED __declspec(dllexport)
+#elif defined _MSC_VER
+#define LIBLUABOX2D_DLL_EXPORTED __declspec(dllimport)
+#else
+#define LIBLUABOX2D_DLL_EXPORTED
+#endif
+
 #endif

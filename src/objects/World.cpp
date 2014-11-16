@@ -157,7 +157,7 @@ namespace LuaBox2D {
 
 	int World::getGravity(State & state, b2World * object){
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
-		interfaceVec2->push(&object->GetGravity(), false);
+		interfaceVec2->push(new b2Vec2(object->GetGravity()), true);
 		return 1;
 	}
 

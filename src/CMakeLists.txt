@@ -78,6 +78,7 @@ set(LuaBox2D_objects_shapes_src
 
 set(LuaBox2D_hdr
 	common.hpp
+	main.hpp
 	array.hpp
 )
 
@@ -171,8 +172,35 @@ set(LuaBox2D_sources
 )
 
 include_directories(objects)
+include_directories(./)
+
+# Setup C++ flags
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
+if(COMPILER_SUPPORTS_CXX11)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+elseif(COMPILER_SUPPORTS_CXX0X)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+else()
+    message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+endif()
+
+IF(UNIX)
+    IF(CMAKE_COMPILER_IS_GNUCC)
+         SET(CMAKE_SHARED_LINKER_FLAGS  "${CMAKE_SHARED_LINKER_FLAGS} ${CMAKE_CXX_COMPILE_OPTIONS_VISIBILITY}hidden")
+    ENDIF(CMAKE_COMPILER_IS_GNUCC)
+
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wmissing-declarations")
+ENDIF(UNIX)
+
 
 
 add_library(LuaBox2D SHARED
 	${LuaBox2D_sources}
+)
+
+target_link_libraries (LuaBox2D
+	Box2D
+	${LUA_LIBRARIES}
 )

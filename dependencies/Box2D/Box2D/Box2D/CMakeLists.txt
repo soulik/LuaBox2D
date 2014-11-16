@@ -149,6 +149,10 @@ if(BOX2D_BUILD_SHARED)
 endif()
 
 if(BOX2D_BUILD_STATIC)
+	IF(UNIX)
+		SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+	ENDIF(UNIX)
+	
 	add_library(Box2D STATIC
 		${BOX2D_General_HDRS}
 		${BOX2D_Joints_SRCS}

@@ -25,8 +25,8 @@ namespace LuaBox2D {
 	}
 
 	void Fixture::destructor(State & state, b2Fixture * object){
-		int oldRef = reinterpret_cast<int>(object->GetUserData());
-		if (oldRef != LUA_NOREF && oldRef != NULL){
+		int oldRef = static_cast<int>(reinterpret_cast<intptr_t>(object->GetUserData()));
+		if (oldRef != LUA_NOREF && oldRef != 0){
 			state.stack->unref(oldRef);
 		}
 		object->GetBody()->DestroyFixture(object);
@@ -196,8 +196,8 @@ namespace LuaBox2D {
 	}
 
 	int Fixture::getUserData(State & state, b2Fixture * object){
-		int ref = reinterpret_cast<int>(object->GetUserData());
-		if (ref != LUA_NOREF && ref != NULL){
+		int ref = static_cast<int>(reinterpret_cast<intptr_t>(object->GetUserData()));
+		if (ref != LUA_NOREF && ref != 0){
 			state.stack->rawGet(LUA_REGISTRYINDEX, ref);
 			return 1;
 		}else{
@@ -206,8 +206,8 @@ namespace LuaBox2D {
 	}
 
 	int Fixture::setUserData(State & state, b2Fixture * object){
-		int oldRef = reinterpret_cast<int>(object->GetUserData());
-		if (oldRef != LUA_NOREF && oldRef != NULL){
+		int oldRef = static_cast<int>(reinterpret_cast<intptr_t>(object->GetUserData()));
+		if (oldRef != LUA_NOREF && oldRef != 0){
 			state.stack->unref(oldRef);
 		}
 		if (!state.stack->is<LUA_TNIL>(1)){
