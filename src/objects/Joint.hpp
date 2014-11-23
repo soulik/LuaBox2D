@@ -23,19 +23,10 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("next", &Joint::getNext, &Joint::nullMethod);
 			LUTOK_PROPERTY("userData", &Joint::getUserData, &Joint::setUserData);
 
-			ADD_VALID_TYPE(Joint);
-			ADD_VALID_TYPE(RevoluteJoint);
-			ADD_VALID_TYPE(PrismaticJoint);
-			ADD_VALID_TYPE(DistanceJoint);
-			ADD_VALID_TYPE(PulleyJoint);
-			ADD_VALID_TYPE(MouseJoint);
-			ADD_VALID_TYPE(GearJoint);
-			ADD_VALID_TYPE(WheelJoint);
-			ADD_VALID_TYPE(WeldJoint);
-			ADD_VALID_TYPE(FrictionJoint);
-			ADD_VALID_TYPE(RopeJoint);
-			ADD_VALID_TYPE(MotorJoint);
+			initAllowedTypes();
 		}
+
+		void initAllowedTypes();
 
 		b2Joint * constructor(State & );
 

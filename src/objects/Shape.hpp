@@ -15,12 +15,10 @@ namespace LuaBox2D {
 			LUTOK_METHOD("computeAABB", &Shape::computeAABB);
 			LUTOK_METHOD("computeMass", &Shape::computeMass);
 
-			ADD_VALID_TYPE(Shape);
-			ADD_VALID_TYPE(CircleShape);
-			ADD_VALID_TYPE(ChainShape);
-			ADD_VALID_TYPE(EdgeShape);
-			ADD_VALID_TYPE(PolygonShape);
+			initAllowedTypes();
 		}
+
+		void initAllowedTypes();
 
 		b2Shape * constructor(State & state);
 

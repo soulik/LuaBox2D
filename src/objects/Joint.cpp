@@ -3,6 +3,18 @@
 #include "objects/Body.hpp"
 #include "objects/Joint.hpp"
 
+#include "objects/RevoluteJoint.hpp"
+#include "objects/PrismaticJoint.hpp"
+#include "objects/DistanceJoint.hpp"
+#include "objects/PulleyJoint.hpp"
+#include "objects/MouseJoint.hpp"
+#include "objects/GearJoint.hpp"
+#include "objects/WheelJoint.hpp"
+#include "objects/WeldJoint.hpp"
+#include "objects/FrictionJoint.hpp"
+#include "objects/RopeJoint.hpp"
+#include "objects/MotorJoint.hpp"
+
 namespace LuaBox2D {
 	void initJoint(State * state){
 		state->registerInterface<Joint>("LuaBox2D_Joint");
@@ -15,6 +27,21 @@ namespace LuaBox2D {
 		}else{
 			return nullptr;
 		}
+	}
+
+	void Joint::initAllowedTypes(){
+		ADD_VALID_TYPE(b2Joint);
+		ADD_VALID_TYPE(b2RevoluteJoint);
+		ADD_VALID_TYPE(b2PrismaticJoint);
+		ADD_VALID_TYPE(b2DistanceJoint);
+		ADD_VALID_TYPE(b2PulleyJoint);
+		ADD_VALID_TYPE(b2MouseJoint);
+		ADD_VALID_TYPE(b2GearJoint);
+		ADD_VALID_TYPE(b2WheelJoint);
+		ADD_VALID_TYPE(b2WeldJoint);
+		ADD_VALID_TYPE(b2FrictionJoint);
+		ADD_VALID_TYPE(b2RopeJoint);
+		ADD_VALID_TYPE(b2MotorJoint);
 	}
 
 	int Joint::getBodyA(State & state, b2Joint * object){
@@ -129,7 +156,7 @@ namespace LuaBox2D {
 	int Joint::getUserData(State & state, b2Joint * object){
 		int ref = static_cast<int>(reinterpret_cast<intptr_t>(object->GetUserData()));
 		if (ref != LUA_NOREF && ref != 0){
-			state.stack->rawGet(LUA_REGISTRYINDEX, ref);
+			state.stack->regValue(ref);
 			return 1;
 		}else{
 			return 0;

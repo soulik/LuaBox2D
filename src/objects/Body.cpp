@@ -304,7 +304,8 @@ namespace LuaBox2D {
 
 	int Body::setType(State & state, b2Body * object){
 		if (state.stack->is<LUA_TSTRING>(1)){
-			object->SetType(stringToBodyType(state.stack->to<std::string>(1)));
+			const std::string typeName = state.stack->to<const std::string>(1);
+			object->SetType(stringToBodyType(typeName));
 		}
 		return 0;
 	}
@@ -395,7 +396,7 @@ namespace LuaBox2D {
 	int Body::getUserData(State & state, b2Body * object){
 		int ref = static_cast<int>(reinterpret_cast<intptr_t>(object->GetUserData()));
 		if (ref != LUA_NOREF && ref != 0){
-			state.stack->rawGet(LUA_REGISTRYINDEX, ref);
+			state.stack->regValue(ref);
 			return 1;
 		}else{
 			return 0;

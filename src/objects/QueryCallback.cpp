@@ -17,7 +17,7 @@ namespace LuaBox2D {
 
 	int QueryCallback::getReportFixture(State & state, LuaBox2DQueryCallback * object){
 		if (object->refReportFixture != LUA_NOREF){
-			state.stack->rawGet(LUA_REGISTRYINDEX, object->refReportFixture);
+			state.stack->rawGet(object->refReportFixture, LUA_REGISTRYINDEX);
 			return 1;
 		}else{
 			return 0;
@@ -29,7 +29,8 @@ namespace LuaBox2D {
 			if (object->refReportFixture != LUA_NOREF){
 				state.stack->unref(object->refReportFixture);
 			}
-			object->refReportFixture = state.stack->ref(1);
+			state.stack->pushValue(1);
+			object->refReportFixture = state.stack->ref();
 		}else{
 			if (state.stack->is<LUA_TNIL>(1)){
 				if (object->refReportFixture != LUA_NOREF){
@@ -43,8 +44,12 @@ namespace LuaBox2D {
 
 	inline bool LuaBox2DQueryCallback::getCallBack(int ref){
 		if (ref != LUA_NOREF){
-			state->stack->rawGet(LUA_REGISTRYINDEX, ref);
-			return true;
+			state->stack->regValue(ref);
+			if (state->stack->is<LUA_TFUNCTION>()){
+				return true;
+			}else{
+				return false;
+			}
 		}else{
 			return false;
 		}

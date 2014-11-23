@@ -16,6 +16,14 @@ namespace LuaBox2D {
 		state->registerInterface<Shape>("LuaBox2D_Shape");
 	}
 
+	void Shape::initAllowedTypes(){
+		ADD_VALID_TYPE(b2Shape);
+		ADD_VALID_TYPE(b2CircleShape);
+		ADD_VALID_TYPE(b2ChainShape);
+		ADD_VALID_TYPE(b2EdgeShape);
+		ADD_VALID_TYPE(b2PolygonShape);
+	}
+
 	b2Shape * Shape::constructor(State & state){
 		b2Shape *obj = get(1);
 		if (obj != nullptr){

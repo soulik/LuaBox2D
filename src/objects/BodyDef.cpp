@@ -53,7 +53,8 @@ namespace LuaBox2D {
 
 	int BodyDef::setBodyType(State & state, b2BodyDef * object){
 		if (state.stack->is<LUA_TSTRING>(1)){
-			object->type = stringToBodyType(state.stack->to<std::string>(1));
+			const std::string key = state.stack->to<const std::string>(1);
+			object->type = stringToBodyType(key);
 		}
 		return 0;
 	}
@@ -191,7 +192,7 @@ namespace LuaBox2D {
 	int BodyDef::getUserData(State & state, b2BodyDef * object){
 		int ref = static_cast<int>(reinterpret_cast<intptr_t>(object->userData));
 		if (ref != LUA_NOREF && ref != 0){
-			state.stack->rawGet(LUA_REGISTRYINDEX, ref);
+			state.stack->regValue(ref);
 			return 1;
 		}else{
 			return 0;

@@ -92,7 +92,7 @@ namespace LuaBox2D {
 	int FixtureDef::getUserData(State & state, b2FixtureDef * object){
 		int ref = static_cast<int>(reinterpret_cast<intptr_t>(object->userData));
 		if (ref != LUA_NOREF && ref != 0){
-			state.stack->rawGet(LUA_REGISTRYINDEX, ref);
+			state.stack->regValue(ref);
 			return 1;
 		}else{
 			return 0;

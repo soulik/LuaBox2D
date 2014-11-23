@@ -17,6 +17,7 @@ namespace LuaBox2D {
 		b2VertexArray * constructor(State & state, b2Vec2 * array, b2VertexArray::size_type size);
 
 		void destructor(State & state, b2VertexArray * object){
+			LUTOK2_NOT_USED(state);
 			delete object;
 		}
 

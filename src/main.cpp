@@ -83,7 +83,7 @@ using namespace LuaBox2D;
 #define INIT_JOINT(JOINT_NAME) INIT_OBJECT(JOINT_NAME ## Joint); \
 	INIT_OBJECT(JOINT_NAME ## JointDef)
 
-int luaopen_LuaBox2D(lua_State * L){
+extern "C" LIBLUABOX2D_DLL_EXPORTED int luaopen_LuaBox2D(lua_State * L){
 	State * state = new State(L);
 	Stack * stack = state->stack;
 	stack->newTable();

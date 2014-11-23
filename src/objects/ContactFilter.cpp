@@ -9,7 +9,7 @@ namespace LuaBox2D {
 
 	inline bool LuaBox2DContactFilter::getCallBack(int ref){
 		if (ref != LUA_NOREF){
-			state->stack->rawGet(LUA_REGISTRYINDEX, ref);
+			state->stack->regValue(ref);
 			return true;
 		}else{
 			return false;
@@ -46,7 +46,7 @@ namespace LuaBox2D {
 
 	int ContactFilter::getShouldCollide(State & state, LuaBox2DContactFilter * object){
 		if (object->refShouldCollide != LUA_NOREF){
-			state.stack->rawGet(LUA_REGISTRYINDEX, object->refShouldCollide);
+			state.stack->rawGet(object->refShouldCollide, LUA_REGISTRYINDEX);
 			return 1;
 		}else{
 			return 0;
@@ -58,7 +58,8 @@ namespace LuaBox2D {
 			if (object->refShouldCollide != LUA_NOREF){
 				state.stack->unref(object->refShouldCollide);
 			}
-			object->refShouldCollide = state.stack->ref(1);
+			state.stack->pushValue(1);
+			object->refShouldCollide = state.stack->ref();
 		}else{
 			if (state.stack->is<LUA_TNIL>(1)){
 				if (object->refShouldCollide != LUA_NOREF){

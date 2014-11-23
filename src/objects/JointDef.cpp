@@ -2,9 +2,36 @@
 #include "objects/JointDef.hpp"
 #include "objects/Body.hpp"
 
+#include "objects/RevoluteJointDef.hpp"
+#include "objects/PrismaticJointDef.hpp"
+#include "objects/DistanceJointDef.hpp"
+#include "objects/PulleyJointDef.hpp"
+#include "objects/MouseJointDef.hpp"
+#include "objects/GearJointDef.hpp"
+#include "objects/WheelJointDef.hpp"
+#include "objects/WeldJointDef.hpp"
+#include "objects/FrictionJointDef.hpp"
+#include "objects/RopeJointDef.hpp"
+#include "objects/MotorJointDef.hpp"
+
 namespace LuaBox2D {
 	void initJointDef(State * state){
 		state->registerInterface<JointDef>("LuaBox2D_JointDef");
+	}
+
+	void JointDef::initAllowedTypes(){
+		ADD_VALID_STRUCT(b2JointDef);
+		ADD_VALID_STRUCT(b2RevoluteJointDef);
+		ADD_VALID_STRUCT(b2PrismaticJointDef);
+		ADD_VALID_STRUCT(b2DistanceJointDef);
+		ADD_VALID_STRUCT(b2PulleyJointDef);
+		ADD_VALID_STRUCT(b2MouseJointDef);
+		ADD_VALID_STRUCT(b2GearJointDef);
+		ADD_VALID_STRUCT(b2WheelJointDef);
+		ADD_VALID_STRUCT(b2WeldJointDef);
+		ADD_VALID_STRUCT(b2FrictionJointDef);
+		ADD_VALID_STRUCT(b2RopeJointDef);
+		ADD_VALID_STRUCT(b2MotorJointDef);
 	}
 
 	b2JointDef * JointDef::constructor(State & state){
@@ -99,7 +126,7 @@ namespace LuaBox2D {
 	int JointDef::getUserData(State & state, b2JointDef * object){
 		int ref = static_cast<int>(reinterpret_cast<intptr_t>(object->userData));
 		if (ref != LUA_NOREF && ref != 0){
-			state.stack->rawGet(LUA_REGISTRYINDEX, ref);
+			state.stack->regValue(ref);
 			return 1;
 		}else{
 			return 0;

@@ -11,8 +11,12 @@ namespace LuaBox2D {
 
 	inline bool LuaBox2DContactListener::getCallBack(int ref){
 		if (ref != LUA_NOREF){
-			state->stack->rawGet(LUA_REGISTRYINDEX, ref);
-			return true;
+			state->stack->regValue(ref);
+			if (state->stack->is<LUA_TFUNCTION>()){
+				return true;
+			}else{
+				return false;
+			}
 		}else{
 			return false;
 		}
@@ -81,7 +85,7 @@ namespace LuaBox2D {
 
 	int ContactListener::getBeginContact(State & state, LuaBox2DContactListener * object){
 		if (object->refBeginContact != LUA_NOREF){
-			state.stack->rawGet(LUA_REGISTRYINDEX, object->refBeginContact);
+			state.stack->rawGet(object->refBeginContact, LUA_REGISTRYINDEX);
 			return 1;
 		}else{
 			return 0;
@@ -93,7 +97,8 @@ namespace LuaBox2D {
 			if (object->refBeginContact != LUA_NOREF){
 				state.stack->unref(object->refBeginContact);
 			}
-			object->refBeginContact = state.stack->ref(1);
+			state.stack->pushValue(1);
+			object->refBeginContact = state.stack->ref();
 		}else{
 			if (state.stack->is<LUA_TNIL>(1)){
 				if (object->refBeginContact != LUA_NOREF){
@@ -107,7 +112,7 @@ namespace LuaBox2D {
 
 	int ContactListener::getEndContact(State & state, LuaBox2DContactListener * object){
 		if (object->refEndContact != LUA_NOREF){
-			state.stack->rawGet(LUA_REGISTRYINDEX, object->refEndContact);
+			state.stack->rawGet(object->refEndContact, LUA_REGISTRYINDEX);
 			return 1;
 		}else{
 			return 0;
@@ -119,7 +124,8 @@ namespace LuaBox2D {
 			if (object->refEndContact != LUA_NOREF){
 				state.stack->unref(object->refEndContact);
 			}
-			object->refEndContact = state.stack->ref(1);
+			state.stack->pushValue(1);
+			object->refEndContact = state.stack->ref();
 		}else{
 			if (state.stack->is<LUA_TNIL>(1)){
 				if (object->refEndContact != LUA_NOREF){
@@ -133,7 +139,7 @@ namespace LuaBox2D {
 
 	int ContactListener::getPreSolve(State & state, LuaBox2DContactListener * object){
 		if (object->refPreSolve != LUA_NOREF){
-			state.stack->rawGet(LUA_REGISTRYINDEX, object->refPreSolve);
+			state.stack->rawGet(object->refPreSolve, LUA_REGISTRYINDEX);
 			return 1;
 		}else{
 			return 0;
@@ -145,7 +151,8 @@ namespace LuaBox2D {
 			if (object->refPreSolve != LUA_NOREF){
 				state.stack->unref(object->refPreSolve);
 			}
-			object->refPreSolve = state.stack->ref(1);
+			state.stack->pushValue(1);
+			object->refPreSolve = state.stack->ref();
 		}else{
 			if (state.stack->is<LUA_TNIL>(1)){
 				if (object->refPreSolve != LUA_NOREF){
@@ -159,7 +166,7 @@ namespace LuaBox2D {
 
 	int ContactListener::getPostSolve(State & state, LuaBox2DContactListener * object){
 		if (object->refPostSolve != LUA_NOREF){
-			state.stack->rawGet(LUA_REGISTRYINDEX, object->refPostSolve);
+			state.stack->rawGet(object->refPostSolve, LUA_REGISTRYINDEX);
 			return 1;
 		}else{
 			return 0;
@@ -171,7 +178,8 @@ namespace LuaBox2D {
 			if (object->refPostSolve != LUA_NOREF){
 				state.stack->unref(object->refPostSolve);
 			}
-			object->refPostSolve = state.stack->ref(1);
+			state.stack->pushValue(1);
+			object->refPostSolve = state.stack->ref();
 		}else{
 			if (state.stack->is<LUA_TNIL>(1)){
 				if (object->refPostSolve != LUA_NOREF){

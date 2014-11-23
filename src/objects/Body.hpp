@@ -21,10 +21,12 @@ namespace LuaBox2D {
 			LUTOK_METHOD("applyTorque", &Body::applyTorque);
 			LUTOK_METHOD("applyLinearImpulse", &Body::applyLinearImpulse);
 			LUTOK_METHOD("applyAngularImpulse", &Body::applyAngularImpulse);
+			
 
 			LUTOK_PROPERTY("mass", &Body::getMass, &Body::nullMethod);
 			LUTOK_PROPERTY("inertia", &Body::getInertia, &Body::nullMethod);
 			LUTOK_PROPERTY("massData", &Body::getMassData, &Body::setMassData);
+			LUTOK_METHOD("resetMassData", &Body::resetMassData);
 			
 			LUTOK_METHOD("localPoint", &Body::getLocalPoint);
 			LUTOK_METHOD("localVector", &Body::getLocalVector);
