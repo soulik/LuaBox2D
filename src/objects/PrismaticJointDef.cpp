@@ -114,6 +114,21 @@ namespace LuaBox2D {
 		return 0;
 	}
 
+	int PrismaticJointDef::getLocalAxisA(State & state, b2PrismaticJointDef * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		interfaceVec2->push(&object->localAxisA, false);
+		return 1;
+	}
+
+	int PrismaticJointDef::setLocalAxisA(State & state, b2PrismaticJointDef * object){
+		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
+		b2Vec2 * axisA = interfaceVec2->get(1);
+		if (axisA != nullptr){
+			object->localAxisA = *axisA;
+		}
+		return 0;
+	}
+
 	int PrismaticJointDef::getReferenceAngle(State & state, b2PrismaticJointDef * object){
 		state.stack->push<LUA_NUMBER>(static_cast<LUA_NUMBER>(object->referenceAngle));
 		return 1;

@@ -16,6 +16,7 @@ namespace LuaBox2D {
 
 			LUTOK_PROPERTY("localAnchorA", &PrismaticJointDef::getLocalAnchorA, &PrismaticJointDef::setLocalAnchorA);
 			LUTOK_PROPERTY("localAnchorB", &PrismaticJointDef::getLocalAnchorB, &PrismaticJointDef::setLocalAnchorB);
+			LUTOK_PROPERTY("localAxisA", &PrismaticJointDef::getLocalAxisA, &PrismaticJointDef::setLocalAxisA);
 			LUTOK_PROPERTY("referenceAngle", &PrismaticJointDef::getReferenceAngle, &PrismaticJointDef::setReferenceAngle);
 			LUTOK_PROPERTY("enableLimit", &PrismaticJointDef::getEnableLimit, &PrismaticJointDef::setEnableLimit);
 			LUTOK_PROPERTY("lowerTranslation", &PrismaticJointDef::getLowerTranslation, &PrismaticJointDef::setLowerTranslation);
@@ -56,6 +57,10 @@ namespace LuaBox2D {
 		int getLocalAnchorB(State & state, b2PrismaticJointDef * object);
 
 		int setLocalAnchorB(State & state, b2PrismaticJointDef * object);
+
+		int getLocalAxisA(State & state, b2PrismaticJointDef * object);
+
+		int setLocalAxisA(State & state, b2PrismaticJointDef * object);
 
 		int getReferenceAngle(State & state, b2PrismaticJointDef * object);
 
