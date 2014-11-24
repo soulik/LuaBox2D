@@ -11,7 +11,7 @@ namespace LuaBox2D {
 			LUTOK_METHOD("setTangentImpulse", &ContactImpulse::setTangentImpulse);
 		}
 
-		b2ContactImpulse * constructor(State & state);
+		b2ContactImpulse * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2ContactImpulse * object);
 

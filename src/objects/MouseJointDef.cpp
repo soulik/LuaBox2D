@@ -9,12 +9,13 @@ namespace LuaBox2D {
 		state->registerInterface<MouseJointDef>("LuaBox2D_MouseJointDef");
 	}
 
-	b2MouseJointDef * MouseJointDef::constructor(State & state){
+	b2MouseJointDef * MouseJointDef::constructor(State & state, bool & managed){
 		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
 		b2JointDef * jointDef = interfaceJointDef->get(1);
 		if (jointDef != nullptr){
 			if (jointDef->type == b2JointType::e_mouseJoint){
-				return new b2MouseJointDef(*(b2MouseJointDef*)(jointDef));
+				managed = false;
+				return reinterpret_cast<b2MouseJointDef*>(jointDef);
 			}else{
 				return new b2MouseJointDef();
 			}

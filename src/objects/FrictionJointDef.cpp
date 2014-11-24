@@ -9,12 +9,13 @@ namespace LuaBox2D {
 		state->registerInterface<FrictionJointDef>("LuaBox2D_FrictionJointDef");
 	}
 
-	b2FrictionJointDef * FrictionJointDef::constructor(State & state){
+	b2FrictionJointDef * FrictionJointDef::constructor(State & state, bool & managed){
 		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
 		b2JointDef * jointDef = interfaceJointDef->get(1);
 		if (jointDef != nullptr){
 			if (jointDef->type == b2JointType::e_frictionJoint){
-				return new b2FrictionJointDef(*(b2FrictionJointDef*)(jointDef));
+				managed = false;
+				return reinterpret_cast<b2FrictionJointDef*>(jointDef);
 			}else{
 				return new b2FrictionJointDef();
 			}

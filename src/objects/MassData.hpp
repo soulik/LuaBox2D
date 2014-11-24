@@ -10,7 +10,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("I", &MassData::getI, &MassData::setI);
 		}
 
-		b2MassData * constructor(State & state);
+		b2MassData * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2MassData * object);
 

@@ -11,7 +11,7 @@ namespace LuaBox2D {
 			LUTOK_METHOD("setSeparation", &WorldManifold::setSeparation);
 		}
 
-		b2WorldManifold * constructor(State & state);
+		b2WorldManifold * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2WorldManifold * object);
 

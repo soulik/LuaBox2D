@@ -9,12 +9,13 @@ namespace LuaBox2D {
 		state->registerInterface<RevoluteJointDef>("LuaBox2D_RevoluteJointDef");
 	}
 
-	b2RevoluteJointDef * RevoluteJointDef::constructor(State & state){
+	b2RevoluteJointDef * RevoluteJointDef::constructor(State & state, bool & managed){
 		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
 		b2JointDef * jointDef = interfaceJointDef->get(1);
 		if (jointDef != nullptr){
 			if (jointDef->type == b2JointType::e_revoluteJoint){
-				return new b2RevoluteJointDef(*(b2RevoluteJointDef*)(jointDef));
+				managed = false;
+				return reinterpret_cast<b2RevoluteJointDef*>(jointDef);
 			}else{
 				return new b2RevoluteJointDef();
 			}

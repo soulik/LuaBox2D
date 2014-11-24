@@ -9,7 +9,7 @@ namespace LuaBox2D {
 		state->registerInterface<WorldManifold>("LuaBox2D_WorldManifold");
 	}
 
-	b2WorldManifold * WorldManifold::constructor(State & state){
+	b2WorldManifold * WorldManifold::constructor(State & state, bool & managed){
 		return new b2WorldManifold();
 	}
 

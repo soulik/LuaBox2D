@@ -27,7 +27,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("userData", &BodyDef::getUserData, &BodyDef::setUserData);
 		}
 
-		b2BodyDef * constructor(State & state);
+		b2BodyDef * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2BodyDef * object);
 

@@ -7,7 +7,7 @@ namespace LuaBox2D {
 
 	}
 
-	b2Filter * Filter::constructor(State & state){
+	b2Filter * Filter::constructor(State & state, bool & managed){
 		return new b2Filter();
 	}
 

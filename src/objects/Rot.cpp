@@ -7,7 +7,7 @@ namespace LuaBox2D {
 		state->registerInterface<Rot>("LuaBox2D_Rot");
 	}
 
-	b2Rot * Rot::constructor(State & state){
+	b2Rot * Rot::constructor(State & state, bool & managed){
 		b2Rot * obj = nullptr;
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 

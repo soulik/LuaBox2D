@@ -9,12 +9,13 @@ namespace LuaBox2D {
 		state->registerInterface<PolygonShape>("LuaBox2D_PolygonShape");
 	}
 
-	b2PolygonShape * PolygonShape::constructor(State & state){
+	b2PolygonShape * PolygonShape::constructor(State & state, bool & managed){
 		Shape * interfaceShape = state.getInterface<Shape>("LuaBox2D_Shape");
 		b2Shape * shape = interfaceShape->get(1);
 		if (shape != nullptr){
 			if (shape->GetType() == b2Shape::e_polygon){
-				return new b2PolygonShape(*dynamic_cast<b2PolygonShape*>(shape));
+				managed = false;
+				return dynamic_cast<b2PolygonShape*>(shape);
 			}else{
 				return new b2PolygonShape();
 			}

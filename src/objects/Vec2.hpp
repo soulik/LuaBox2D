@@ -22,7 +22,7 @@ namespace LuaBox2D {
 			LUTOK_METHOD("max", &Vec2::max);
 		}
 
-		b2Vec2 * constructor(State & state);
+		b2Vec2 * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2Vec2 * object);
 

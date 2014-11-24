@@ -28,7 +28,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("collideConnected", &{{CLASS}}::getCollideConnected, &{{CLASS}}::nullMethod);
 		}
 
-		{{ORIG_CLASS}} * constructor(State & state);
+		{{ORIG_CLASS}} * constructor(State & state, bool & managed);
 
 		void destructor(State & state, {{ORIG_CLASS}} * object);
 
@@ -66,12 +66,13 @@ namespace LuaBox2D {
 		state->registerInterface<{{CLASS}}>("LuaBox2D_{{CLASS}}");
 	}
 
-	{{ORIG_CLASS}} * {{CLASS}}::constructor(State & state){
+	{{ORIG_CLASS}} * {{CLASS}}::constructor(State & state, bool & managed){
 		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
 		b2Joint * joint = interfaceJoint->get(1);
 		if (joint != nullptr){
 			if (joint->GetType() == b2JointType::e_revoluteJoint){
-				return new {{ORIG_CLASS}}(*dynamic_cast<{{ORIG_CLASS}}*>(joint));
+				managed = false;
+				return dynamic_cast<{{ORIG_CLASS}}*>(joint);
 			}else{
 				return nullptr;
 			}

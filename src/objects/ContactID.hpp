@@ -9,7 +9,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("key", &ContactID::getKey, &ContactID::setKey);
 		}
 
-		b2ContactID * constructor(State & state);
+		b2ContactID * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2ContactID * object);
 

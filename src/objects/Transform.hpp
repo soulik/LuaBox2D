@@ -11,7 +11,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("q", &Transform::getQ, &Transform::setQ);
 		}
 
-		b2Transform * constructor(State & state);
+		b2Transform * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2Transform * object);
 

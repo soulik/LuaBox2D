@@ -8,7 +8,7 @@ namespace LuaBox2D {
 		state->registerInterface<ManifoldPoint>("LuaBox2D_ManifoldPoint");
 	}
 
-	b2ManifoldPoint * ManifoldPoint::constructor(State & state){
+	b2ManifoldPoint * ManifoldPoint::constructor(State & state, bool & managed){
 		return new b2ManifoldPoint();
 	}
 

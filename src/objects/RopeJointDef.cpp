@@ -9,12 +9,13 @@ namespace LuaBox2D {
 		state->registerInterface<RopeJointDef>("LuaBox2D_RopeJointDef");
 	}
 
-	b2RopeJointDef * RopeJointDef::constructor(State & state){
+	b2RopeJointDef * RopeJointDef::constructor(State & state, bool & managed){
 		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
 		b2JointDef * jointDef = interfaceJointDef->get(1);
 		if (jointDef != nullptr){
 			if (jointDef->type == b2JointType::e_ropeJoint){
-				return new b2RopeJointDef(*(b2RopeJointDef*)(jointDef));
+				managed = false;
+				return reinterpret_cast<b2RopeJointDef*>(jointDef);
 			}else{
 				return new b2RopeJointDef();
 			}

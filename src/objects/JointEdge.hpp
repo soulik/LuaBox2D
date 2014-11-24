@@ -11,7 +11,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("next", &JointEdge::getNext, &JointEdge::nullMethod);
 		}
 
-		b2JointEdge * constructor(State & state);
+		b2JointEdge * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2JointEdge * object);
 

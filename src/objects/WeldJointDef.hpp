@@ -22,7 +22,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("userData", &WeldJointDef::getUserData, &WeldJointDef::setUserData);
 		}
 
-		b2WeldJointDef * constructor(State & state);
+		b2WeldJointDef * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2WeldJointDef * object);
 

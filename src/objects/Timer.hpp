@@ -10,7 +10,7 @@ namespace LuaBox2D {
 			LUTOK_METHOD("reset", &Timer::reset);
 		}
 
-		b2Timer * constructor(State & state);
+		b2Timer * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2Timer * object);
 

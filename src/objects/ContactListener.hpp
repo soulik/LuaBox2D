@@ -37,7 +37,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("postSolve", &ContactListener::getPostSolve, &ContactListener::setPostSolve);
 		}
 
-		LuaBox2DContactListener * constructor(State & state);
+		LuaBox2DContactListener * constructor(State & state, bool & managed);
 
 		void destructor(State & state, LuaBox2DContactListener * object);
 

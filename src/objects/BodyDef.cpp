@@ -33,7 +33,7 @@ namespace LuaBox2D {
 		return "Unknown";
 	}
 
-	b2BodyDef * BodyDef::constructor(State & state){
+	b2BodyDef * BodyDef::constructor(State & state, bool & managed){
 		b2BodyDef * obj = nullptr;
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 

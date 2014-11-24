@@ -8,7 +8,7 @@ namespace LuaBox2D {
 		state->registerInterface<Manifold>("LuaBox2D_Manifold");
 	}
 
-	b2Manifold * Manifold::constructor(State & state){
+	b2Manifold * Manifold::constructor(State & state, bool & managed){
 		return new b2Manifold();
 	}
 

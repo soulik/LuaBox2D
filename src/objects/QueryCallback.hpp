@@ -26,7 +26,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("reportFixture", &QueryCallback::getReportFixture, &QueryCallback::setReportFixture);
 		}
 
-		LuaBox2DQueryCallback * constructor(State & state);
+		LuaBox2DQueryCallback * constructor(State & state, bool & managed);
 
 		void destructor(State & state, LuaBox2DQueryCallback * object);
 

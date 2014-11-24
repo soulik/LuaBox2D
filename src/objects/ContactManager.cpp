@@ -8,7 +8,7 @@ namespace LuaBox2D {
 		state->registerInterface<ContactManager>("LuaBox2D_ContactManager");
 	}
 
-	b2ContactManager * ContactManager::constructor(State & state){
+	b2ContactManager * ContactManager::constructor(State & state, bool & managed){
 		return new b2ContactManager();
 	}
 

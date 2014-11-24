@@ -10,12 +10,13 @@ namespace LuaBox2D {
 		state->registerInterface<GearJointDef>("LuaBox2D_GearJointDef");
 	}
 
-	b2GearJointDef * GearJointDef::constructor(State & state){
+	b2GearJointDef * GearJointDef::constructor(State & state, bool & managed){
 		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
 		b2JointDef * jointDef = interfaceJointDef->get(1);
 		if (jointDef != nullptr){
 			if (jointDef->type == b2JointType::e_gearJoint){
-				return new b2GearJointDef(*(b2GearJointDef*)(jointDef));
+				managed = false;
+				return reinterpret_cast<b2GearJointDef*>(jointDef);
 			}else{
 				return new b2GearJointDef();
 			}

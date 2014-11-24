@@ -47,7 +47,7 @@ namespace LuaBox2D {
 		return 0;
 	}
 
-	b2Body * Body::constructor(State & state){
+	b2Body * Body::constructor(State & state, bool & managed){
 		b2Body * obj = nullptr;
 		Stack * stack = state.stack;
 

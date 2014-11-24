@@ -35,7 +35,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("userData", &RevoluteJoint::getUserData, &RevoluteJoint::setUserData);
 		}
 
-		b2RevoluteJoint * constructor(State & state);
+		b2RevoluteJoint * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2RevoluteJoint * object);
 

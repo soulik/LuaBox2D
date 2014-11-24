@@ -28,7 +28,7 @@ namespace LuaBox2D {
 
 		void initAllowedTypes();
 
-		b2Joint * constructor(State & );
+		b2Joint * constructor(State & state, bool & managed);
 
 		b2Joint * get(const int index);
 

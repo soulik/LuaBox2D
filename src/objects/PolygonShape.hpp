@@ -21,7 +21,7 @@ namespace LuaBox2D {
 			LUTOK_METHOD("validate", &PolygonShape::validate);
 		}
 
-		b2PolygonShape * constructor(State & state);
+		b2PolygonShape * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2PolygonShape * object);
 

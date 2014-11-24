@@ -8,12 +8,13 @@ namespace LuaBox2D {
 		state->registerInterface<CircleShape>("LuaBox2D_CircleShape");
 	}
 
-	b2CircleShape * CircleShape::constructor(State & state){
+	b2CircleShape * CircleShape::constructor(State & state, bool & managed){
 		Shape * interfaceShape = state.getInterface<Shape>("LuaBox2D_Shape");
 		b2Shape * shape = interfaceShape->get(1);
 		if (shape != nullptr){
 			if (shape->GetType() == b2Shape::e_circle){
-				return new b2CircleShape(*dynamic_cast<b2CircleShape*>(shape));
+				managed = false;
+				return dynamic_cast<b2CircleShape*>(shape);
 			}else{
 				return new b2CircleShape();
 			}

@@ -21,7 +21,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("userData", &FrictionJointDef::getUserData, &FrictionJointDef::setUserData);
 		}
 
-		b2FrictionJointDef * constructor(State & state);
+		b2FrictionJointDef * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2FrictionJointDef * object);
 

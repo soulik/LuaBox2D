@@ -6,7 +6,7 @@ namespace LuaBox2D {
 		state->registerInterface<Vec2>("LuaBox2D_Vec2");
 	}
 
-	b2Vec2 * Vec2::constructor(State & state){
+	b2Vec2 * Vec2::constructor(State & state, bool & managed){
 			b2Vec2 * obj = nullptr;
 			Stack * stack = state.stack;
 			if (stack->is<LUA_TNUMBER>(1) && stack->is<LUA_TNUMBER>(2)){

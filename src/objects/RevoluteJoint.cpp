@@ -8,12 +8,13 @@ namespace LuaBox2D {
 		state->registerInterface<RevoluteJoint>("LuaBox2D_RevoluteJoint");
 	}
 
-	b2RevoluteJoint * RevoluteJoint::constructor(State & state){
+	b2RevoluteJoint * RevoluteJoint::constructor(State & state, bool & managed){
 		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
 		b2Joint * joint = interfaceJoint->get(1);
 		if (joint != nullptr){
 			if (joint->GetType() == b2JointType::e_revoluteJoint){
-				return new b2RevoluteJoint(*dynamic_cast<b2RevoluteJoint*>(joint));
+				managed = false;
+				return dynamic_cast<b2RevoluteJoint*>(joint);
 			}else{
 				return nullptr;
 			}

@@ -9,12 +9,13 @@ namespace LuaBox2D {
 		state->registerInterface<PulleyJointDef>("LuaBox2D_PulleyJointDef");
 	}
 
-	b2PulleyJointDef * PulleyJointDef::constructor(State & state){
+	b2PulleyJointDef * PulleyJointDef::constructor(State & state, bool & managed){
 		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
 		b2JointDef * jointDef = interfaceJointDef->get(1);
 		if (jointDef != nullptr){
 			if (jointDef->type == b2JointType::e_pulleyJoint){
-				return new b2PulleyJointDef(*(b2PulleyJointDef*)(jointDef));
+				managed = false;
+				return reinterpret_cast<b2PulleyJointDef*>(jointDef);
 			}else{
 				return new b2PulleyJointDef();
 			}

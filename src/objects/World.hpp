@@ -41,7 +41,7 @@ namespace LuaBox2D {
 			LUTOK_METHOD("rayCast", &World::rayCast);
 		}
 
-		b2World * constructor(State & state);
+		b2World * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2World * object);
 

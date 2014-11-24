@@ -74,7 +74,7 @@ namespace LuaBox2D {
 		}
 	}
 
-	LuaBox2DContactListener * ContactListener::constructor(State & state){
+	LuaBox2DContactListener * ContactListener::constructor(State & state, bool & managed){
 		return new LuaBox2DContactListener(&state);
 	}
 

@@ -8,12 +8,13 @@ namespace LuaBox2D {
 		state->registerInterface<MotorJoint>("LuaBox2D_MotorJoint");
 	}
 
-	b2MotorJoint * MotorJoint::constructor(State & state){
+	b2MotorJoint * MotorJoint::constructor(State & state, bool & managed){
 		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
 		b2Joint * joint = interfaceJoint->get(1);
 		if (joint != nullptr){
 			if (joint->GetType() == b2JointType::e_motorJoint){
-				return new b2MotorJoint(*dynamic_cast<b2MotorJoint*>(joint));
+				managed = false;
+				return dynamic_cast<b2MotorJoint*>(joint);
 			}else{
 				return nullptr;
 			}

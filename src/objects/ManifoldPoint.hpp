@@ -11,7 +11,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("contactID", &ManifoldPoint::getContactID, &ManifoldPoint::setContactID);
 		}
 
-		b2ManifoldPoint * constructor(State & state);
+		b2ManifoldPoint * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2ManifoldPoint * object);
 

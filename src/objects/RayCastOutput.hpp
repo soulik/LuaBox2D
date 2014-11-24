@@ -9,7 +9,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("fraction", &RayCastOutput::getFraction, &RayCastOutput::setFraction);
 		}
 
-		b2RayCastOutput * constructor(State & state);
+		b2RayCastOutput * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2RayCastOutput * object);
 

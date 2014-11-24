@@ -8,12 +8,13 @@ namespace LuaBox2D {
 		state->registerInterface<PulleyJoint>("LuaBox2D_PulleyJoint");
 	}
 
-	b2PulleyJoint * PulleyJoint::constructor(State & state){
+	b2PulleyJoint * PulleyJoint::constructor(State & state, bool & managed){
 		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
 		b2Joint * joint = interfaceJoint->get(1);
 		if (joint != nullptr){
 			if (joint->GetType() == b2JointType::e_pulleyJoint){
-				return new b2PulleyJoint(*dynamic_cast<b2PulleyJoint*>(joint));
+				managed = false;
+				return dynamic_cast<b2PulleyJoint*>(joint);
 			}else{
 				return nullptr;
 			}

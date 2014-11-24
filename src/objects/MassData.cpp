@@ -7,7 +7,7 @@ namespace LuaBox2D {
 		state->registerInterface<MassData>("LuaBox2D_MassData");
 	}
 
-	b2MassData * MassData::constructor(State & state){
+	b2MassData * MassData::constructor(State & state, bool & managed){
 		b2MassData * object = new b2MassData();
 		return object;
 	}

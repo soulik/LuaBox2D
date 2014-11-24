@@ -10,7 +10,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("vertices", &VertexArray::nullMethod, &VertexArray::setVertices);
 		}
 
-		b2VertexArray * constructor(State & state);
+		b2VertexArray * constructor(State & state, bool & managed);
 
 		b2VertexArray * constructor(State & state, const int index);
 

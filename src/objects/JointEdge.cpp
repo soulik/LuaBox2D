@@ -8,7 +8,7 @@ namespace LuaBox2D {
 		state->registerInterface<JointEdge>("LuaBox2D_JointEdge");
 	}
 
-	b2JointEdge * JointEdge::constructor(State & state){
+	b2JointEdge * JointEdge::constructor(State & state, bool & managed){
 		b2JointEdge * object = new b2JointEdge();
 		
 		object->joint = nullptr;

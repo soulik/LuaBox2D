@@ -7,7 +7,7 @@ namespace LuaBox2D {
 		state->registerInterface<ContactID>("LuaBox2D_ContactID");
 	}
 
-	b2ContactID * ContactID::constructor(State & state){
+	b2ContactID * ContactID::constructor(State & state, bool & managed){
 		return new b2ContactID();
 	}
 

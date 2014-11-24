@@ -8,12 +8,13 @@ namespace LuaBox2D {
 		state->registerInterface<EdgeShape>("LuaBox2D_EdgeShape");
 	}
 
-	b2EdgeShape * EdgeShape::constructor(State & state){
+	b2EdgeShape * EdgeShape::constructor(State & state, bool & managed){
 		Shape * interfaceShape = state.getInterface<Shape>("LuaBox2D_Shape");
 		b2Shape * shape = interfaceShape->get(1);
 		if (shape != nullptr){
 			if (shape->GetType() == b2Shape::e_edge){
-				return new b2EdgeShape(*dynamic_cast<b2EdgeShape*>(shape));
+				managed = false;
+				return dynamic_cast<b2EdgeShape*>(shape);
 			}else{
 				return new b2EdgeShape();
 			}

@@ -7,7 +7,7 @@ namespace LuaBox2D {
 		state->registerInterface<RayCastOutput>("LuaBox2D_RayCastOutput");
 	}
 
-	b2RayCastOutput * RayCastOutput::constructor(State & state){
+	b2RayCastOutput * RayCastOutput::constructor(State & state, bool & managed){
 		b2RayCastOutput * object = new b2RayCastOutput();
 		return object;
 	}

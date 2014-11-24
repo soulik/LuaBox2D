@@ -22,7 +22,7 @@ namespace LuaBox2D {
 			LUTOK_METHOD("vertexCount", &CircleShape::vertex);
 		}
 
-		b2CircleShape * constructor(State & state);
+		b2CircleShape * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2CircleShape * object);
 		

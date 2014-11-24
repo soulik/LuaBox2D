@@ -36,7 +36,7 @@ namespace LuaBox2D {
 		}
 	}
 
-	LuaBox2DContactFilter * ContactFilter::constructor(State & state){
+	LuaBox2DContactFilter * ContactFilter::constructor(State & state, bool & managed){
 		return new LuaBox2DContactFilter(&state);
 	}
 

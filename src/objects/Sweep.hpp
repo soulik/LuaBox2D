@@ -17,7 +17,7 @@ namespace LuaBox2D {
 			LUTOK_METHOD("normalize", &Sweep::normalize);
 		}
 
-		b2Sweep * constructor(State & state);
+		b2Sweep * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2Sweep * object);
 

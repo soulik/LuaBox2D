@@ -8,7 +8,7 @@ namespace LuaBox2D {
 		state->registerInterface<RayCastCallback>("LuaBox2D_RayCastCallback");
 	}
 
-	LuaBox2DRayCastCallback * RayCastCallback::constructor(State & state){
+	LuaBox2DRayCastCallback * RayCastCallback::constructor(State & state, bool & managed){
 		return new LuaBox2DRayCastCallback(&state);
 	}
 

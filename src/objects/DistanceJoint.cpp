@@ -8,12 +8,13 @@ namespace LuaBox2D {
 		state->registerInterface<DistanceJoint>("LuaBox2D_DistanceJoint");
 	}
 
-	b2DistanceJoint * DistanceJoint::constructor(State & state){
+	b2DistanceJoint * DistanceJoint::constructor(State & state, bool & managed){
 		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
 		b2Joint * joint = interfaceJoint->get(1);
 		if (joint != nullptr){
 			if (joint->GetType() == b2JointType::e_distanceJoint){
-				return new b2DistanceJoint(*dynamic_cast<b2DistanceJoint*>(joint));
+				managed = false;
+				return dynamic_cast<b2DistanceJoint*>(joint);
 			}else{
 				return nullptr;
 			}

@@ -12,7 +12,7 @@ namespace LuaBox2D {
 			LUTOK_METHOD("identity", &Rot::identity);
 		}
 
-		b2Rot * constructor(State & state);
+		b2Rot * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2Rot * object);
 

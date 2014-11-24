@@ -7,7 +7,7 @@ namespace LuaBox2D {
 		state->registerInterface<QueryCallback>("LuaBox2D_QueryCallback");
 	}
 
-	LuaBox2DQueryCallback * QueryCallback::constructor(State & state){
+	LuaBox2DQueryCallback * QueryCallback::constructor(State & state, bool & managed){
 		return new LuaBox2DQueryCallback(&state);
 	}
 

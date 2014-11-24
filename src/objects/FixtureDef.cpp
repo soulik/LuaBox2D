@@ -8,7 +8,7 @@ namespace LuaBox2D {
 		state->registerInterface<FixtureDef>("LuaBox2D_FixtureDef");
 	}
 
-	b2FixtureDef * FixtureDef::constructor(State & state){
+	b2FixtureDef * FixtureDef::constructor(State & state, bool & managed){
 		b2FixtureDef * obj = nullptr;
 		obj = new b2FixtureDef();
 

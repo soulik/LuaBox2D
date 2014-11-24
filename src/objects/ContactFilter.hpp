@@ -26,7 +26,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("shouldCollide", &ContactFilter::getShouldCollide, &ContactFilter::setShouldCollide);
 		}
 
-		LuaBox2DContactFilter * constructor(State & state);
+		LuaBox2DContactFilter * constructor(State & state, bool & managed);
 
 		void destructor(State & state, LuaBox2DContactFilter * object);
 

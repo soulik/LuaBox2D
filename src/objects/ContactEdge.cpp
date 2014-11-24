@@ -8,7 +8,7 @@ namespace LuaBox2D {
 		state->registerInterface<ContactEdge>("LuaBox2D_ContactEdge");
 	}
 
-	b2ContactEdge * ContactEdge::constructor(State & state){
+	b2ContactEdge * ContactEdge::constructor(State & state, bool & managed){
 		b2ContactEdge * object = new b2ContactEdge();
 		
 		object->contact = nullptr;

@@ -6,7 +6,7 @@ namespace LuaBox2D {
 		state->registerInterface<Timer>("LuaBox2D_Timer");
 	}
 
-	b2Timer * Timer::constructor(State & state){
+	b2Timer * Timer::constructor(State & state, bool & managed){
 		b2Timer * obj = nullptr;
 		obj = new b2Timer();
 		return obj;

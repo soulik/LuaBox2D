@@ -6,7 +6,7 @@ namespace LuaBox2D {
 		state->registerInterface<ContactImpulse>("LuaBox2D_ContactImpulse");
 	}
 
-	b2ContactImpulse * ContactImpulse::constructor(State & state){
+	b2ContactImpulse * ContactImpulse::constructor(State & state, bool & managed){
 		return nullptr;
 	}
 

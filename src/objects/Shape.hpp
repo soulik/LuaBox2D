@@ -20,7 +20,7 @@ namespace LuaBox2D {
 
 		void initAllowedTypes();
 
-		b2Shape * constructor(State & state);
+		b2Shape * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2Shape * object);
 

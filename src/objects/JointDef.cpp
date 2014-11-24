@@ -34,7 +34,7 @@ namespace LuaBox2D {
 		ADD_VALID_STRUCT(b2MotorJointDef);
 	}
 
-	b2JointDef * JointDef::constructor(State & state){
+	b2JointDef * JointDef::constructor(State & state, bool & managed){
 		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
 		b2JointDef * object = new b2JointDef();
 		object->bodyA = nullptr;

@@ -9,12 +9,13 @@ namespace LuaBox2D {
 		state->registerInterface<PrismaticJointDef>("LuaBox2D_PrismaticJointDef");
 	}
 
-	b2PrismaticJointDef * PrismaticJointDef::constructor(State & state){
+	b2PrismaticJointDef * PrismaticJointDef::constructor(State & state, bool & managed){
 		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
 		b2JointDef * jointDef = interfaceJointDef->get(1);
 		if (jointDef != nullptr){
 			if (jointDef->type == b2JointType::e_prismaticJoint){
-				return new b2PrismaticJointDef(*(b2PrismaticJointDef*)(jointDef));
+				managed = false;
+				return reinterpret_cast<b2PrismaticJointDef*>(jointDef);
 			}else{
 				return new b2PrismaticJointDef();
 			}

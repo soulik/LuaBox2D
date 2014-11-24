@@ -8,12 +8,13 @@ namespace LuaBox2D {
 		state->registerInterface<RopeJoint>("LuaBox2D_RopeJoint");
 	}
 
-	b2RopeJoint * RopeJoint::constructor(State & state){
+	b2RopeJoint * RopeJoint::constructor(State & state, bool & managed){
 		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
 		b2Joint * joint = interfaceJoint->get(1);
 		if (joint != nullptr){
 			if (joint->GetType() == b2JointType::e_ropeJoint){
-				return new b2RopeJoint(*dynamic_cast<b2RopeJoint*>(joint));
+				managed = false;
+				return dynamic_cast<b2RopeJoint*>(joint);
 			}else{
 				return nullptr;
 			}

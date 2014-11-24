@@ -7,7 +7,7 @@ namespace LuaBox2D {
 		state->registerInterface<Sweep>("LuaBox2D_Sweep");
 	}
 
-	b2Sweep * Sweep::constructor(State & state){
+	b2Sweep * Sweep::constructor(State & state, bool & managed){
 		b2Sweep * obj = nullptr;
 		obj = new b2Sweep();
 		return obj;

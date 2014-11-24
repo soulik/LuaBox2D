@@ -33,7 +33,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("userData", &PulleyJoint::getUserData, &PulleyJoint::setUserData);
 		}
 
-		b2PulleyJoint * constructor(State & state);
+		b2PulleyJoint * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2PulleyJoint * object);
 

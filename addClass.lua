@@ -9,13 +9,9 @@ namespace LuaBox2D {
 		explicit {{CLASS}}(State * state) : Object<{{ORIG_CLASS}}>(state){
 		}
 
-		{{ORIG_CLASS}} * constructor(State & state){
-			return nullptr;
-		}
+		{{ORIG_CLASS}} * constructor(State & state, bool & managed);
 
-		void destructor(State & state, {{ORIG_CLASS}} * object){
-			delete object;
-		}
+		void destructor(State & state, {{ORIG_CLASS}} * object);
 	};
 
 	void init{{CLASS}}(State * );
@@ -30,6 +26,14 @@ namespace LuaBox2D {
 namespace LuaBox2D {
 	void init{{CLASS}}(State * state){
 		state->registerInterface<{{CLASS}}>("LuaBox2D_{{CLASS}}");
+	}
+
+	{{ORIG_CLASS}} * {{CLASS}}::constructor(State & state, bool & managed){
+		return nullptr;
+	}
+
+	void {{CLASS}}::destructor(State & state, {{ORIG_CLASS}} * object){
+		delete object;
 	}
 };
 ]]

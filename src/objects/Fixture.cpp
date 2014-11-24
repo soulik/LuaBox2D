@@ -20,7 +20,7 @@ namespace LuaBox2D {
 		return 1;
 	}
 
-	b2Fixture * Fixture::constructor(State & state){
+	b2Fixture * Fixture::constructor(State & state, bool & managed){
 		return nullptr;
 	}
 

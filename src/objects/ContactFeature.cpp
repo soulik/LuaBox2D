@@ -6,7 +6,7 @@ namespace LuaBox2D {
 		state->registerInterface<ContactFeature>("LuaBox2D_ContactFeature");
 	}
 
-	b2ContactFeature * ContactFeature::constructor(State & state){
+	b2ContactFeature * ContactFeature::constructor(State & state, bool & managed){
 		return new b2ContactFeature();
 	}
 

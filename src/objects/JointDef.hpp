@@ -18,7 +18,7 @@ namespace LuaBox2D {
 
 		void initAllowedTypes();
 
-		b2JointDef * constructor(State & );
+		b2JointDef * constructor(State & state, bool &);
 
 		void destructor(State & state, b2JointDef * object);
 

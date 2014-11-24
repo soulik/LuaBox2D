@@ -21,7 +21,7 @@ namespace LuaBox2D {
 			LUTOK_METHOD("nextVertex", &ChainShape::setNextVertex);
 		}
 
-		b2ChainShape * constructor(State & state);
+		b2ChainShape * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2ChainShape * object);
 

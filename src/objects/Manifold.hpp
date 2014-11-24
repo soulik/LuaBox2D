@@ -10,7 +10,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("type", &Manifold::getType, &Manifold::setType);
 		}
 
-		b2Manifold * constructor(State & state);
+		b2Manifold * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2Manifold * object);
 

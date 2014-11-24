@@ -9,12 +9,13 @@ namespace LuaBox2D {
 		state->registerInterface<WheelJointDef>("LuaBox2D_WheelJointDef");
 	}
 
-	b2WheelJointDef * WheelJointDef::constructor(State & state){
+	b2WheelJointDef * WheelJointDef::constructor(State & state, bool & managed){
 		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
 		b2JointDef * jointDef = interfaceJointDef->get(1);
 		if (jointDef != nullptr){
 			if (jointDef->type == b2JointType::e_wheelJoint){
-				return new b2WheelJointDef(*(b2WheelJointDef*)(jointDef));
+				managed = false;
+				return reinterpret_cast<b2WheelJointDef*>(jointDef);
 			}else{
 				return new b2WheelJointDef();
 			}
@@ -109,7 +110,7 @@ namespace LuaBox2D {
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		b2Vec2 * anchor = interfaceVec2->get(1);
 		if (anchor != nullptr){
-			object->localAnchorA = *anchor;
+			object->localAnchorB = *anchor;
 		}
 		return 0;
 	}

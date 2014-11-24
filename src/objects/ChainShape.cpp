@@ -10,12 +10,13 @@ namespace LuaBox2D {
 		state->registerInterface<ChainShape>("LuaBox2D_ChainShape");
 	}
 
-	b2ChainShape * ChainShape::constructor(State & state){
+	b2ChainShape * ChainShape::constructor(State & state, bool & managed){
 		Shape * interfaceShape = state.getInterface<Shape>("LuaBox2D_Shape");
 		b2Shape * shape = interfaceShape->get(1);
 		if (shape != nullptr){
 			if (shape->GetType() == b2Shape::e_chain){
-				return new b2ChainShape(*dynamic_cast<b2ChainShape*>(shape));
+				managed = false;
+				return dynamic_cast<b2ChainShape*>(shape);
 			}else{
 				return new b2ChainShape();
 			}

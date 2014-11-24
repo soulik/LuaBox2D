@@ -9,7 +9,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("contactFilter", &ContactManager::getContactFilter, &ContactManager::setContactFilter);
 		}
 
-		b2ContactManager * constructor(State & state);
+		b2ContactManager * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2ContactManager * object);
 

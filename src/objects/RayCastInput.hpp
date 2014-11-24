@@ -10,7 +10,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("maxFraction", &RayCastInput::getMaxFraction, &RayCastInput::setMaxFraction);
 		}
 
-		b2RayCastInput * constructor(State & state);
+		b2RayCastInput * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2RayCastInput * object);
 

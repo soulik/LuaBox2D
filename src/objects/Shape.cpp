@@ -24,7 +24,7 @@ namespace LuaBox2D {
 		ADD_VALID_TYPE(b2PolygonShape);
 	}
 
-	b2Shape * Shape::constructor(State & state){
+	b2Shape * Shape::constructor(State & state, bool & managed){
 		b2Shape *obj = get(1);
 		if (obj != nullptr){
 			return obj;

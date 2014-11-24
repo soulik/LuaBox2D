@@ -25,7 +25,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("hasVertex3", &EdgeShape::getHasVertex3, &EdgeShape::setHasVertex3);
 		}
 
-		b2EdgeShape * constructor(State & state);
+		b2EdgeShape * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2EdgeShape * object);
 

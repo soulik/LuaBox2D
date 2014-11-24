@@ -9,12 +9,13 @@ namespace LuaBox2D {
 		state->registerInterface<WeldJointDef>("LuaBox2D_WeldJointDef");
 	}
 
-	b2WeldJointDef * WeldJointDef::constructor(State & state){
+	b2WeldJointDef * WeldJointDef::constructor(State & state, bool & managed){
 		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
 		b2JointDef * jointDef = interfaceJointDef->get(1);
 		if (jointDef != nullptr){
 			if (jointDef->type == b2JointType::e_weldJoint){
-				return new b2WeldJointDef(*(b2WeldJointDef*)(jointDef));
+				managed = false;
+				return reinterpret_cast<b2WeldJointDef*>(jointDef);
 			}else{
 				return new b2WeldJointDef();
 			}

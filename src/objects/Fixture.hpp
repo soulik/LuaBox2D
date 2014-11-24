@@ -24,7 +24,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("userData", &Fixture::getUserData, &Fixture::setUserData);
 		}
 
-		b2Fixture * constructor(State & state);
+		b2Fixture * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2Fixture * object);
 

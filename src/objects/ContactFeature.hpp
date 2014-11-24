@@ -11,7 +11,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("typeB", &ContactFeature::getTypeB, &ContactFeature::setTypeB);
 		}
 
-		b2ContactFeature * constructor(State & state);
+		b2ContactFeature * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2ContactFeature * object);
 

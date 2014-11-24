@@ -8,12 +8,13 @@ namespace LuaBox2D {
 		state->registerInterface<PrismaticJoint>("LuaBox2D_PrismaticJoint");
 	}
 
-	b2PrismaticJoint * PrismaticJoint::constructor(State & state){
+	b2PrismaticJoint * PrismaticJoint::constructor(State & state, bool & managed){
 		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
 		b2Joint * joint = interfaceJoint->get(1);
 		if (joint != nullptr){
 			if (joint->GetType() == b2JointType::e_prismaticJoint){
-				return new b2PrismaticJoint(*dynamic_cast<b2PrismaticJoint*>(joint));
+				managed = false;
+				return dynamic_cast<b2PrismaticJoint*>(joint);
 			}else{
 				return nullptr;
 			}

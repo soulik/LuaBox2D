@@ -20,7 +20,7 @@ namespace LuaBox2D {
 		state->registerInterface<Joint>("LuaBox2D_Joint");
 	}
 
-	b2Joint * Joint::constructor(State & state){
+	b2Joint * Joint::constructor(State & state, bool & managed){
 		b2Joint *obj = get(1);
 		if (obj != nullptr){
 			return obj;

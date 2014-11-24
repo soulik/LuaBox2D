@@ -11,7 +11,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("next", &ContactEdge::getNext, &ContactEdge::nullMethod);
 		}
 
-		b2ContactEdge * constructor(State & state);
+		b2ContactEdge * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2ContactEdge * object);
 

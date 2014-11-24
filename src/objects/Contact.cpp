@@ -9,7 +9,7 @@ namespace LuaBox2D {
 		state->registerInterface<Contact>("LuaBox2D_Contact");
 	}
 
-	b2Contact * Contact::constructor(State & state){
+	b2Contact * Contact::constructor(State & state, bool & managed){
 		/*
 		if (state.stack->is<LUA_TUSERDATA>(1)){
 			Contact * interfaceContact = state.getInterface<Contact>("LuaBox2D_Contact");

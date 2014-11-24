@@ -36,7 +36,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("userData", &PrismaticJoint::getUserData, &PrismaticJoint::setUserData);
 		}
 
-		b2PrismaticJoint * constructor(State & state);
+		b2PrismaticJoint * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2PrismaticJoint * object);
 

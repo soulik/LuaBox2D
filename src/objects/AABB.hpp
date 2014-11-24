@@ -17,7 +17,7 @@ namespace LuaBox2D {
 			LUTOK_METHOD("contains", &AABB::contains);
 		}
 
-		b2AABB * constructor(State & state);
+		b2AABB * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2AABB * object);
 

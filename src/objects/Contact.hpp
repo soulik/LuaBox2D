@@ -22,7 +22,7 @@ namespace LuaBox2D {
 			LUTOK_METHOD("resetRestitution", &Contact::resetRestitution);
 		}
 
-		b2Contact * constructor(State & state);
+		b2Contact * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2Contact * object);
 

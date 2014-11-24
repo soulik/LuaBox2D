@@ -32,7 +32,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("userData", &DistanceJoint::getUserData, &DistanceJoint::setUserData);
 		}
 
-		b2DistanceJoint * constructor(State & state);
+		b2DistanceJoint * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2DistanceJoint * object);
 

@@ -26,7 +26,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("reportFixture", &RayCastCallback::getReportFixture, &RayCastCallback::setReportFixture);
 		}
 
-		LuaBox2DRayCastCallback * constructor(State & state);
+		LuaBox2DRayCastCallback * constructor(State & state, bool & managed);
 
 		void destructor(State & state, LuaBox2DRayCastCallback * object);
 

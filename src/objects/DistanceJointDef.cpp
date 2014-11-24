@@ -9,12 +9,13 @@ namespace LuaBox2D {
 		state->registerInterface<DistanceJointDef>("LuaBox2D_DistanceJointDef");
 	}
 
-	b2DistanceJointDef * DistanceJointDef::constructor(State & state){
+	b2DistanceJointDef * DistanceJointDef::constructor(State & state, bool & managed){
 		JointDef * interfaceJointDef = state.getInterface<JointDef>("LuaBox2D_JointDef");
 		b2JointDef * jointDef = interfaceJointDef->get(1);
 		if (jointDef != nullptr){
 			if (jointDef->type == b2JointType::e_distanceJoint){
-				return new b2DistanceJointDef(*(b2DistanceJointDef*)(jointDef));
+				managed = false;
+				return reinterpret_cast<b2DistanceJointDef*>(jointDef);
 			}else{
 				return new b2DistanceJointDef();
 			}

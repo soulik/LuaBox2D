@@ -109,7 +109,7 @@ namespace LuaBox2D {
 		return 0;
 	}
 
-	b2VertexArray * VertexArray::constructor(State & state){
+	b2VertexArray * VertexArray::constructor(State & state, bool & managed){
 		b2VertexArray * object = new b2VertexArray();
 		setVertices(state, object);
 		return object;

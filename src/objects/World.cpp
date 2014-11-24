@@ -47,7 +47,7 @@ namespace LuaBox2D {
 		}
 	}
 
-	b2World * World::constructor(State & state){
+	b2World * World::constructor(State & state, bool & managed){
 		b2World * obj = nullptr;
 		Stack * stack = state.stack;
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");

@@ -8,12 +8,13 @@ namespace LuaBox2D {
 		state->registerInterface<WheelJoint>("LuaBox2D_WheelJoint");
 	}
 
-	b2WheelJoint * WheelJoint::constructor(State & state){
+	b2WheelJoint * WheelJoint::constructor(State & state, bool & managed){
 		Joint * interfaceJoint = state.getInterface<Joint>("LuaBox2D_Joint");
 		b2Joint * joint = interfaceJoint->get(1);
 		if (joint != nullptr){
 			if (joint->GetType() == b2JointType::e_wheelJoint){
-				return new b2WheelJoint(*dynamic_cast<b2WheelJoint*>(joint));
+				managed = false;
+				return dynamic_cast<b2WheelJoint*>(joint);
 			}else{
 				return nullptr;
 			}

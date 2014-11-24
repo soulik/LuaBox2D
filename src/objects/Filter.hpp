@@ -10,7 +10,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("groupIndex", &Filter::getGroupIndex, &Filter::setGroupIndex);
 		}
 
-		b2Filter * constructor(State & state);
+		b2Filter * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2Filter * object);
 

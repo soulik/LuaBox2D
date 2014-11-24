@@ -20,7 +20,7 @@ namespace LuaBox2D {
 			LUTOK_PROPERTY("userData", &MouseJointDef::getUserData, &MouseJointDef::setUserData);
 		}
 
-		b2MouseJointDef * constructor(State & state);
+		b2MouseJointDef * constructor(State & state, bool & managed);
 
 		void destructor(State & state, b2MouseJointDef * object);
 
