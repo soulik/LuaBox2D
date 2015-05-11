@@ -110,6 +110,7 @@ namespace LuaBox2D {
 	}
 
 	b2VertexArray * VertexArray::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		b2VertexArray * object = new b2VertexArray();
 		setVertices(state, object);
 		return object;

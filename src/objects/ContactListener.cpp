@@ -75,6 +75,7 @@ namespace LuaBox2D {
 	}
 
 	LuaBox2DContactListener * ContactListener::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		return new LuaBox2DContactListener(&state);
 	}
 

@@ -8,6 +8,7 @@ namespace LuaBox2D {
 	}
 
 	b2RayCastOutput * RayCastOutput::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		b2RayCastOutput * object = new b2RayCastOutput();
 		return object;
 	}

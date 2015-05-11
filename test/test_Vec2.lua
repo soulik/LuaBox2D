@@ -12,6 +12,7 @@ local v8 = 5 * v2
 local v9 = v1.normalizeTo()
 local v10 = v1.skew()
 local v11 = v1.clamp(Vec2(0,0), Vec2(1,1))
+local v12 = v1 % v2
 
 print(v1, v1.x, v1.y)
 print(v2, v2.x, v2.y)
@@ -30,3 +31,11 @@ v2.zero()
 print(v2, v2.x, v2.y)
 print(#v1, v1.length, v1.lengthSquared)
 print(v11, v11.x, v11.y)
+print(v12)
+
+local v0 = Vec2(1,1)
+for i=1,100000 do
+	local v = Vec2(i, i)
+	local vOut = v0 + v
+	vOut.x = v0.x
+end

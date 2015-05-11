@@ -10,6 +10,7 @@ namespace LuaBox2D {
 	}
 
 	b2AABB * AABB::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		b2AABB * object = new b2AABB();
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		if (state.stack->is<LUA_TUSERDATA>(1) && state.stack->is<LUA_TUSERDATA>(2)){

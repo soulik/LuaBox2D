@@ -25,6 +25,7 @@ namespace LuaBox2D {
 	}
 
 	b2Shape * Shape::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		b2Shape *obj = get(1);
 		if (obj != nullptr){
 			return obj;

@@ -8,6 +8,7 @@ namespace LuaBox2D {
 	}
 
 	LuaBox2DQueryCallback * QueryCallback::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		return new LuaBox2DQueryCallback(&state);
 	}
 

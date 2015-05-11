@@ -21,6 +21,7 @@ namespace LuaBox2D {
 	}
 
 	b2Fixture * Fixture::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		return nullptr;
 	}
 
@@ -130,7 +131,6 @@ namespace LuaBox2D {
 	}
 
 	int Fixture::rayCast(State & state, b2Fixture * object){
-		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		RayCastInput * interfaceRayCastInput = state.getInterface<RayCastInput>("LuaBox2D_RayCastInput");
 		RayCastOutput * interfaceRayCastOutput = state.getInterface<RayCastOutput>("LuaBox2D_RayCastOutput");
 

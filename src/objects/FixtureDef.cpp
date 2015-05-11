@@ -9,6 +9,7 @@ namespace LuaBox2D {
 	}
 
 	b2FixtureDef * FixtureDef::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		b2FixtureDef * obj = nullptr;
 		obj = new b2FixtureDef();
 

@@ -8,6 +8,7 @@ namespace LuaBox2D {
 	}
 
 	b2MassData * MassData::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		b2MassData * object = new b2MassData();
 		return object;
 	}

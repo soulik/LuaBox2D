@@ -7,6 +7,7 @@ namespace LuaBox2D {
 	}
 
 	b2ContactFeature * ContactFeature::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		return new b2ContactFeature();
 	}
 
@@ -21,7 +22,7 @@ namespace LuaBox2D {
 	}
 
 	int ContactFeature::setIndexA(State & state, b2ContactFeature * object){
-		object->indexA = static_cast<int32>(state.stack->to<int>(1));
+		object->indexA = static_cast<uint8>(state.stack->to<int>(1));
 		return 0;
 	}
 
@@ -31,7 +32,7 @@ namespace LuaBox2D {
 	}
 
 	int ContactFeature::setIndexB(State & state, b2ContactFeature * object){
-		object->indexB = static_cast<int32>(state.stack->to<int>(1));
+		object->indexB = static_cast<uint8>(state.stack->to<int>(1));
 		return 0;
 	}
 

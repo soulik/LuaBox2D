@@ -84,6 +84,7 @@ using namespace LuaBox2D;
 	INIT_OBJECT(JOINT_NAME ## JointDef)
 
 extern "C" LIBLUABOX2D_DLL_EXPORTED int luaopen_LuaBox2D(lua_State * L){
+	int t = lua_gettop(L);
 	State * state = new State(L);
 	Stack * stack = state->stack;
 	stack->newTable();

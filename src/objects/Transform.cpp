@@ -9,6 +9,7 @@ namespace LuaBox2D {
 	}
 
 	b2Transform * Transform::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		b2Transform * obj = nullptr;
 		Vec2 * interfaceVec2 = state.getInterface<Vec2>("LuaBox2D_Vec2");
 		Rot * interfaceRot = state.getInterface<Rot>("LuaBox2D_Rot");

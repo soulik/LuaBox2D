@@ -10,6 +10,8 @@ namespace LuaBox2D {
 	}
 
 	b2Contact * Contact::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(state);
+		LUTOK2_NOT_USED(managed);
 		/*
 		if (state.stack->is<LUA_TUSERDATA>(1)){
 			Contact * interfaceContact = state.getInterface<Contact>("LuaBox2D_Contact");
@@ -27,7 +29,8 @@ namespace LuaBox2D {
 	}
 
 	void Contact::destructor(State & state, b2Contact * object){
-
+		LUTOK2_NOT_USED(state);
+		LUTOK2_NOT_USED(object);
 	}
 
 	int Contact::getManifold(State & state, b2Contact * object){

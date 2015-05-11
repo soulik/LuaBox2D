@@ -37,6 +37,7 @@ namespace LuaBox2D {
 	}
 
 	LuaBox2DContactFilter * ContactFilter::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		return new LuaBox2DContactFilter(&state);
 	}
 

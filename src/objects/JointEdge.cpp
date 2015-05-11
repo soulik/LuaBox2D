@@ -9,6 +9,7 @@ namespace LuaBox2D {
 	}
 
 	b2JointEdge * JointEdge::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		b2JointEdge * object = new b2JointEdge();
 		
 		object->joint = nullptr;

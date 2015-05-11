@@ -7,6 +7,7 @@ namespace LuaBox2D {
 	}
 
 	b2ContactImpulse * ContactImpulse::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		return nullptr;
 	}
 

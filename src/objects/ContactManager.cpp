@@ -9,6 +9,7 @@ namespace LuaBox2D {
 	}
 
 	b2ContactManager * ContactManager::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		return new b2ContactManager();
 	}
 

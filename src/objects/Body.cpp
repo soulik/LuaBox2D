@@ -48,8 +48,8 @@ namespace LuaBox2D {
 	}
 
 	b2Body * Body::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		b2Body * obj = nullptr;
-		Stack * stack = state.stack;
 
 		BodyDef * interfaceBodyDef = state.getInterface<BodyDef>("LuaBox2D_BodyDef");
 		World * interfaceWorld = state.getInterface<World>("LuaBox2D_World");

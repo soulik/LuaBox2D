@@ -10,6 +10,8 @@ namespace LuaBox2D {
 	}
 
 	b2WorldManifold * WorldManifold::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(state);
+		LUTOK2_NOT_USED(managed);
 		return new b2WorldManifold();
 	}
 

@@ -35,6 +35,7 @@ namespace LuaBox2D {
 	}
 
 	b2JointDef * JointDef::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		Body * interfaceBody = state.getInterface<Body>("LuaBox2D_Body");
 		b2JointDef * object = new b2JointDef();
 		object->bodyA = nullptr;

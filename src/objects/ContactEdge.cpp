@@ -9,6 +9,7 @@ namespace LuaBox2D {
 	}
 
 	b2ContactEdge * ContactEdge::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		b2ContactEdge * object = new b2ContactEdge();
 		
 		object->contact = nullptr;

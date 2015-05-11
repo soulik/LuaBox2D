@@ -8,6 +8,7 @@ namespace LuaBox2D {
 	}
 
 	b2Sweep * Sweep::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		b2Sweep * obj = nullptr;
 		obj = new b2Sweep();
 		return obj;

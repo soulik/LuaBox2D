@@ -7,6 +7,7 @@ namespace LuaBox2D {
 	}
 
 	b2Timer * Timer::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		b2Timer * obj = nullptr;
 		obj = new b2Timer();
 		return obj;

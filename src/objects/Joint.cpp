@@ -21,6 +21,7 @@ namespace LuaBox2D {
 	}
 
 	b2Joint * Joint::constructor(State & state, bool & managed){
+		LUTOK2_NOT_USED(managed);
 		b2Joint *obj = get(1);
 		if (obj != nullptr){
 			return obj;
