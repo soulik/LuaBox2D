@@ -197,7 +197,7 @@ IF(UNIX)
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wmissing-declarations")
 ENDIF(UNIX)
 
-
+add_definitions(-DBUILDING_LIBLUABOX2D)
 
 add_library(LuaBox2D SHARED
 	${LuaBox2D_sources}
