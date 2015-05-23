@@ -203,6 +203,13 @@ add_library(LuaBox2D SHARED
 	${LuaBox2D_sources}
 )
 
+set_target_properties(LuaBox2D
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+)
+
 target_link_libraries (LuaBox2D
 	Box2D
 	${LUA_LIBRARIES}

@@ -16,6 +16,13 @@ set(BOX2D_BUILD_EXAMPLES OFF CACHE BOOL "Build Box2D examples")
 add_subdirectory(dependencies/Box2D/Box2D)
 include_directories(dependencies/Box2D/Box2D)
 
+set_target_properties(Box2D
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+)
+
 include_directories(dependencies/lutok2/include)
 
 add_subdirectory(src)
