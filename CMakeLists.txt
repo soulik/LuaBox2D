@@ -4,7 +4,11 @@ project (LuaBox2D)
 # Include Lua 5.1
 
 include(FindLua51)
-include_directories(SYSTEM ${LUA_INCLUDE_DIR})
+include_directories(SYSTEM
+	${LUA_INCLUDE_DIR}
+	${LUA_INCLUDE_DIR}/lua5.1
+)
+
 
 # Setup Box2D
 
