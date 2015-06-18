@@ -5,7 +5,6 @@ project (LuaBox2D)
 
 include(FindLua51)
 include_directories(SYSTEM ${LUA_INCLUDE_DIR})
-include_directories(dependencies/lua/include)
 
 # Setup Box2D
 
